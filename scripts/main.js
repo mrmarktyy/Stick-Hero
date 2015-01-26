@@ -19,6 +19,7 @@ $(function() {
     var BOX_WIDTH_MIN = 15;
     var BOX_WIDTH_MAX = 69;
     var STICK_INC = 3;
+    var ANIMATION_END_EVENTS = 'transitionend webkitTransitionEnd animationend webkitAnimationEnd MSAnimationEnd oAnimationEnd';
     var STATES = {
       WELCOME: 0,
       PRE_BEGIN: 1,
@@ -71,7 +72,6 @@ $(function() {
       $(document).on('click', '.btn-play', function() {
         self.nextAfterAnimated(self.$name, STATES.PRE_BEGIN);
         self.$name.addClass('hinge');
-        // self.next(STATES.PRE_BEGIN);
       });
       $(document).on('click', '.btn-playagain', function() {
         self.reset();
@@ -174,8 +174,8 @@ $(function() {
 
     this.nextAfterAnimated = function($elm, state) {
       var self = this;
-      $elm.on('transitionend webkitTransitionEnd animationend webkitAnimationEnd MSAnimationEnd oAnimationEnd', function() {
-        $elm.off('transitionend webkitTransitionEnd animationend webkitAnimationEnd MSAnimationEnd oAnimationEnd');
+      $elm.on(ANIMATION_END_EVENTS, function() {
+        $elm.off(ANIMATION_END_EVENTS);
         self.next(state);
       });
     };
@@ -259,8 +259,8 @@ $(function() {
         this.$feet.addClass('walk');
 
         this.dx = this._newBox.left + this._newBox.width - BOX_WIDTH;
-        if (this._activeStickHeight >= this._validStickMin &&
-          this._activeStickHeight <= this._validStickMax) {
+        if (this._activeStickHeight > this._validStickMin &&
+          this._activeStickHeight < this._validStickMax) {
           this.nextAfterAnimated(this.$hero, STATES.SHIFTING);
 
           this.$hero.css('left', HERO_INIT_LEFT + this.dx + 'px');

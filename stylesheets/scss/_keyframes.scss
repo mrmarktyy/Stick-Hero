@@ -152,7 +152,7 @@
 
 /* animate.css */
 @-webkit-keyframes hinge {
-  0% {}
+  0% { opacity:1;}
 
   20%, 60% {
     -webkit-transform: rotate3d(0, 0, 1, 80deg);
@@ -173,7 +173,7 @@
 }
 
 @keyframes hinge {
-  0% {}
+  0% {opacity: 1;}
 
   20%, 60% {
     -webkit-transform: rotate3d(0, 0, 1, 80deg);
