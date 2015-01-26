@@ -110,7 +110,10 @@ $(function() {
     this.reset = function() {
       this.score = 0;
       this.best = localStorage.getItem('best') || 0;
-      this.$game.removeClass('bounce');
+      this.bg = 'bg' + this._getRandom(1, 5);
+      this.$game
+        .removeClass('bounce bg1 bg2 bg3 bg4 bg5')
+        .addClass(this.bg);
       this.$liveScore.hide();
       this.$gameover.hide();
       this.$welcome.hide();

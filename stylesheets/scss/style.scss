@@ -9,9 +9,25 @@ $main-color: black;
   font-family: 'Poiret One', Helvetica, Georgia;
   position: relative;
   overflow: hidden;
-  background: url('../../images/bg.jpg');
+  background-image: url('../../images/bg3.jpg');
   background-repeat: no-repeat;
   background-size: 100% 100%;
+
+  &.bg1 {
+    background-image: url('../../images/bg.jpg');
+  }
+  &.bg2 {
+    background-image: url('../../images/bg2.png');
+  }
+  &.bg3 {
+    background-image: url('../../images/bg3.jpg');
+  }
+  &.bg4 {
+    background-image: url('../../images/bg4.jpg');
+  }
+  &.bg5 {
+    background-image: url('../../images/bg5.jpg');
+  }
 
   &.bounce {
     -webkit-animation: bounce 0.5s linear;

@@ -82,7 +82,12 @@
   20%, 60% { -webkit-transform: rotate3d(0, 0, 1, 80deg); transform: rotate3d(0, 0, 1, 80deg); }
   40%, 80% { -webkit-transform: rotate3d(0, 0, 1, 60deg); transform: rotate3d(0, 0, 1, 60deg); opacity: 1; }
   100% { -webkit-transform: translate3d(0, 700px, 0); transform: translate3d(0, 700px, 0); opacity: 0; } }
-#game { font-family: 'Poiret One', Helvetica, Georgia; position: relative; overflow: hidden; background: url("../../images/bg.jpg"); background-repeat: no-repeat; background-size: 100% 100%; }
+#game { font-family: 'Poiret One', Helvetica, Georgia; position: relative; overflow: hidden; background-image: url("../../images/bg3.jpg"); background-repeat: no-repeat; background-size: 100% 100%; }
+#game.bg1 { background-image: url("../../images/bg.jpg"); }
+#game.bg2 { background-image: url("../../images/bg2.png"); }
+#game.bg3 { background-image: url("../../images/bg3.jpg"); }
+#game.bg4 { background-image: url("../../images/bg4.jpg"); }
+#game.bg5 { background-image: url("../../images/bg5.jpg"); }
 #game.bounce { -webkit-animation: bounce 0.5s linear; animation: bounce 0.5s linear; }
 
 .stick { width: 3px; background: black; position: absolute; -webkit-transition: -webkit-transform 0.4s ease-in, left 0.5s ease; transition: transform 0.4s ease-in, left 0.5s ease; -webkit-transform-origin: bottom right; transform-origin: bottom right; }
