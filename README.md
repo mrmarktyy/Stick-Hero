@@ -1,2 +1,3 @@
-# stick-hero
-HTML5 Game - Stick Hero
+# STICK HERO
+
+[Play it here](http://games.tantanguanguan.com/stick-hero)
