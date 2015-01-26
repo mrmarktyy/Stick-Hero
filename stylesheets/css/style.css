@@ -11,11 +11,13 @@
   100% { -webkit-transform: rotate(360deg); transform: rotate(360deg); } }
 @keyframes loader { 0% { -webkit-transform: rotate(0deg); transform: rotate(0deg); }
   100% { -webkit-transform: rotate(360deg); transform: rotate(360deg); } }
-.hero { width: 18px; height: 24px; border-radius: 5px; background: black; position: absolute; left: 25px; bottom: 85px; transition: left 0.8s linear, bottom 0.2s ease; }
+.hero { position: relative; width: 100%; height: 100%; }
 .hero.shake { -webkit-animation: shaking 0.3s infinite linear; animation: shaking 0.3s infinite linear; }
-.hero.shift { transition: left 0.5s ease; }
 
-.ribbon { width: 20px; height: 4px; background: red; position: absolute; left: -1px; top: 5px; }
+.hero1 { border-radius: 5px; background: black; position: absolute; transition: left 0.8s linear, bottom 0.2s ease; }
+.hero1.shift { transition: left 0.5s ease; }
+
+.ribbon { height: 4px; background: red; position: absolute; left: -1px; top: 5px; }
 
 .eye { width: 4px; height: 4px; background: white; border-radius: 50%; position: absolute; right: 2px; top: 8px; }
 
@@ -58,12 +60,12 @@
   50% { top: 45%; }
   100% { top: 40%; } }
 /* shaking */
-@-webkit-keyframes shaking { 0% { bottom: 85px; }
-  50% { bottom: 82px; }
-  100% { bottom: 85px; } }
-@keyframes shaking { 0% { bottom: 85px; }
-  50% { bottom: 82px; }
-  100% { bottom: 85px; } }
+@-webkit-keyframes shaking { 0% { top: 0; }
+  50% { top: 3px; }
+  100% { top: 0; } }
+@keyframes shaking { 0% { top: 0; }
+  50% { top: 3px; }
+  100% { top: 0; } }
 /* animate.css */
 @-webkit-keyframes bounce { 0%, 100% { -webkit-transform: translate3d(0, 0, 0); transform: translate3d(0, 0, 0); }
   10%, 30%, 50%, 70%, 90% { -webkit-transform: translate3d(0, -5px, 0); transform: translate3d(0, -5px, 0); }
@@ -80,24 +82,24 @@
   20%, 60% { -webkit-transform: rotate3d(0, 0, 1, 80deg); transform: rotate3d(0, 0, 1, 80deg); }
   40%, 80% { -webkit-transform: rotate3d(0, 0, 1, 60deg); transform: rotate3d(0, 0, 1, 60deg); opacity: 1; }
   100% { -webkit-transform: translate3d(0, 700px, 0); transform: translate3d(0, 700px, 0); opacity: 0; } }
-#game { font-family: 'Poiret One', Helvetica, Georgia; position: relative; overflow: hidden; margin: 0 auto; background: url("../../images/bg.jpg"); background-repeat: no-repeat; background-size: 100% 100%; }
+#game { font-family: 'Poiret One', Helvetica, Georgia; position: relative; overflow: hidden; background: url("../../images/bg.jpg"); background-repeat: no-repeat; background-size: 100% 100%; }
 #game.bounce { -webkit-animation: bounce 0.5s linear; animation: bounce 0.5s linear; }
 
-.stick { width: 3px; background: black; position: absolute; bottom: 80px; left: 47px; -webkit-transition: -webkit-transform 0.4s ease-in, left 0.5s ease; transition: transform 0.4s ease-in, left 0.5s ease; -webkit-transform-origin: bottom right; transform-origin: bottom right; }
+.stick { width: 3px; background: black; position: absolute; -webkit-transition: -webkit-transform 0.4s ease-in, left 0.5s ease; transition: transform 0.4s ease-in, left 0.5s ease; -webkit-transform-origin: bottom right; transform-origin: bottom right; }
 .stick.rotate { -webkit-transform: rotate(90deg); transform: rotate(90deg); }
 .stick.died { -webkit-transform: rotate(180deg); transform: rotate(180deg); }
 
-.box { background: black; position: absolute; left: 0; bottom: 0; height: 80px; transition: left 0.5s ease; }
+.box { background: black; position: absolute; bottom: 0; transition: left 0.5s ease; }
 
 .welcome { display: none; }
 .welcome .name { position: absolute; top: 10%; width: 150px; left: 0; right: 0; margin: 0 auto; font-size: 64px; text-align: center; line-height: 1; -webkit-transform-origin: top left; transform-origin: top left; }
 .welcome .name.hinge { opacity: 0; -webkit-animation: hinge 1s ease-in-out; animation: hinge 1s ease-in-out; }
-.welcome .btn-play { position: absolute; color: white; cursor: pointer; background: lightcoral; border-radius: 50%; width: 80px; height: 80px; text-align: center; vertical-align: middle; left: 0; right: 0; margin: 0 auto; font-size: 20px; -webkit-animation: fly 1s infinite linear; animation: fly 1s infinite linear; }
+.welcome .btn-play { position: absolute; color: white; cursor: pointer; background: lightcoral; border-radius: 50%; width: 80px; height: 80px; text-align: center; vertical-align: middle; left: 0; right: 0; margin: 0 auto; font-size: 20px; -webkit-animation: fly 2.5s infinite linear; animation: fly 2.5s infinite linear; }
 .welcome .btn-play div { -webkit-transform: translate(0, -50%); transform: translate(0, -50%); position: relative; top: 50%; }
 
 .live-score { display: none; font-family: Helvetica, Georgia; position: absolute; padding: 10px 20px 7px; top: 30px; background: rgba(0, 0, 0, 0.3); color: white; border-radius: 10px; font-size: 30px; left: 50%; -webkit-transform: translate(-50%); transform: translate(-50%); }
 
-.overlay { position: absolute; top: 0; bottom: 0; left: 0; right: 0; }
+.overlay { position: absolute; top: 0; bottom: 0; left: 0; right: 0; z-index: 1000; }
 
 .game-over { display: none; }
 .game-over .title { top: 10%; position: absolute; left: 0; right: 0; text-align: center; font-size: 35px; font-weight: bold; }

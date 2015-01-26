@@ -2,24 +2,34 @@ $(function() {
   'use strict';
 
   function Game(options) {
+
     this.options = options || {};
-    var DOWNKEYS = {};
-    var GAME_WIDTH = 320;
-    var GAME_HEIGHT = 480;
-    var BOX_WIDTH = 50;
+    var GAME_DEFAULT_WIDTH = 320;
+    var GAME_DEFAULT_HEIGHT = 480;
+    var GAME_WIDTH = this.options.width || GAME_DEFAULT_WIDTH;
+    var GAME_HEIGHT = this.options.height || GAME_DEFAULT_HEIGHT;
+    var WIDTH_RATIO = GAME_WIDTH / GAME_DEFAULT_WIDTH;
+    var HEIGHT_RATIO = GAME_HEIGHT / GAME_DEFAULT_HEIGHT;
+    var BOX_BASE_WIDTH = 50 * WIDTH_RATIO; //
+    var BOX_HEIGHT = 80 * HEIGHT_RATIO; //
+    var HERO_WIDTH = 18 * WIDTH_RATIO; //
+    var HERO_HEIGHT = 24 * WIDTH_RATIO; //
+    var HERO_FEET = 5;
+    var HERO_BOTTOM = BOX_HEIGHT + HERO_FEET;
+    var HERO_RIBBON = HERO_WIDTH + 2;
     var STICK_WIDTH = 3;
-    var HERO_WIDTH = 18;
-    var HERO_HEIGHT = 24;
-    var HERO_BOTTOM = 85;
+    var STICK_LEFT = BOX_BASE_WIDTH - STICK_WIDTH;
+    var STICK_BOTTOM = BOX_HEIGHT;
     var GAP = 4;
-    var HERO_INIT_LEFT = BOX_WIDTH - HERO_WIDTH - GAP - STICK_WIDTH;
-    var STICK_INIT_LEFT = BOX_WIDTH - STICK_WIDTH;
-    var BOX_LEFT_MIN = 70;
-    var BOX_LEFT_MAX = 270;
-    var BOX_WIDTH_MIN = 15;
-    var BOX_WIDTH_MAX = 69;
+    var HERO_INIT_LEFT = BOX_BASE_WIDTH - HERO_WIDTH - GAP - STICK_WIDTH;
+    var STICK_INIT_LEFT = BOX_BASE_WIDTH - STICK_WIDTH;
+    var BOX_LEFT_MIN = BOX_BASE_WIDTH + 20;
+    var BOX_LEFT_MAX = GAME_WIDTH - BOX_BASE_WIDTH;
+    var BOX_WIDTH_MIN = 15 * WIDTH_RATIO;  //
+    var BOX_WIDTH_MAX = 69 * WIDTH_RATIO;  //
     var STICK_INC = 3;
     var ANIMATION_END_EVENTS = 'transitionend webkitTransitionEnd animationend webkitAnimationEnd MSAnimationEnd oAnimationEnd';
+    var DOWNKEYS = {};
     var STATES = {
       WELCOME: 0,
       PRE_BEGIN: 1,
@@ -33,18 +43,24 @@ $(function() {
     };
 
     this.init = function() {
-      this.prepareVars();
+      this.initVars();
       this.bindEvents();
       this.reset();
     };
 
-    this.prepareVars = function() {
+    this.initVars = function() {
       this.$game = $('#game').css({
         width: GAME_WIDTH + 'px',
         height: GAME_HEIGHT + 'px'
       });
       this.$name = $('.name');
-      this.$hero = $('.hero');
+      this.$hero = $('.hero1').css({
+        width: HERO_WIDTH + 'px',
+        height: HERO_HEIGHT + 'px'
+      });
+      this.$ribbon = $('.hero1 .ribbon').css({
+        width: HERO_RIBBON + 'px'
+      });
       this.$feet = $('.foot');
       this.$gameover = $('.game-over');
       this.$welcome = $('.welcome');
@@ -103,8 +119,9 @@ $(function() {
       $('.box, .stick').remove();
       this.$feet.removeClass('walk');
       this.$box1 = $('<div />').addClass('box').css({
-        left: (GAME_WIDTH - BOX_WIDTH) / 2 + 'px',
-        width: BOX_WIDTH + 'px'
+        height: BOX_HEIGHT + 'px',
+        left: (GAME_WIDTH - BOX_BASE_WIDTH) / 2 + 'px',
+        width: BOX_BASE_WIDTH + 'px'
       });
       this.$hero.css({
         bottom: HERO_BOTTOM + 'px',
@@ -194,6 +211,7 @@ $(function() {
 
         this._createBox();
         this.$box2 = $('<div />').addClass('box').css({
+          height: BOX_HEIGHT + 'px',
           width: this._newBox.width + 'px',
           left: '250%'
         });
@@ -202,7 +220,7 @@ $(function() {
 
         this.$hero
           .addClass('shift')
-          .css({left: (BOX_WIDTH - HERO_WIDTH - GAP - STICK_WIDTH) + 'px'});
+          .css({left: (BOX_BASE_WIDTH - HERO_WIDTH - GAP - STICK_WIDTH) + 'px'});
         this.$box1.css({left: 0});
 
         var self = this;
@@ -219,18 +237,23 @@ $(function() {
 
         this._activeStickHeight = 0;
 
-        this._validStickMin = this._newBox.left - BOX_WIDTH;
+        this._validStickMin = this._newBox.left - BOX_BASE_WIDTH;
         this._validStickMax = this._validStickMin + this._newBox.width;
 
         this.$hero.removeClass('shift');
-        this.$activeStick = $('<div />').addClass('stick');
+        this.$activeStick = $('<div />')
+          .addClass('stick')
+          .css({
+            left: STICK_LEFT + 'px',
+            bottom: STICK_BOTTOM + 'px'
+          });
         this.$game.append(this.$activeStick);
 
         this._firstRun = false;
       }
 
       if (this._isPressed()) {
-        this.$hero.addClass('shake');
+        this.$hero.parent().addClass('shake');
         this._activeStickHeight += STICK_INC;
         this.$activeStick.css('height', this._activeStickHeight + 'px');
         this._pressStarted = true;
@@ -238,7 +261,7 @@ $(function() {
       }
 
       if (this._pressStarted) {
-        this.$hero.removeClass('shake');
+        this.$hero.parent().removeClass('shake');
         this._pressStarted = false;
         this.next();
       }
@@ -258,7 +281,7 @@ $(function() {
       if (this._firstRun) {
         this.$feet.addClass('walk');
 
-        this.dx = this._newBox.left + this._newBox.width - BOX_WIDTH;
+        this.dx = this._newBox.left + this._newBox.width - BOX_BASE_WIDTH;
         if (this._activeStickHeight > this._validStickMin &&
           this._activeStickHeight < this._validStickMax) {
           this.nextAfterAnimated(this.$hero, STATES.SHIFTING);
@@ -286,6 +309,7 @@ $(function() {
         this.$box2.css('left', parseInt(this.$box2.css('left'), 10) - this.dx + 'px');
         this.$movedStick.css('left', parseInt(this.$movedStick.css('left'), 10) - this.dx + 'px');
         this.$box3 = $('<div />').addClass('box').css({
+          height: BOX_HEIGHT + 'px',
           width: this._newBox.width + 'px',
           left: '200%'
         });
@@ -361,12 +385,16 @@ $(function() {
     };
 
     this.init();
+
+    return this;
   }
 
-  function LOG(msg) {
-    console.log('[INFO  ] ', msg);
+  var viewportWidth = $(window).width();
+  var viewportHeight = $(window).height();
+  var options = {};
+  if (viewportWidth < viewportHeight && viewportWidth < 500) {
+    options.width = viewportWidth;
+    options.height = viewportHeight;
   }
-
-  var game = new Game();
-  game.play();
+  new Game(options).play();
 });

@@ -1,34 +1,41 @@
 body {
-    font-size: 16px;
-    margin: 0;
-    font-family: 'Lato-Light', Helvetica, Georgia;
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
+  // font-size: 16px;
+  margin: 0;
+  font-family: 'Poiret One', Helvetica, Georgia;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
-ul {
-    padding-left: 0;
-}
-
 .header {
-    width: 100%;
-    height: 9em;
-    background: #12acef;
-    color: white;
-    margin-bottom: 2em;
-    font-family: 'ShadowsIntoLight', Helvetica, Georgia;
+  width: 100%;
+  height: 9em;
+  background: #12acef;
+  color: white;
+  margin-bottom: 2em;
 }
 .header__title {
-    font-size: 4em;
-    margin: 0;
-    text-align: center;
-    text-shadow: 5px 5px 5px rgba(0,0,0,0.5);
+  font-size: 4em;
+  margin: 0;
+  text-align: center;
+  text-shadow: 5px 5px 5px rgba(0,0,0,0.5);
 }
 .header__subtitle {
-    font-size: 1.2em;
-    text-align: center;
-    margin: 0;
+  font-size: 1.2em;
+  text-align: center;
+  margin: 0;
+}
+
+// HACK: Lock landscape mode
+@media (orientation: landscape) {
+  body {
+    -webkit-transform-origin: 0% 0%;
+            transform-origin: 0% 0%;
+           -webkit-transform: rotate(90deg);
+                   transform: rotate(90deg);
+                    position: absolute;
+                        left: 100%;
+  }
 }
