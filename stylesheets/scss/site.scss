@@ -29,7 +29,10 @@ body {
 }
 
 // HACK: Lock landscape mode
-@media (orientation: landscape) {
+@media only screen
+and (min-device-width : 320px)
+and (max-device-width : 480px)
+and (orientation: landscape) {
   body {
     -webkit-transform-origin: 0% 0%;
             transform-origin: 0% 0%;
