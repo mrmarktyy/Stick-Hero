@@ -26,7 +26,7 @@ $(function() {
       STICK_ROTATION: 3,
       HERO_WALK: 4,
       SHIFTING: 5,
-      GO_DYING: 6,
+      DYING: 6,
       UPDATE: 7,
       DEAD: 8
     };
@@ -133,8 +133,8 @@ $(function() {
         case STATES.SHIFTING:
           this.shiftingState();
           break;
-        case STATES.GO_DYING:
-          this.goDyingState();
+        case STATES.DYING:
+          this.dyingState();
           break;
         case STATES.UPDATE:
           this.updateState();
@@ -181,7 +181,6 @@ $(function() {
     };
 
     this.welcomeState = function() {
-      LOG('WELCOME');
       this.$gameover.hide();
       this.$liveScore.hide();
       this.$welcome.show();
@@ -189,7 +188,6 @@ $(function() {
 
     this.preBeginState = function () {
       if (this._firstRun) {
-        LOG('PRE_BEGIN');
         this.$welcome.hide();
         this.$gameover.hide();
         this.$liveScore.show();
@@ -267,7 +265,7 @@ $(function() {
 
           this.$hero.css('left', HERO_INIT_LEFT + this.dx + 'px');
         } else {
-          this.nextAfterAnimated(this.$hero, STATES.GO_DYING);
+          this.nextAfterAnimated(this.$hero, STATES.DYING);
 
           this.$hero.css('left', HERO_INIT_LEFT + GAP + HERO_WIDTH + this._activeStickHeight + 'px');
         }
@@ -304,7 +302,7 @@ $(function() {
       }
     };
 
-    this.goDyingState = function() {
+    this.dyingState = function() {
       if (this._firstRun) {
         this.nextAfterAnimated(this.$hero, STATES.DEAD);
 

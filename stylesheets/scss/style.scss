@@ -26,10 +26,10 @@ $main-color: black;
   position: absolute;
   bottom: 80px;
   left: 47px;
-  transition: transform 0.4s ease-in, left 0.5s ease;
-  -webkit-transition: -webkit-transform 0.4s ease-in, transform 0.4s ease-in, left 0.5s ease;
+        -webkit-transition: -webkit-transform 0.4s ease-in;
+                transition: transform 0.4s ease-in, left 0.5s ease;
   -webkit-transform-origin: bottom right;
-  transform-origin: bottom right;
+          transform-origin: bottom right;
 
   &.rotate {
     -webkit-transform: rotate(90deg);
@@ -67,8 +67,8 @@ $main-color: black;
     transform-origin: top left;
 
     &.hinge {
-      -webkit-animation: hinge 2s ease-in-out;
-              animation: hinge 2s ease-in-out;
+      -webkit-animation: hinge 1s ease-in-out;
+              animation: hinge 1s ease-in-out;
     }
   }
   .btn-play {
@@ -85,8 +85,8 @@ $main-color: black;
     right: 0;
     margin: 0 auto;
     font-size: 20px;
-    animation: fly 1s infinite linear;
     -webkit-animation: fly 1s infinite linear;
+            animation: fly 1s infinite linear;
 
     div {
       -webkit-transform: translate(0, -50%);
@@ -109,7 +109,7 @@ $main-color: black;
   font-size: 30px;
   left: 50%;
   -webkit-transform: translate(-50%);
-  transform: translate(-50%);
+          transform: translate(-50%);
 }
 
 .overlay {
