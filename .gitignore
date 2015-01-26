@@ -1,0 +1,6 @@
+node_modules/
+.sass-cache/
+
+#logs
+access.log
+error.log

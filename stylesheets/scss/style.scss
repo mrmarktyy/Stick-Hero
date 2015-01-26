@@ -1,0 +1,175 @@
+$main-color: black;
+
+@import 'fonts';
+@import 'loader';
+@import 'hero';
+@import 'keyframes';
+
+#game {
+  font-family: 'Poiret One', Helvetica, Georgia;
+  position: relative;
+  overflow: hidden;
+  margin: 0 auto;
+  background: url('../../images/bg.jpg');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  &.bounce {
+    -webkit-animation: bounce 0.5s linear;
+            animation: bounce 0.5s linear;
+  }
+}
+
+.stick {
+  width: 3px;
+  background: $main-color;
+  position: absolute;
+  bottom: 80px;
+  left: 47px;
+  transition: transform 0.4s ease-in, left 0.5s ease;
+  -webkit-transition: -webkit-transform 0.4s ease-in, transform 0.4s ease-in, left 0.5s ease;
+  -webkit-transform-origin: bottom right;
+  transform-origin: bottom right;
+
+  &.rotate {
+    -webkit-transform: rotate(90deg);
+            transform: rotate(90deg);
+  }
+  &.died {
+    -webkit-transform: rotate(180deg);
+            transform: rotate(180deg);
+  }
+}
+
+.box {
+  background: $main-color;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 80px;
+  transition: left 0.5s ease;
+}
+
+.welcome {
+  display: none;
+
+  .name {
+    position: absolute;
+    top: 10%;
+    width: 150px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    font-size: 64px;
+    text-align: center;
+    line-height: 1;
+    -webkit-transform-origin: top left;
+    transform-origin: top left;
+
+    &.hinge {
+      -webkit-animation: hinge 2s ease-in-out;
+              animation: hinge 2s ease-in-out;
+    }
+  }
+  .btn-play {
+    position: absolute;
+    color: white;
+    cursor: pointer;
+    background: lightcoral;
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    text-align: center;
+    vertical-align: middle;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    font-size: 20px;
+    animation: fly 1s infinite linear;
+    -webkit-animation: fly 1s infinite linear;
+
+    div {
+      -webkit-transform: translate(0, -50%);
+              transform: translate(0, -50%);
+      position: relative;
+      top: 50%;
+    }
+  }
+}
+
+.live-score {
+  display: none;
+  font-family: Helvetica, Georgia;
+  position: absolute;
+  padding: 10px 20px 7px;
+  top: 30px;
+  background: rgba(0, 0, 0, 0.3);
+  color: white;
+  border-radius: 10px;
+  font-size: 30px;
+  left: 50%;
+  -webkit-transform: translate(-50%);
+  transform: translate(-50%);
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.game-over {
+  display: none;
+
+  .title {
+    top: 10%;
+    position: absolute;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-size: 35px;
+    font-weight: bold;
+  }
+  .board {
+    width: 200px;
+    background: white;
+    top: 20%;
+    position: absolute;
+    left: 0;
+    right: 0;
+    border-radius: 20px;
+    margin: 0 auto;
+    text-align: center;
+    font-weight: bold;
+    padding: 10px;
+
+    p {
+      margin: 5px 0;
+    }
+  }
+  .actions {
+    position: absolute;
+    top: 50%;
+    color: white;
+    left: 0;
+    right: 0;
+    text-align: center;
+
+    .btn-playagain {
+      cursor: pointer;
+      opacity: 0.8;
+      background: lightcoral;
+      padding: 10px;
+      border-radius: 10px;
+      margin: 0 auto;
+      width: 100px;
+      transition: opacity 0.5s ease;
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+}
