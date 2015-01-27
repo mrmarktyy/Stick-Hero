@@ -231,14 +231,12 @@ $(function() {
         this.$box2 = $('<div />').addClass('box').css({
           height: BOX_HEIGHT + 'px',
           width: this._newBox.width + 'px',
-          left: '250%'
+          left: '200%'
         });
         this.$game.append(this.$box2);
         this.nextAfterAnimated(this.$box2);
 
-        this.$hero
-          .addClass('shift')
-          .css({left: (BOX_BASE_WIDTH - HERO_WIDTH - GAP - STICK_WIDTH) + 'px'});
+        this.$hero.css({left: (BOX_BASE_WIDTH - HERO_WIDTH - GAP - STICK_WIDTH) + 'px'});
         this.$box1.css({left: 0});
         this.$instruction.addClass('in');
 
@@ -259,7 +257,6 @@ $(function() {
         this._validStickMin = this._newBox.left - BOX_BASE_WIDTH;
         this._validStickMax = this._validStickMin + this._newBox.width;
 
-        this.$hero.removeClass('shift');
         this.$activeStick = $('<div />')
           .addClass('stick')
           .css({
@@ -325,9 +322,8 @@ $(function() {
 
         this._createBox();
         this.$feet.removeClass('walk');
-        this.$hero.addClass('shift')
-          .css('left', parseInt(this.$hero.css('left'), 10) - this.dx + 'px');
         this.$hero[0].style['transition-duration'] = '';
+        this.$hero.css('left', parseInt(this.$hero.css('left'), 10) - this.dx + 'px');
         this.$box1.css('left', parseInt(this.$box1.css('left'), 10) - this.dx + 'px');
         this.$box2.css('left', parseInt(this.$box2.css('left'), 10) - this.dx + 'px');
         this.$movedStick.css('left', parseInt(this.$movedStick.css('left'), 10) - this.dx + 'px');
@@ -364,7 +360,6 @@ $(function() {
     this.updateState = function() {
       this.score++;
       this.updateScore();
-      this.$hero.removeClass('shift');
 
       this.$box1.remove();
       this.$box1 = this.$box2;

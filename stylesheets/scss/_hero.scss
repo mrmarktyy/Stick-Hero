@@ -16,11 +16,7 @@
   position: absolute;
   // left: 25px;
   // bottom: 85px;
-  transition: left 0.5s linear, bottom 0.2s ease;;
-
-  &.shift {
-    transition: left 0.5s ease;
-  }
+  transition: left 0.5s ease, bottom 0.2s ease;
 }
 .ribbon {
   // width: 20px;
