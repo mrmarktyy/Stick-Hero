@@ -192,3 +192,16 @@
     opacity: 0;
   }
 }
+
+/* arrow */
+@-webkit-keyframes arrow {
+  0% { top: 0; }
+  50% { top: 15px; }
+  100% { top: 0; }
+}
+
+@keyframes arrow {
+  0% { top: 0; }
+  50% { top: 15px; }
+  1000% { top: 0; }
+}

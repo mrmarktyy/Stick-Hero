@@ -190,14 +190,35 @@ $main-color: black;
     right: 0;
     text-align: center;
 
-    .btn-playagain {
+    .btn {
       cursor: pointer;
       background: lightcoral;
       padding: 10px;
       border-radius: 10px;
-      margin: 0 auto;
+      margin: 5px auto;
       width: 100px;
-      transition: opacity 0.5s ease;
     }
+  }
+}
+
+.share {
+  display: none;
+  background: rgba(0,0,0,0.7);
+  color: white;
+
+  .arrow {
+    width: 60px;
+    position: absolute;
+    right: 0;
+    -webkit-animation: arrow 1s infinite linear;
+            animation: arrow 1s infinite linear;
+  }
+  .text {
+    position: absolute;
+    top: 15%;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-size: 20px;
   }
 }

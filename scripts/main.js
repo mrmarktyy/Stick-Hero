@@ -29,6 +29,7 @@ $(function() {
     var BOX_WIDTH_MAX = 69 * WIDTH_RATIO;  //
     var STICK_INC = 3;
     var ANIMATION_END_EVENTS = 'transitionend webkitTransitionEnd animationend webkitAnimationEnd MSAnimationEnd oAnimationEnd';
+    var TITLE_DEFAULT = '英雄难过棍子关';
     var DOWNKEYS = {};
     var STATES = {
       WELCOME: 0,
@@ -49,6 +50,7 @@ $(function() {
     };
 
     this.initVars = function() {
+      this.$title = $('title');
       this.$game = $('#game').css({
         width: GAME_WIDTH + 'px',
         height: GAME_HEIGHT + 'px'
@@ -64,6 +66,7 @@ $(function() {
       this.$feet = $('.foot');
       this.$gameover = $('.game-over');
       this.$welcome = $('.welcome');
+      this.$share = $('.share');
       this.$liveScore = $('.live-score');
       this.$instruction = $('.instruction');
       this.$score = $('.score');
@@ -93,6 +96,14 @@ $(function() {
       $(document).on('click', '.btn-playagain', function() {
         self.reset();
         self.next(STATES.PRE_BEGIN);
+      });
+      $(document).on('click', '.btn-share', function() {
+        self.$title.text(TITLE_DEFAULT + ': ' + '我一不小心就前进了' + self.score + '步，你敢挑战我吗？小伙伴们快来一起玩耍吧！');
+        self.$share.show();
+      });
+      $(document).on('click', '.share.overlay', function() {
+        self.$title.text(TITLE_DEFAULT);
+        self.$share.hide();
       });
       $(document).on('keypress', function(event) {
         DOWNKEYS[event.keyCode] = true;
