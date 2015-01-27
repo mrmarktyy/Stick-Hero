@@ -10,7 +10,10 @@
   <div id="wx_pic" style="margin:0 auto;display:none;">
     <img src="images/pic300.png" />
   </div>
-  <script>
+</head>
+<body>
+<script>
+  if (location.hostname !== 'stick.hero') {
     var _hmt = _hmt || [];
     (function() {
       var hm = document.createElement("script");
@@ -18,9 +21,8 @@
       var s = document.getElementsByTagName("script")[0];
       s.parentNode.insertBefore(hm, s);
     })();
-  </script>
-</head>
-<body>
+  }
+</script>
 <div id="game">
   <div class="game-over overlay">
     <div class="title">游戏失败!</div>
