@@ -307,10 +307,12 @@ $(function() {
           this.nextAfterAnimated(this.$hero, STATES.SHIFTING);
 
           this.$hero.css('left', HERO_INIT_LEFT + this.dx + 'px');
+          this.$hero[0].style['transition-duration'] = this.dx / 300 + 's';
         } else {
           this.nextAfterAnimated(this.$hero, STATES.DYING);
 
           this.$hero.css('left', HERO_INIT_LEFT + GAP + HERO_WIDTH + this._activeStickHeight + 'px');
+          this.$hero[0].style['transition-duration'] = (GAP + HERO_WIDTH + this._activeStickHeight) / 300 + 's';
         }
 
         this._firstRun = false;
@@ -325,6 +327,7 @@ $(function() {
         this.$feet.removeClass('walk');
         this.$hero.addClass('shift')
           .css('left', parseInt(this.$hero.css('left'), 10) - this.dx + 'px');
+        this.$hero[0].style['transition-duration'] = '';
         this.$box1.css('left', parseInt(this.$box1.css('left'), 10) - this.dx + 'px');
         this.$box2.css('left', parseInt(this.$box2.css('left'), 10) - this.dx + 'px');
         this.$movedStick.css('left', parseInt(this.$movedStick.css('left'), 10) - this.dx + 'px');
@@ -350,6 +353,7 @@ $(function() {
       if (this._firstRun) {
         this.nextAfterAnimated(this.$hero, STATES.DEAD);
 
+        this.$hero[0].style['transition-duration'] = '';
         this.$hero.css('bottom', -HERO_HEIGHT + 'px');
         this.$activeStick.addClass('died');
 
