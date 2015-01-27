@@ -65,6 +65,7 @@ $(function() {
       this.$gameover = $('.game-over');
       this.$welcome = $('.welcome');
       this.$liveScore = $('.live-score');
+      this.$instruction = $('.instruction');
       this.$score = $('.score');
       this.$best = $('.best');
       this.$movedStick = $('nothing');
@@ -225,6 +226,7 @@ $(function() {
           .addClass('shift')
           .css({left: (BOX_BASE_WIDTH - HERO_WIDTH - GAP - STICK_WIDTH) + 'px'});
         this.$box1.css({left: 0});
+        this.$instruction.addClass('in');
 
         var self = this;
         setTimeout(function() {
@@ -257,6 +259,7 @@ $(function() {
 
       if (this._isPressed()) {
         this.$hero.parent().addClass('shake');
+        this.$instruction.removeClass('in');
         this._activeStickHeight += STICK_INC;
         this.$activeStick.css('height', this._activeStickHeight + 'px');
         this._pressStarted = true;
