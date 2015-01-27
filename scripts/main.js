@@ -377,7 +377,7 @@ $(function() {
       this.$gameover.show();
       this.$game.addClass('bounce');
       if (IS_WECHAT) {
-        this.$title.text(TITLE_DEFAULT + ': ' + '我一不小心就前进了' + self.score + '步，你敢挑战我吗？小伙伴们快来一起玩耍吧！');
+        this.$title.text(TITLE_DEFAULT + ': ' + '我一不小心就前进了' + this.score + '步，你敢挑战我吗？小伙伴们快来一起玩耍吧！');
       }
     };
 
