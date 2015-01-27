@@ -91,7 +91,7 @@
   1000% { top: 0; } }
 #game { font-family: 'Poiret One', Helvetica, Georgia; position: relative; overflow: hidden; background-image: url("../../images/bg.jpg"); background-repeat: no-repeat; background-size: 100% 100%; }
 #game.bg1 { background-image: url("../../images/bg.jpg"); }
-#game.bg2 { background-image: url("../../images/bg2.png"); }
+#game.bg2 { background-image: url("../../images/bg2.jpg"); }
 #game.bg3 { background-image: url("../../images/bg3.jpg"); }
 #game.bg4 { background-image: url("../../images/bg4.jpg"); }
 #game.bg5 { background-image: url("../../images/bg5.jpg"); }
