@@ -102,7 +102,7 @@ $(function() {
       $(document).on('click', '.btn-share', function() {
         self.$share.show();
       });
-      $(document).on('click', '.share.overlay', function() {
+      $(document).on('click touchstart', '.share.overlay', function() {
         self.$share.hide();
       });
       $(document).on('keypress', function(event) {
