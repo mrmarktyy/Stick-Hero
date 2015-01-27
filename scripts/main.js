@@ -31,6 +31,7 @@ $(function() {
     var ANIMATION_END_EVENTS = 'transitionend webkitTransitionEnd animationend webkitAnimationEnd MSAnimationEnd oAnimationEnd';
     var TITLE_DEFAULT = '';
     var DOWNKEYS = {};
+    var IS_WECHAT = !!navigator.userAgent.match(/MicroMessenger/);
     var STATES = {
       WELCOME: 0,
       PRE_BEGIN: 1,
@@ -375,6 +376,9 @@ $(function() {
       this.$liveScore.hide();
       this.$gameover.show();
       this.$game.addClass('bounce');
+      if (IS_WECHAT) {
+        this.$title.text(TITLE_DEFAULT + ': ' + '我一不小心就前进了' + self.score + '步，你敢挑战我吗？小伙伴们快来一起玩耍吧！');
+      }
     };
 
     this.updateScore = function() {
