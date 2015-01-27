@@ -51,6 +51,7 @@ $(function() {
 
     this.initVars = function() {
       this.$title = $('title');
+      this.$copyright = $('.copyright');
       this.$game = $('#game').css({
         width: GAME_WIDTH + 'px',
         height: GAME_HEIGHT + 'px'
@@ -222,6 +223,7 @@ $(function() {
       if (this._firstRun) {
         this.$welcome.hide();
         this.$gameover.hide();
+        this.$copyright.hide();
         this.$liveScore.show();
 
         this._createBox();
