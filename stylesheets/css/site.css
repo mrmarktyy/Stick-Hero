@@ -7,5 +7,3 @@ body { margin: 0; font-family: 'Poiret One', Helvetica, Georgia; -webkit-touch-c
 .header__subtitle { font-size: 1.2em; text-align: center; margin: 0; }
 
 @media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (orientation: landscape) { body { -webkit-transform-origin: 0% 0%; transform-origin: 0% 0%; -webkit-transform: rotate(90deg); transform: rotate(90deg); position: absolute; left: 100%; } }
-
-/*# sourceMappingURL=site.css.map */

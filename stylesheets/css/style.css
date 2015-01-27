@@ -89,7 +89,7 @@
 @keyframes arrow { 0% { top: 0; }
   50% { top: 15px; }
   1000% { top: 0; } }
-#game { font-family: 'Poiret One', Helvetica, Georgia; position: relative; overflow: hidden; background-image: url("../../images/bg3.jpg"); background-repeat: no-repeat; background-size: 100% 100%; }
+#game { font-family: 'Poiret One', Helvetica, Georgia; position: relative; overflow: hidden; background-image: url("../../images/bg.jpg"); background-repeat: no-repeat; background-size: 100% 100%; }
 #game.bg1 { background-image: url("../../images/bg.jpg"); }
 #game.bg2 { background-image: url("../../images/bg2.png"); }
 #game.bg3 { background-image: url("../../images/bg3.jpg"); }
@@ -121,7 +121,7 @@
 .game-over .title { top: 10%; position: absolute; left: 0; right: 0; text-align: center; font-size: 35px; font-weight: bold; }
 .game-over .board { width: 200px; background: white; top: 20%; position: absolute; left: 0; right: 0; border-radius: 20px; margin: 0 auto; text-align: center; font-weight: bold; padding: 10px; }
 .game-over .board p { margin: 5px 0; }
-.game-over .actions { position: absolute; top: 50%; color: white; left: 0; right: 0; text-align: center; }
+.game-over .actions { position: absolute; top: 45%; color: white; left: 0; right: 0; text-align: center; }
 .game-over .actions .btn { cursor: pointer; background: lightcoral; padding: 10px; border-radius: 10px; margin: 5px auto; width: 100px; }
 
 .share { display: none; background: rgba(0, 0, 0, 0.7); color: white; }
@@ -130,5 +130,3 @@
 
 .copyright { position: absolute; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.5); color: white; font-size: 10px; }
 .copyright .heart { color: red; }
-
-/*# sourceMappingURL=style.css.map */

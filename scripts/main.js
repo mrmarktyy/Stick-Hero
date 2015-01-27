@@ -29,7 +29,7 @@ $(function() {
     var BOX_WIDTH_MAX = 69 * WIDTH_RATIO;  //
     var STICK_INC = 3;
     var ANIMATION_END_EVENTS = 'transitionend webkitTransitionEnd animationend webkitAnimationEnd MSAnimationEnd oAnimationEnd';
-    var TITLE_DEFAULT = '英雄难过棍子关';
+    var TITLE_DEFAULT = '';
     var DOWNKEYS = {};
     var STATES = {
       WELCOME: 0,
@@ -51,6 +51,7 @@ $(function() {
 
     this.initVars = function() {
       this.$title = $('title');
+      TITLE_DEFAULT = this.$title.text();
       this.$copyright = $('.copyright');
       this.$game = $('#game').css({
         width: GAME_WIDTH + 'px',
@@ -99,11 +100,9 @@ $(function() {
         self.next(STATES.PRE_BEGIN);
       });
       $(document).on('click', '.btn-share', function() {
-        self.$title.text(TITLE_DEFAULT + ': ' + '我一不小心就前进了' + self.score + '步，你敢挑战我吗？小伙伴们快来一起玩耍吧！');
         self.$share.show();
       });
       $(document).on('click', '.share.overlay', function() {
-        self.$title.text(TITLE_DEFAULT);
         self.$share.hide();
       });
       $(document).on('keypress', function(event) {
@@ -124,6 +123,7 @@ $(function() {
       this.score = 0;
       this.best = localStorage.getItem('best') || 0;
       this.bg = 'bg' + this._getRandom(1, 5);
+      this.$title.text(TITLE_DEFAULT);
       this.$game
         .removeClass('bounce bg1 bg2 bg3 bg4 bg5')
         .addClass(this.bg);
