@@ -132,8 +132,8 @@
 .game-over .actions .btn { cursor: pointer; background: lightcoral; padding: 10px; border-radius: 10px; margin: 5px auto; width: 100px; }
 
 .heropick { display: none; }
-.heropick .container { width: 150px; background: white; height: 100px; top: 50%; left: 50%; position: absolute; -webkit-transform: translate(-50%, -50%); transform: translate(-50%, -50%); border-radius: 20px; }
-.heropick .wrapper { cursor: pointer; padding: 20px; display: inline-block; position: relative; left: 12px; top: 18px; border: 1px solid transparent; }
+.heropick .container { width: 180px; background: white; height: 120px; top: 50%; left: 50%; position: absolute; -webkit-transform: translate(-50%, -50%); transform: translate(-50%, -50%); border-radius: 20px; }
+.heropick .wrapper { cursor: pointer; padding: 20px; display: inline-block; position: relative; left: 28px; top: 26px; border: 1px solid transparent; }
 .heropick .wrapper:hover, .heropick .wrapper.selected { border: 1px solid grey; }
 .heropick .wrapper .hero1 { display: block; position: relative; bottom: 0 !important; left: 0 !important; }
 .heropick .wrapper .hero2 { display: block; position: relative; bottom: 0 !important; left: 0 !important; }

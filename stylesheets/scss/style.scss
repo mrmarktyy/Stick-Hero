@@ -269,9 +269,9 @@ $main-color: black;
   display: none;
 
   .container {
-    width: 150px;
+    width: 180px;
     background: white;
-    height: 100px;
+    height: 120px;
     top: 50%;
     left: 50%;
     position: absolute;
@@ -284,8 +284,8 @@ $main-color: black;
     padding: 20px;
     display: inline-block;
     position: relative;
-    left: 12px;
-    top: 18px;
+    left: 28px;
+    top: 26px;
     border: 1px solid transparent;
 
     &:hover,

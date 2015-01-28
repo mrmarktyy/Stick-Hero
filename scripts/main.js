@@ -83,7 +83,7 @@ $(function() {
         height: HERO_HEIGHT + 'px'
       });
       this.hero = localStorage.getItem('hero') || 1;
-      //$('.wrapper[data-src="' + this.hero + '"').addClass('selected');
+      $('.wrapper[data-src="' + this.hero + '"]').addClass('selected');
       $('.hero > .hero' + this.hero).show();
     };
 
