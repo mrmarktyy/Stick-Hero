@@ -112,7 +112,7 @@
 
 .welcome { display: none; }
 .welcome .game-name { position: absolute; top: 10%; width: 150px; left: 0; right: 0; margin: 0 auto; font-size: 64px; text-align: center; line-height: 1; -webkit-transform-origin: top left; transform-origin: top left; }
-.welcome .game-name.hinge { opacity: 0; -webkit-animation: hinge 1s ease-in-out; animation: hinge 1s ease-in-out; }
+.welcome .game-name.hinge { opacity: 0; -webkit-animation: hinge 2s ease-in-out; animation: hinge 2s ease-in-out; }
 .welcome .btn-play { position: absolute; color: white; cursor: pointer; background: lightcoral; border-radius: 50%; width: 80px; height: 80px; text-align: center; vertical-align: middle; left: 0; right: 0; margin: 0 auto; font-size: 20px; -webkit-animation: fly 2.5s infinite linear; animation: fly 2.5s infinite linear; }
 .welcome .btn-play div { -webkit-transform: translate(0, -50%); transform: translate(0, -50%); position: relative; top: 50%; }
 .welcome .btn-hero { position: absolute; cursor: pointer; color: white; background: rgba(0, 0, 0, 0.3); padding: 6px 10px 10px 14px; border-radius: 50%; width: 40px; height: 40px; box-sizing: border-box; font-weight: 900; font-size: 12px; top: 80%; right: 20px; }
