@@ -306,12 +306,14 @@ $(function() {
           this.nextAfterAnimated(this.$hero, STATES.SHIFTING);
 
           this.$hero.css('left', HERO_INIT_LEFT + this.dx + 'px');
-          this.$hero[0].style['transition-duration'] = this.dx / 300 + 's';
+          this.$hero[0].style['transition-duration'] = this.dx / 225 + 's';
+          this.$hero[0].style['transition-timing-function'] = 'linear';
         } else {
           this.nextAfterAnimated(this.$hero, STATES.DYING);
 
           this.$hero.css('left', HERO_INIT_LEFT + GAP + HERO_WIDTH + this._activeStickHeight + 'px');
-          this.$hero[0].style['transition-duration'] = (GAP + HERO_WIDTH + this._activeStickHeight) / 300 + 's';
+          this.$hero[0].style['transition-duration'] = (GAP + HERO_WIDTH + this._activeStickHeight) / 225 + 's';
+          this.$hero[0].style['transition-timing-function'] = 'linear';
         }
 
         this._firstRun = false;
@@ -325,6 +327,7 @@ $(function() {
         this._createBox();
         this.$feet.removeClass('walk');
         this.$hero[0].style['transition-duration'] = '';
+        this.$hero[0].style['transition-timing-function'] = '';
         this.$hero.css('left', parseInt(this.$hero.css('left'), 10) - this.dx + 'px');
         this.$box1.css('left', parseInt(this.$box1.css('left'), 10) - this.dx + 'px');
         this.$box2.css('left', parseInt(this.$box2.css('left'), 10) - this.dx + 'px');
@@ -352,6 +355,7 @@ $(function() {
         this.nextAfterAnimated(this.$hero, STATES.DEAD);
 
         this.$hero[0].style['transition-duration'] = '';
+        this.$hero[0].style['transition-timing-function'] = '';
         this.$hero.css('bottom', -(HERO_HEIGHT + 20) + 'px');
         this.$activeStick.addClass('died');
 
