@@ -53,23 +53,20 @@ $(function() {
     this.initVars = function() {
       this.$title = $('title');
       TITLE_DEFAULT = this.$title.text();
-      this.hero = localStorage.getItem('hero') || 1;
       this.$copyright = $('.copyright');
       this.$game = $('#game').css({
         width: GAME_WIDTH + 'px',
         height: GAME_HEIGHT + 'px'
       });
-      this.$name = $('.name');
-      this.$hero = $('.hero1, .hero2').css({
-        width: HERO_WIDTH + 'px',
-        height: HERO_HEIGHT + 'px'
-      });
+      this.$gamename = $('.game-name');
+      this.$heros = $('.hero > .hero1, .hero > .hero2');
       this.$hat = $('.hero .hat').css({
         width: HERO_HAT + 'px'
       });
       this.$feet = $('.foot');
       this.$gameover = $('.game-over');
       this.$welcome = $('.welcome');
+      this.$heropick = $('.heropick');
       this.$share = $('.share');
       this.$liveScore = $('.live-score');
       this.$instruction = $('.instruction');
@@ -80,6 +77,14 @@ $(function() {
       this._currentState = STATES.WELCOME;
       this._pressStarted = false;
       this._firstRun = true;
+
+      $('.hero1, .hero2').css({
+        width: HERO_WIDTH + 'px',
+        height: HERO_HEIGHT + 'px'
+      });
+      this.hero = localStorage.getItem('hero') || 1;
+      $('.wrapper[data-src="' + this.hero + '"').addClass('selected');
+      $('.hero > .hero' + this.hero).show();
     };
 
     this.bindEvents = function() {
@@ -94,8 +99,8 @@ $(function() {
         }
       });
       $(document).on('click touchstart', '.btn-play', function() {
-        self.nextAfterAnimated(self.$name, STATES.PRE_BEGIN);
-        self.$name.addClass('hinge');
+        self.nextAfterAnimated(self.$gamename, STATES.PRE_BEGIN);
+        self.$gamename.addClass('hinge');
       });
       $(document).on('click touchstart', '.btn-playagain', function() {
         self.reset();
@@ -104,8 +109,26 @@ $(function() {
       $(document).on('click touchstart', '.btn-share', function() {
         self.$share.show();
       });
-      $(document).on('click touchstart', '.share.overlay', function() {
+      $(document).on('click touchstart', '.btn-hero', function() {
+        self.$heropick.show()
+      });
+      $(document).on('click touchstart', '.heropick .wrapper', function(event) {
+        // save hero choice
+        self.hero = $(event.currentTarget).data('src');
+        localStorage.setItem('hero', self.hero);
+        // toggle selected state
+        $('.wrapper').removeClass('selected');
+        $(event.currentTarget).addClass('selected');
+        // toggle hero ui
+        self.$heros.hide();
+        self.$hero = $('.hero > .hero' + self.hero).show();
+        // should stop propagtion
+        event.preventDefault();
+        event.stopPropagation();
+      });
+      $(document).on('click touchstart', '.share.overlay, .heropick.overlay', function(event) {
         self.$share.hide();
+        self.$heropick.hide()
       });
       $(document).on('keypress', function(event) {
         DOWNKEYS[event.keyCode] = true;
@@ -113,9 +136,9 @@ $(function() {
       $(document).on('keyup', function(event) {
         DOWNKEYS[event.keyCode] = false;
       });
-      $(document).on('touchstart', function(e) {
+      $(document).on('touchstart', function(event) {
         DOWNKEYS['touching'] = true;
-        e.preventDefault();
+        event.preventDefault();
       });
       $(document).on('touchend', function() {
         DOWNKEYS['touching'] = false;
@@ -124,9 +147,10 @@ $(function() {
 
     this.reset = function() {
       this.score = 0;
-      this.best = localStorage.getItem('best') || 0;
       this.bg = 'bg' + this._getRandom(1, 5);
+      this.best = localStorage.getItem('best') || 0;
       this.$title.text(TITLE_DEFAULT);
+      this.$hero = $('.hero > .hero' + this.hero);
       this.$game
         .removeClass('bounce bg1 bg2 bg3 bg4 bg5')
         .addClass(this.bg);
@@ -142,7 +166,7 @@ $(function() {
         left: (GAME_WIDTH - BOX_BASE_WIDTH) / 2 + 'px',
         width: BOX_BASE_WIDTH + 'px'
       });
-      this.$hero.css({
+      this.$heros.css({
         bottom: HERO_BOTTOM + 'px',
         left: (GAME_WIDTH - HERO_WIDTH) / 2 + 'px'
       });

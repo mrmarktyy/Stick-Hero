@@ -116,7 +116,7 @@ $main-color: black;
 .welcome {
   display: none;
 
-  .name {
+  .game-name {
     position: absolute;
     top: 10%;
     width: 150px;
@@ -159,7 +159,7 @@ $main-color: black;
       top: 50%;
     }
   }
-  .btn-about {
+  .btn-hero {
     position: absolute;
     cursor: pointer;
     color: white;
@@ -173,6 +173,12 @@ $main-color: black;
     font-size: 20px;
     top: 80%;
     right: 20px;
+    img {
+      width: 36px;
+      position: relative;
+      left: -12px;
+      top: -7px;
+    }
   }
 }
 
@@ -261,6 +267,48 @@ $main-color: black;
       border-radius: 10px;
       margin: 5px auto;
       width: 100px;
+    }
+  }
+}
+
+.heropick {
+  display: none;
+
+  .container {
+    width: 150px;
+    background: white;
+    height: 100px;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    border-radius: 20px;
+  }
+  .wrapper {
+    cursor: pointer;
+    padding: 20px;
+    display: inline-block;
+    position: relative;
+    left: 12px;
+    top: 18px;
+    border: 1px solid transparent;
+
+    &:hover,
+    &.selected {
+      border: 1px solid grey;
+    }
+
+    .hero1 {
+      display: block;
+      position: relative;
+      bottom: 0 !important;
+      left: 0 !important;
+    }
+    .hero2 {
+      display: block;
+      position: relative;
+      bottom: 0 !important;
+      left: 0 !important;
     }
   }
 }
