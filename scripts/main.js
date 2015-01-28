@@ -92,15 +92,15 @@ $(function() {
           }
         }
       });
-      $(document).on('click', '.btn-play', function() {
+      $(document).on('click touchstart', '.btn-play', function() {
         self.nextAfterAnimated(self.$name, STATES.PRE_BEGIN);
         self.$name.addClass('hinge');
       });
-      $(document).on('click', '.btn-playagain', function() {
+      $(document).on('click touchstart', '.btn-playagain', function() {
         self.reset();
         self.next(STATES.PRE_BEGIN);
       });
-      $(document).on('click', '.btn-share', function() {
+      $(document).on('click touchstart', '.btn-share', function() {
         self.$share.show();
       });
       $(document).on('click touchstart', '.share.overlay', function() {
@@ -112,8 +112,9 @@ $(function() {
       $(document).on('keyup', function(event) {
         DOWNKEYS[event.keyCode] = false;
       });
-      $(document).on('touchstart', function() {
+      $(document).on('touchstart', function(e) {
         DOWNKEYS['touching'] = true;
+        e.preventDefault();
       });
       $(document).on('touchend', function() {
         DOWNKEYS['touching'] = false;
