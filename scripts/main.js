@@ -10,10 +10,10 @@ $(function() {
     var GAME_HEIGHT = this.options.height || GAME_DEFAULT_HEIGHT;
     var WIDTH_RATIO = GAME_WIDTH / GAME_DEFAULT_WIDTH;
     var HEIGHT_RATIO = GAME_HEIGHT / GAME_DEFAULT_HEIGHT;
-    var BOX_BASE_WIDTH = 50 * WIDTH_RATIO; //
-    var BOX_HEIGHT = 100 * HEIGHT_RATIO; //
-    var HERO_WIDTH = 18 * WIDTH_RATIO; //
-    var HERO_HEIGHT = 24 * WIDTH_RATIO; //
+    var BOX_BASE_WIDTH = Math.round(50 * WIDTH_RATIO); //
+    var BOX_HEIGHT = Math.round(100 * HEIGHT_RATIO); //
+    var HERO_WIDTH = Math.round(18 * WIDTH_RATIO); //
+    var HERO_HEIGHT = Math.round(24 * WIDTH_RATIO); //
     var HERO_FEET = 5;
     var HERO_BOTTOM = BOX_HEIGHT + HERO_FEET;
     var HERO_HAT = HERO_WIDTH + 2;
@@ -25,8 +25,8 @@ $(function() {
     var STICK_INIT_LEFT = BOX_BASE_WIDTH - STICK_WIDTH;
     var BOX_LEFT_MIN = BOX_BASE_WIDTH + 20;
     var BOX_LEFT_MAX = GAME_WIDTH - BOX_BASE_WIDTH;
-    var BOX_WIDTH_MIN = 15 * WIDTH_RATIO;  //
-    var BOX_WIDTH_MAX = 69 * WIDTH_RATIO;  //
+    var BOX_WIDTH_MIN = Math.round(15 * WIDTH_RATIO);  //
+    var BOX_WIDTH_MAX = Math.round(69 * WIDTH_RATIO);  //
     var STICK_INC = 3;
     var ANIMATION_END_EVENTS = 'transitionend webkitTransitionEnd animationend webkitAnimationEnd MSAnimationEnd oAnimationEnd';
     var TITLE_DEFAULT = '';
