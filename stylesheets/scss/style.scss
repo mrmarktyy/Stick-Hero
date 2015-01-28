@@ -2,8 +2,9 @@ $main-color: black;
 
 @import 'fonts';
 @import 'loader';
-@import 'hero';
 @import 'keyframes';
+@import 'hero1';
+@import 'hero2';
 
 #game {
   font-family: 'Poiret One', Helvetica, Georgia;
@@ -62,6 +63,54 @@ $main-color: black;
   bottom: 0;
   // height: 80px;
   transition: left 0.5s ease;
+}
+
+.hero {
+  position: relative;
+  width: 100%;
+  height: 100%;
+
+  &.shake {
+    -webkit-animation: shaking 0.3s infinite linear;
+            animation: shaking 0.3s infinite linear;
+  }
+
+  .eye {
+    width: 4px;
+    height: 4px;
+    background: white;
+    border-radius: 50%;
+    position: absolute;
+    right: 2px;
+    top: 8px;
+  }
+
+  .foot {
+    position: absolute;
+    width: 3px;
+    height: 5px;
+    bottom: -5px;
+    border-radius: 3px;
+    background: black;
+    -webkit-transform-origin: top center;
+    transform-origin: top center;
+
+    &.left {
+      left: 4px;
+      &.walk {
+        -webkit-animation: walk 0.4s infinite linear;
+                animation: walk 0.4s infinite linear;
+      }
+    }
+
+    &.right {
+      right: 4px;
+      &.walk {
+        -webkit-animation: walk 0.4s infinite linear 0.2s;
+                animation: walk 0.4s infinite linear 0.2s;
+      }
+    }
+  }
 }
 
 .welcome {

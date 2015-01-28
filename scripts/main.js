@@ -16,7 +16,7 @@ $(function() {
     var HERO_HEIGHT = 24 * WIDTH_RATIO; //
     var HERO_FEET = 5;
     var HERO_BOTTOM = BOX_HEIGHT + HERO_FEET;
-    var HERO_RIBBON = HERO_WIDTH + 2;
+    var HERO_HAT = HERO_WIDTH + 2;
     var STICK_WIDTH = 3;
     var STICK_LEFT = BOX_BASE_WIDTH - STICK_WIDTH;
     var STICK_BOTTOM = BOX_HEIGHT;
@@ -53,18 +53,19 @@ $(function() {
     this.initVars = function() {
       this.$title = $('title');
       TITLE_DEFAULT = this.$title.text();
+      this.hero = localStorage.getItem('hero') || 1;
       this.$copyright = $('.copyright');
       this.$game = $('#game').css({
         width: GAME_WIDTH + 'px',
         height: GAME_HEIGHT + 'px'
       });
       this.$name = $('.name');
-      this.$hero = $('.hero1').css({
+      this.$hero = $('.hero1, .hero2').css({
         width: HERO_WIDTH + 'px',
         height: HERO_HEIGHT + 'px'
       });
-      this.$ribbon = $('.hero1 .ribbon').css({
-        width: HERO_RIBBON + 'px'
+      this.$hat = $('.hero .hat').css({
+        width: HERO_HAT + 'px'
       });
       this.$feet = $('.foot');
       this.$gameover = $('.game-over');
@@ -351,7 +352,7 @@ $(function() {
         this.nextAfterAnimated(this.$hero, STATES.DEAD);
 
         this.$hero[0].style['transition-duration'] = '';
-        this.$hero.css('bottom', -HERO_HEIGHT + 'px');
+        this.$hero.css('bottom', -(HERO_HEIGHT + 20) + 'px');
         this.$activeStick.addClass('died');
 
         this._firstRun = false;

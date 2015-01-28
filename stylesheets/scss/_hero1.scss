@@ -1,0 +1,49 @@
+.hero1 {
+  // width: 18px;
+  // height: 24px;
+  border-radius: 5px;
+  background: black;
+  position: absolute;
+  // left: 25px;
+  // bottom: 85px;
+  transition: left 0.5s ease, bottom 0.2s ease;
+
+  .hat {
+    // width: 20px;
+    height: 4px;
+    background: red;
+    position: absolute;
+    left: -1px;
+    top: 5px;
+  }
+}
+
+.ribbon-up {
+  position:absolute;
+  width:0;
+  height:0;
+  border-left: 6px solid transparent;
+  border-right: 3px solid transparent;
+  border-top: 5px solid red;
+  left: -10px;
+  top: 6px;
+  -webkit-transform-origin: 10px 5px;
+  transform-origin: 10px 5px;
+  -webkit-animation: ribbonup 0.4s infinite ease;
+  animation: ribbonup 0.4s infinite ease;
+}
+
+.ribbon-down {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 3px solid red;
+  left: -8px;
+  top: 7px;
+  -webkit-transform-origin: 10px 5px;
+  transform-origin: 10px 5px;
+  animation: ribbondown 0.4s infinite ease;
+  -webkit-animation: ribbondown 0.4s infinite ease;
+}

@@ -1,0 +1,71 @@
+.hero2 {
+  // width: 18px;
+  // height: 24px;
+  border-radius: 5px;
+  background: black;
+  position: absolute;
+  // left: 25px;
+  // bottom: 85px;
+  transition: left 0.5s ease, bottom 0.2s ease;
+
+  .hat {
+    // width: 20px;
+    background: #ffcae6;
+    height: 10px;
+    position: absolute;
+    left: -1px;
+    top: -1px;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    z-index: 2;
+  }
+}
+
+.ear-left {
+  background: #ff97c8;
+  width: 8px;
+  height: 20px;
+  z-index: 1;
+  top: -12px;
+  left: 6px;
+  position: absolute;
+  border-radius: 100%;
+  -webkit-transform: rotate(-20deg);
+  transform: rotate(-20deg);
+}
+
+.ear-right {
+  background: #ff97c8;
+  width: 8px;
+  height: 20px;
+  z-index: 3;
+  top: -13px;
+  left: -6px;
+  position: absolute;
+  border-radius: 100%;
+  -webkit-transform: rotate(-40deg);
+  transform: rotate(-40deg);
+}
+
+.hand {
+  background: black;
+  position: absolute;
+  border-radius: 10px;
+  width: 3px;
+  height: 12px;
+  top: 10px;
+  left: 0;
+  -webkit-transform: rotate(30deg);
+  transform: rotate(30deg);
+}
+
+.nose {
+  background: black;
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  right: -4px;
+  top: 10px;
+}
+

@@ -11,25 +11,6 @@
   100% { -webkit-transform: rotate(360deg); transform: rotate(360deg); } }
 @keyframes loader { 0% { -webkit-transform: rotate(0deg); transform: rotate(0deg); }
   100% { -webkit-transform: rotate(360deg); transform: rotate(360deg); } }
-.hero { position: relative; width: 100%; height: 100%; }
-.hero.shake { -webkit-animation: shaking 0.3s infinite linear; animation: shaking 0.3s infinite linear; }
-
-.hero1 { border-radius: 5px; background: black; position: absolute; transition: left 0.5s ease, bottom 0.2s ease; }
-
-.ribbon { height: 4px; background: red; position: absolute; left: -1px; top: 5px; }
-
-.eye { width: 4px; height: 4px; background: white; border-radius: 50%; position: absolute; right: 2px; top: 8px; }
-
-.foot { position: absolute; width: 3px; height: 5px; bottom: -5px; border-radius: 5px; background: black; -webkit-transform-origin: top center; transform-origin: top center; }
-.foot.left { left: 4px; }
-.foot.left.walk { -webkit-animation: walk 0.4s infinite linear; animation: walk 0.4s infinite linear; }
-.foot.right { right: 4px; }
-.foot.right.walk { -webkit-animation: walk 0.4s infinite linear 0.2s; animation: walk 0.4s infinite linear 0.2s; }
-
-.ribbon-up { position: absolute; width: 0; height: 0; border-left: 6px solid transparent; border-right: 3px solid transparent; border-top: 5px solid red; left: -10px; top: 6px; -webkit-transform-origin: 10px 5px; transform-origin: 10px 5px; -webkit-animation: ribbonup 0.4s infinite ease; animation: ribbonup 0.4s infinite ease; }
-
-.ribbon-down { position: absolute; width: 0; height: 0; border-left: 6px solid transparent; border-right: 4px solid transparent; border-top: 3px solid red; left: -8px; top: 7px; -webkit-transform-origin: 10px 5px; transform-origin: 10px 5px; animation: ribbondown 0.4s infinite ease; -webkit-animation: ribbondown 0.4s infinite ease; }
-
 /* walk */
 @-webkit-keyframes walk { 0% { -webkit-transform: rotate(30deg); transform: rotate(30deg); }
   50% { -webkit-transform: rotate(-30deg); transform: rotate(-30deg); }
@@ -88,6 +69,24 @@
 @keyframes arrow { 0% { top: 0; }
   50% { top: 15px; }
   1000% { top: 0; } }
+.hero1 { border-radius: 5px; background: black; position: absolute; transition: left 0.5s ease, bottom 0.2s ease; }
+.hero1 .hat { height: 4px; background: red; position: absolute; left: -1px; top: 5px; }
+
+.ribbon-up { position: absolute; width: 0; height: 0; border-left: 6px solid transparent; border-right: 3px solid transparent; border-top: 5px solid red; left: -10px; top: 6px; -webkit-transform-origin: 10px 5px; transform-origin: 10px 5px; -webkit-animation: ribbonup 0.4s infinite ease; animation: ribbonup 0.4s infinite ease; }
+
+.ribbon-down { position: absolute; width: 0; height: 0; border-left: 6px solid transparent; border-right: 4px solid transparent; border-top: 3px solid red; left: -8px; top: 7px; -webkit-transform-origin: 10px 5px; transform-origin: 10px 5px; animation: ribbondown 0.4s infinite ease; -webkit-animation: ribbondown 0.4s infinite ease; }
+
+.hero2 { border-radius: 5px; background: black; position: absolute; transition: left 0.5s ease, bottom 0.2s ease; }
+.hero2 .hat { background: #ffcae6; height: 10px; position: absolute; left: -1px; top: -1px; border-top-left-radius: 6px; border-top-right-radius: 6px; z-index: 2; }
+
+.ear-left { background: #ff97c8; width: 8px; height: 20px; z-index: 1; top: -12px; left: 6px; position: absolute; border-radius: 100%; -webkit-transform: rotate(-20deg); transform: rotate(-20deg); }
+
+.ear-right { background: #ff97c8; width: 8px; height: 20px; z-index: 3; top: -13px; left: -6px; position: absolute; border-radius: 100%; -webkit-transform: rotate(-40deg); transform: rotate(-40deg); }
+
+.hand { background: black; position: absolute; border-radius: 10px; width: 3px; height: 12px; top: 10px; left: 0; -webkit-transform: rotate(30deg); transform: rotate(30deg); }
+
+.nose { background: black; position: absolute; width: 5px; height: 5px; border-radius: 50%; right: -4px; top: 10px; }
+
 #game { font-family: 'Poiret One', Helvetica, Georgia; position: relative; overflow: hidden; background-image: url("../../images/bg.jpg"); background-repeat: no-repeat; background-size: 100% 100%; }
 #game.bg1 { background-image: url("../../images/bg.jpg"); }
 #game.bg2 { background-image: url("../../images/bg2.jpg"); }
@@ -101,6 +100,15 @@
 .stick.died { -webkit-transform: rotate(180deg); transform: rotate(180deg); }
 
 .box { background: black; position: absolute; bottom: 0; transition: left 0.5s ease; }
+
+.hero { position: relative; width: 100%; height: 100%; }
+.hero.shake { -webkit-animation: shaking 0.3s infinite linear; animation: shaking 0.3s infinite linear; }
+.hero .eye { width: 4px; height: 4px; background: white; border-radius: 50%; position: absolute; right: 2px; top: 8px; }
+.hero .foot { position: absolute; width: 3px; height: 5px; bottom: -5px; border-radius: 3px; background: black; -webkit-transform-origin: top center; transform-origin: top center; }
+.hero .foot.left { left: 4px; }
+.hero .foot.left.walk { -webkit-animation: walk 0.4s infinite linear; animation: walk 0.4s infinite linear; }
+.hero .foot.right { right: 4px; }
+.hero .foot.right.walk { -webkit-animation: walk 0.4s infinite linear 0.2s; animation: walk 0.4s infinite linear 0.2s; }
 
 .welcome { display: none; }
 .welcome .name { position: absolute; top: 10%; width: 150px; left: 0; right: 0; margin: 0 auto; font-size: 64px; text-align: center; line-height: 1; -webkit-transform-origin: top left; transform-origin: top left; }
