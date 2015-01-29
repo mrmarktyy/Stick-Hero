@@ -10,7 +10,7 @@ module.exports = function(grunt) {
         tasks: ['stylesheet']
       },
       js: {
-        files: 'scripts/main.js',
+        files: 'scripts/m.js',
         tasks: ['script']
       }
     },
@@ -42,15 +42,15 @@ module.exports = function(grunt) {
     uglify: {
       dist: {
         files: {
-          'dist/js/main.min.js': ['scripts/main.js']
+          'dist/js/m.min.js': ['scripts/m.js']
         }
       }
     },
 
     concat: {
       js: {
-        src: ['scripts/zepto.min.js', 'dist/js/main.min.js'],
-        dest: 'dist/js/main.min.js',
+        src: ['scripts/zepto.min.js', 'dist/js/m.min.js'],
+        dest: 'dist/js/m.min.js',
       }
     }
 
