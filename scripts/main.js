@@ -1,3 +1,33 @@
+(function() {
+  // http://paulirish.com/2011/requestanimationframe-for-smart-animating/
+  // http://my.opera.com/emoller/blog/2011/12/20/requestanimationframe-for-smart-er-animating
+  // requestAnimationFrame polyfill by Erik Möller. fixes from Paul Irish and Tino Zijdel
+  // MIT license
+  var lastTime = 0;
+  var vendors = ['ms', 'moz', 'webkit', 'o'];
+  for (var x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
+    window.requestAnimationFrame = window[vendors[x] + 'RequestAnimationFrame'];
+    window.cancelAnimationFrame = window[vendors[x] + 'CancelAnimationFrame'] || window[vendors[x] + 'CancelRequestAnimationFrame'];
+  }
+
+  if (!window.requestAnimationFrame)
+    window.requestAnimationFrame = function(callback, element) {
+      var currTime = new Date().getTime();
+      var timeToCall = Math.max(0, 16 - (currTime - lastTime));
+      var id = window.setTimeout(function() {
+          callback(currTime + timeToCall);
+        },
+        timeToCall);
+      lastTime = currTime + timeToCall;
+      return id;
+    };
+
+  if (!window.cancelAnimationFrame)
+    window.cancelAnimationFrame = function(id) {
+      clearTimeout(id);
+    };
+}());
+
 $(function() {
   'use strict';
 
@@ -25,8 +55,8 @@ $(function() {
     var STICK_INIT_LEFT = BOX_BASE_WIDTH - STICK_WIDTH;
     var BOX_LEFT_MIN = BOX_BASE_WIDTH + 20;
     var BOX_LEFT_MAX = GAME_WIDTH - BOX_BASE_WIDTH;
-    var BOX_WIDTH_MIN = Math.round(15 * WIDTH_RATIO);  //
-    var BOX_WIDTH_MAX = Math.round(69 * WIDTH_RATIO);  //
+    var BOX_WIDTH_MIN = Math.round(15 * WIDTH_RATIO); //
+    var BOX_WIDTH_MAX = Math.round(69 * WIDTH_RATIO); //
     var STICK_INC = 3;
     var ANIMATION_END_EVENTS = 'transitionend webkitTransitionEnd animationend webkitAnimationEnd MSAnimationEnd oAnimationEnd';
     var TITLE_DEFAULT = '';
@@ -251,7 +281,7 @@ $(function() {
       this.$welcome.show();
     };
 
-    this.preBeginState = function () {
+    this.preBeginState = function() {
       if (this._firstRun) {
         this.$welcome.hide();
         this.$gameover.hide();
@@ -268,8 +298,12 @@ $(function() {
         this.$game.append(this.$box2);
         this.nextAfterAnimated(this.$box2);
 
-        this.$hero.css({left: (BOX_BASE_WIDTH - HERO_WIDTH - GAP - STICK_WIDTH) + 'px'});
-        this.$box1.css({left: 0});
+        this.$hero.css({
+          left: (BOX_BASE_WIDTH - HERO_WIDTH - GAP - STICK_WIDTH) + 'px'
+        });
+        this.$box1.css({
+          left: 0
+        });
         this.$instruction.addClass('in');
 
         var self = this;
