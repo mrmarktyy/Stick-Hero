@@ -69,14 +69,18 @@ $(function() {
       this.$heropick = $('.heropick');
       this.$share = $('.share');
       this.$liveScore = $('.live-score');
+      this.$watermelon = $('.watermelon');
       this.$instruction = $('.instruction');
       this.$score = $('.score');
       this.$best = $('.best');
+      this.$total = $('.total');
       this.$movedStick = $('nothing');
       this.main = $.proxy(this.mainLoop, this);
       this._currentState = STATES.WELCOME;
       this._pressStarted = false;
       this._firstRun = true;
+      this.total = localStorage.getItem('total') || 0;
+      this.$total.text(this.total);
 
       $('.hero1, .hero2').css({
         width: HERO_WIDTH + 'px',
@@ -243,6 +247,7 @@ $(function() {
     this.welcomeState = function() {
       this.$gameover.hide();
       this.$liveScore.hide();
+      this.$watermelon.hide();
       this.$welcome.show();
     };
 
@@ -252,6 +257,7 @@ $(function() {
         this.$gameover.hide();
         this.$copyright.hide();
         this.$liveScore.show();
+        this.$watermelon.show();
 
         this._createBox();
         this.$box2 = $('<div />').addClass('box').css({
@@ -389,6 +395,7 @@ $(function() {
 
     this.updateState = function() {
       this.score++;
+      this.total++;
       this.updateScore();
 
       this.$box1.remove();
@@ -416,6 +423,8 @@ $(function() {
         localStorage.setItem('best', this.best);
       }
 
+      localStorage.setItem('total', this.total);
+      this.$total.text(this.total);
       this.$liveScore.text(this.score);
       this.$score.text(this.score);
       this.$best.text(this.best);

@@ -191,6 +191,19 @@ $main-color: black;
           transform: translate(-50%);
 }
 
+.watermelon {
+  display: none;
+  position: absolute;
+  right: 5px;
+
+  img {
+    width: 20px;
+    position: relative;
+    top: 3px;
+    margin-right: 2px
+  }
+}
+
 .instruction {
   position: absolute;
   opacity: 0;
