@@ -69,7 +69,14 @@
 @keyframes arrow { 0% { top: 0; }
   50% { top: 15px; }
   1000% { top: 0; } }
-.hero1 { display: none; border-radius: 5px; background: black; position: absolute; transition: left 0.5s ease, bottom 0.2s ease; }
+@-webkit-keyframes test { 0% { -webkit-transform: translate3d(200px, 0, 0); transform: translate3d(200px, 0, 0); }
+  50% { -webkit-transform: translate3d(-100px, 0, 0); transform: translate3d(-100px, 0, 0); }
+  100% { -webkit-transform: translate3d(200px, 0, 0); transform: translate3d(200px, 0, 0); } }
+@keyframes test { 0% { -webkit-transform: translate3d(100px, 0, 0); transform: translate3d(100px, 0, 0); }
+  50% { -webkit-transform: translate3d(0, 0, 0); transform: translate3d(0, 0, 0); }
+  100% { -webkit-transform: translate3d(100px, 0, 0); transform: translate3d(100px, 0, 0); } }
+.hero1 { display: none; border-radius: 5px; background: black; position: absolute; -webkit-transition: -webkit-transform 0.5s ease; transition: transform 0.5s ease; }
+.hero1.test { -webkit-animation: test 2s infinite linear; animation: test 2s infinite linear; }
 .hero1 .hat { width: 20px; height: 4px; background: red; position: absolute; left: -1px; top: 5px; }
 
 .ribbon-up { position: absolute; width: 0; height: 0; border-left: 6px solid transparent; border-right: 3px solid transparent; border-top: 5px solid red; left: -10px; top: 6px; -webkit-transform-origin: 10px 5px; transform-origin: 10px 5px; -webkit-animation: ribbonup 0.4s infinite ease; animation: ribbonup 0.4s infinite ease; }

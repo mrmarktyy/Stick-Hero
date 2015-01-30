@@ -7,7 +7,14 @@
   position: absolute;
   // left: 25px;
   // bottom: 85px;
-  transition: left 0.5s ease, bottom 0.2s ease;
+  // transition: left 0.5s ease, bottom 0.2s ease, translate;
+  -webkit-transition: -webkit-transform 0.5s ease;
+          transition: transform 0.5s ease;
+
+  &.test {
+    -webkit-animation: test 2s infinite linear;
+            animation: test 2s infinite linear;
+  }
 
   .hat {
     width: 20px;
