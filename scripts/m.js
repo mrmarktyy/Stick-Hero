@@ -64,7 +64,7 @@ $(function() {
     var HERO_FEET;
     var HERO_BOTTOM;
     var HERO_INIT_LEFT;
-    var HEROS = [[18, 24, 5],[18, 24, 5]];  // [width, height, feet]
+    var HEROS = [[18, 24, 5],[18, 24, 5]];  // [width, height, feet_height]
     var STATES = {
       WELCOME: 0,
       PRE_BEGIN: 1,
@@ -253,7 +253,7 @@ $(function() {
         width: this._newBox.width + 'px',
         left: '200%'
       });
-      this.$game.append(this.$box2);
+      this.$game.append(this.$box2.hide().show(0));
       this.nextAfterAnimation(this.$box2);
 
       this.$hero.css({ left: (BOX_BASE_WIDTH - HERO_WIDTH - GAP - STICK_WIDTH) + 'px' });
@@ -262,7 +262,7 @@ $(function() {
 
       var self = this;
       setTimeout(function() {
-        self.$box2.css('left', self._newBox.left + 'px');
+        self.$box2.css({left: self._newBox.left + 'px'});
       }, 0);
     };
 
@@ -292,7 +292,7 @@ $(function() {
             self.$instruction.removeClass('in');
           }
           self._activeStickHeight += STICK_INC;
-          self.$activeStick.css('height', self._activeStickHeight + 'px');
+          self.$activeStick.css({height: self._activeStickHeight + 'px'});
           PRESS_STARTED = true;
         }
         if (!IS_TOUCHING && PRESS_STARTED) {
@@ -316,13 +316,13 @@ $(function() {
         this._activeStickHeight < this._validStickMax) {
         this.nextAfterAnimation(this.$hero, STATES.SHIFTING);
 
-        this.$hero.css('left', HERO_INIT_LEFT + this.dx + 'px');
+        this.$hero.css({left: HERO_INIT_LEFT + this.dx + 'px'});
         this.$hero[0].style['transition-duration'] = this.dx / 225 + 's';
         this.$hero[0].style['transition-timing-function'] = 'linear';
       } else {
         this.nextAfterAnimation(this.$hero, STATES.DYING);
 
-        this.$hero.css('left', HERO_INIT_LEFT + GAP + HERO_WIDTH + this._activeStickHeight + 'px');
+        this.$hero.css({left: HERO_INIT_LEFT + GAP + HERO_WIDTH + this._activeStickHeight + 'px'});
         this.$hero[0].style['transition-duration'] = (GAP + HERO_WIDTH + this._activeStickHeight) / 225 + 's';
         this.$hero[0].style['transition-timing-function'] = 'linear';
       }
