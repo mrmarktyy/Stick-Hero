@@ -65,7 +65,7 @@ module.exports = function(grunt) {
 
   grunt.registerTask('stylesheet', ['sass:dist', 'cssmin:dist']);
   grunt.registerTask('script', ['uglify:dist', 'concat:js']);
-  grunt.registerTask('build', ['stylesheet', 'script']);
-  grunt.registerTask('default', ['build', 'watch']);
+  grunt.registerTask('release', ['stylesheet', 'script']);
+  grunt.registerTask('default', ['sass:dist', 'watch']);
 
 };
