@@ -134,7 +134,8 @@
 .game-over .actions { position: absolute; top: 45%; color: white; left: 0; right: 0; text-align: center; }
 .game-over .actions .btn { cursor: pointer; background: lightcoral; padding: 10px; border-radius: 10px; margin: 5px auto; width: 100px; }
 
-.heropick { display: none; }
+.heropick { display: none; opacity: 0; transition: opacity 0.5s ease; }
+.heropick.in { display: block; opacity: 1; }
 .heropick .container { width: 180px; background: white; height: 120px; top: 50%; left: 50%; position: absolute; -webkit-transform: translate(-50%, -50%); transform: translate(-50%, -50%); border-radius: 20px; }
 .heropick .wrapper { cursor: pointer; padding: 20px; display: inline-block; position: relative; left: 28px; top: 26px; border: 1px solid transparent; }
 .heropick .wrapper:hover, .heropick .wrapper.selected { border: 1px solid grey; }
@@ -146,4 +147,5 @@
 .share .text { position: absolute; top: 15%; left: 0; right: 0; text-align: center; font-size: 20px; }
 
 .copyright { position: absolute; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.5); color: white; font-size: 10px; }
-.copyright .heart { color: red; }
+
+.copyright__heart { color: red; }

@@ -280,6 +280,13 @@ $main-color: black;
 
 .heropick {
   display: none;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+
+  &.in {
+    display: block;
+    opacity: 1;
+  }
 
   .container {
     width: 180px;
@@ -350,8 +357,8 @@ $main-color: black;
   background: rgba(0, 0, 0, 0.5);
   color: white;
   font-size: 10px;
+}
 
-  .heart {
-    color: red;
-  }
+.copyright__heart {
+  color: red;
 }

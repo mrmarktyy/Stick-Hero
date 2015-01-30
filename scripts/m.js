@@ -1,17 +1,17 @@
 (function() {
-  // http://paulirish.com/2011/requestanimationframe-for-smart-animating/
-  // http://my.opera.com/emoller/blog/2011/12/20/requestanimationframe-for-smart-er-animating
-  // requestAnimationFrame polyfill by Erik Möller. fixes from Paul Irish and Tino Zijdel
-  // MIT license
+  'use strict';
+// http://paulirish.com/2011/requestanimationframe-for-smart-animating/
+// http://my.opera.com/emoller/blog/2011/12/20/requestanimationframe-for-smart-er-animating
+// requestAnimationFrame polyfill by Erik Möller. fixes from Paul Irish and Tino Zijdel
+// MIT license
   var lastTime = 0;
   var vendors = ['ms', 'moz', 'webkit', 'o'];
   for (var x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
     window.requestAnimationFrame = window[vendors[x] + 'RequestAnimationFrame'];
     window.cancelAnimationFrame = window[vendors[x] + 'CancelAnimationFrame'] || window[vendors[x] + 'CancelRequestAnimationFrame'];
   }
-
-  if (!window.requestAnimationFrame)
-    window.requestAnimationFrame = function(callback, element) {
+  if (!window.requestAnimationFrame) {
+    window.requestAnimationFrame = function(callback) {
       var currTime = new Date().getTime();
       var timeToCall = Math.max(0, 16 - (currTime - lastTime));
       var id = window.setTimeout(function() {
@@ -21,11 +21,12 @@
       lastTime = currTime + timeToCall;
       return id;
     };
-
-  if (!window.cancelAnimationFrame)
+  }
+  if (!window.cancelAnimationFrame) {
     window.cancelAnimationFrame = function(id) {
       clearTimeout(id);
     };
+  }
 }());
 
 $(function() {
@@ -60,7 +61,8 @@ $(function() {
     var STICK_INC = 3;
     var ANIMATION_END_EVENTS = 'transitionend webkitTransitionEnd animationend webkitAnimationEnd MSAnimationEnd oAnimationEnd';
     var TITLE_DEFAULT = '';
-    var DOWNKEYS = {};
+    var IS_TOUCHING = false;
+    var PRESS_STARTED = false;
     var IS_WECHAT = !!navigator.userAgent.match(/MicroMessenger/);
     var STATES = {
       WELCOME: 0,
@@ -73,6 +75,7 @@ $(function() {
       UPDATE: 7,
       DEAD: 8
     };
+    var LAST_STATE = Object.keys(STATES).length - 1;
 
     this.init = function() {
       this.initVars();
@@ -105,10 +108,7 @@ $(function() {
       this.$best = $('.best');
       this.$total = $('.total');
       this.$movedStick = $('nothing');
-      this.main = $.proxy(this.mainLoop, this);
       this._currentState = STATES.WELCOME;
-      this._pressStarted = false;
-      this._firstRun = true;
       this.total = localStorage.getItem('total') || 0;
       this.$total.text(this.total);
 
@@ -123,17 +123,8 @@ $(function() {
 
     this.bindEvents = function() {
       var self = this;
-      $(document).on('keypress', function(event) {
-        if (event.keyCode === 32) {
-          if (self._currentState === STATES.WELCOME) {
-            $('.btn-play').trigger('click');
-          } else if (self._currentState === STATES.DEAD) {
-            $('.btn-playagain').trigger('click');
-          }
-        }
-      });
       $(document).on('click touchstart', '.btn-play', function() {
-        self.nextAfterAnimated(self.$gamename, STATES.PRE_BEGIN);
+        self.nextAfterAnimation(self.$gamename, STATES.PRE_BEGIN);
         self.$gamename.addClass('hinge');
       });
       $(document).on('click touchstart', '.btn-playagain', function() {
@@ -144,7 +135,7 @@ $(function() {
         self.$share.show();
       });
       $(document).on('click touchstart', '.btn-hero', function() {
-        self.$heropick.show()
+        self.$heropick.addClass('in');
       });
       $(document).on('click touchstart', '.heropick .wrapper', function(event) {
         // save hero choice
@@ -160,22 +151,16 @@ $(function() {
         event.preventDefault();
         event.stopPropagation();
       });
-      $(document).on('click touchstart', '.share.overlay, .heropick.overlay', function(event) {
+      $(document).on('click touchstart', '.share.overlay, .heropick.overlay', function() {
         self.$share.hide();
-        self.$heropick.hide()
+        self.$heropick.removeClass('in');
       });
-      $(document).on('keypress', function(event) {
-        DOWNKEYS[event.keyCode] = true;
-      });
-      $(document).on('keyup', function(event) {
-        DOWNKEYS[event.keyCode] = false;
-      });
-      $(document).on('touchstart', function(event) {
-        DOWNKEYS['touching'] = true;
+      $(document).on('mousedown touchstart', function(event) {
+        IS_TOUCHING = true;
         event.preventDefault();
       });
-      $(document).on('touchend', function() {
-        DOWNKEYS['touching'] = false;
+      $(document).on('mouseup touchend', function() {
+        IS_TOUCHING = false;
       });
     };
 
@@ -207,66 +192,27 @@ $(function() {
       this.$game.append(this.$box1);
     };
 
-    this.mainLoop = function() {
-      switch (this._currentState) {
-        case STATES.WELCOME:
-          this.welcomeState();
-          break;
-        case STATES.PRE_BEGIN:
-          this.preBeginState();
-          break;
-        case STATES.BEGIN:
-          this.beginState();
-          break;
-        case STATES.STICK_ROTATION:
-          this.stickRotationState();
-          break;
-        case STATES.HERO_WALK:
-          this.heroWalkState();
-          break;
-        case STATES.SHIFTING:
-          this.shiftingState();
-          break;
-        case STATES.DYING:
-          this.dyingState();
-          break;
-        case STATES.UPDATE:
-          this.updateState();
-          break;
-        case STATES.DEAD:
-          this.deadState();
-          break;
-        default:
-      }
-
-      if (this.isContinue()) {
-        this.play();
-      }
-    };
-
-    this.play = function() {
-      window.requestAnimationFrame(this.main);
-    };
-
-    this.isContinue = function() {
-      return true;
+    this.start = function() {
+      this.welcome();
     };
 
     this.next = function(state) {
-      this._firstRun = true;
       if (state !== void 0) {
         this._currentState = state;
-        return;
-      }
-      var lastState = Object.keys(STATES).length - 1;
-      if (this._currentState === lastState) {
+      } else if (this._currentState === LAST_STATE) {
         this._currentState = 0;
       } else {
         this._currentState++;
       }
+      var funcName = camelCase(getKey(STATES, this._currentState));
+      if (typeof this[funcName] === 'function') {
+        console.log(funcName);
+        // debugger;
+        this[funcName].call(this);
+      }
     };
 
-    this.nextAfterAnimated = function($elm, state) {
+    this.nextAfterAnimation = function($elm, state) {
       var self = this;
       $elm.on(ANIMATION_END_EVENTS, function() {
         $elm.off(ANIMATION_END_EVENTS);
@@ -274,160 +220,142 @@ $(function() {
       });
     };
 
-    this.welcomeState = function() {
+    this.welcome = function() {
       this.$gameover.hide();
       this.$liveScore.hide();
       this.$watermelon.hide();
       this.$welcome.show();
     };
 
-    this.preBeginState = function() {
-      if (this._firstRun) {
-        this.$welcome.hide();
-        this.$gameover.hide();
-        this.$copyright.hide();
-        this.$liveScore.show();
-        this.$watermelon.show();
+    this.preBegin = function() {
+      this.$welcome.hide();
+      this.$gameover.hide();
+      this.$copyright.hide();
+      this.$liveScore.show();
+      this.$watermelon.show();
 
-        this._createBox();
-        this.$box2 = $('<div />').addClass('box').css({
-          height: BOX_HEIGHT + 'px',
-          width: this._newBox.width + 'px',
-          left: '200%'
-        });
-        this.$game.append(this.$box2);
-        this.nextAfterAnimated(this.$box2);
+      this._createBox();
+      this.$box2 = $('<div />').addClass('box').css({
+        height: BOX_HEIGHT + 'px',
+        width: this._newBox.width + 'px',
+        left: '200%'
+      });
+      this.$game.append(this.$box2);
+      this.nextAfterAnimation(this.$box2);
 
-        this.$hero.css({
-          left: (BOX_BASE_WIDTH - HERO_WIDTH - GAP - STICK_WIDTH) + 'px'
-        });
-        this.$box1.css({
-          left: 0
-        });
-        this.$instruction.addClass('in');
+      this.$hero.css({
+        left: (BOX_BASE_WIDTH - HERO_WIDTH - GAP - STICK_WIDTH) + 'px'
+      });
+      this.$box1.css({
+        left: 0
+      });
+      this.$instruction.addClass('in');
 
-        var self = this;
-        setTimeout(function() {
-          self.$box2.css('left', self._newBox.left + 'px');
-        }, 0);
-
-        this._firstRun = false;
-      }
+      var self = this;
+      setTimeout(function() {
+        self.$box2.css('left', self._newBox.left + 'px');
+      }, 0);
     };
 
-    this.beginState = function() {
-      if (this._firstRun) {
+    this.begin = function() {
+      this._activeStickHeight = 0;
+      this._validStickMin = this._newBox.left - BOX_BASE_WIDTH;
+      this._validStickMax = this._validStickMin + this._newBox.width;
 
-        this._activeStickHeight = 0;
+      this.$activeStick = $('<div />')
+        .addClass('stick')
+        .css({
+          left: STICK_LEFT + 'px',
+          bottom: STICK_BOTTOM + 'px'
+        });
+      this.$game.append(this.$activeStick);
 
-        this._validStickMin = this._newBox.left - BOX_BASE_WIDTH;
-        this._validStickMax = this._validStickMin + this._newBox.width;
+      var self = this;
+      PRESS_STARTED = false;
 
-        this.$activeStick = $('<div />')
-          .addClass('stick')
-          .css({
-            left: STICK_LEFT + 'px',
-            bottom: STICK_BOTTOM + 'px'
-          });
-        this.$game.append(this.$activeStick);
-
-        this._firstRun = false;
-      }
-
-      if (this._isPressed()) {
-        this.$hero.parent().addClass('shake');
-        this.$instruction.removeClass('in');
-        this._activeStickHeight += STICK_INC;
-        this.$activeStick.css('height', this._activeStickHeight + 'px');
-        this._pressStarted = true;
-        return;
-      }
-
-      if (this._pressStarted) {
-        this.$hero.parent().removeClass('shake');
-        this._pressStarted = false;
-        this.next();
-      }
-    };
-
-    this.stickRotationState = function() {
-      if (this._firstRun) {
-        this.nextAfterAnimated(this.$activeStick);
-
-        this.$activeStick.addClass('rotate');
-
-        this._firstRun = false;
-      }
-    };
-
-    this.heroWalkState = function() {
-      if (this._firstRun) {
-        this.$feet.addClass('walk');
-
-        this.dx = this._newBox.left + this._newBox.width - BOX_BASE_WIDTH;
-        if (this._activeStickHeight > this._validStickMin &&
-          this._activeStickHeight < this._validStickMax) {
-          this.nextAfterAnimated(this.$hero, STATES.SHIFTING);
-
-          this.$hero.css('left', HERO_INIT_LEFT + this.dx + 'px');
-          this.$hero[0].style['transition-duration'] = this.dx / 225 + 's';
-          this.$hero[0].style['transition-timing-function'] = 'linear';
-        } else {
-          this.nextAfterAnimated(this.$hero, STATES.DYING);
-
-          this.$hero.css('left', HERO_INIT_LEFT + GAP + HERO_WIDTH + this._activeStickHeight + 'px');
-          this.$hero[0].style['transition-duration'] = (GAP + HERO_WIDTH + this._activeStickHeight) / 225 + 's';
-          this.$hero[0].style['transition-timing-function'] = 'linear';
+      function loop() {
+        if ((PRESS_STARTED && IS_TOUCHING) || (!PRESS_STARTED)) {
+          window.requestAnimationFrame(loop);
         }
 
-        this._firstRun = false;
+        if (IS_TOUCHING) {
+          if (!PRESS_STARTED) {
+            self.$hero.parent().addClass('shake');
+            self.$instruction.removeClass('in');
+          }
+          self._activeStickHeight += STICK_INC;
+          self.$activeStick.css('height', self._activeStickHeight + 'px');
+          PRESS_STARTED = true;
+        }
+        if (!IS_TOUCHING && PRESS_STARTED) {
+          self.$hero.parent().removeClass('shake');
+          self.next();
+        }
+      }
+      loop();
+    };
+
+    this.stickRotation = function() {
+      this.nextAfterAnimation(this.$activeStick);
+      this.$activeStick.addClass('rotate');
+    };
+
+    this.heroWalk = function() {
+      this.$feet.addClass('walk');
+
+      this.dx = this._newBox.left + this._newBox.width - BOX_BASE_WIDTH;
+      if (this._activeStickHeight > this._validStickMin &&
+        this._activeStickHeight < this._validStickMax) {
+        this.nextAfterAnimation(this.$hero, STATES.SHIFTING);
+
+        this.$hero.css('left', HERO_INIT_LEFT + this.dx + 'px');
+        this.$hero[0].style['transition-duration'] = this.dx / 225 + 's';
+        this.$hero[0].style['transition-timing-function'] = 'linear';
+      } else {
+        this.nextAfterAnimation(this.$hero, STATES.DYING);
+
+        this.$hero.css('left', HERO_INIT_LEFT + GAP + HERO_WIDTH + this._activeStickHeight + 'px');
+        this.$hero[0].style['transition-duration'] = (GAP + HERO_WIDTH + this._activeStickHeight) / 225 + 's';
+        this.$hero[0].style['transition-timing-function'] = 'linear';
       }
     };
 
-    this.shiftingState = function() {
-      if (this._firstRun) {
-        this.nextAfterAnimated(this.$hero, STATES.UPDATE);
+    this.shifting = function() {
+      this.nextAfterAnimation(this.$hero, STATES.UPDATE);
 
-        this._createBox();
-        this.$feet.removeClass('walk');
-        this.$hero[0].style['transition-duration'] = '';
-        this.$hero[0].style['transition-timing-function'] = '';
-        this.$hero.css('left', parseInt(this.$hero.css('left'), 10) - this.dx + 'px');
-        this.$box1.css('left', parseInt(this.$box1.css('left'), 10) - this.dx + 'px');
-        this.$box2.css('left', parseInt(this.$box2.css('left'), 10) - this.dx + 'px');
-        this.$movedStick.css('left', parseInt(this.$movedStick.css('left'), 10) - this.dx + 'px');
-        this.$box3 = $('<div />').addClass('box').css({
-          height: BOX_HEIGHT + 'px',
-          width: this._newBox.width + 'px',
-          left: '200%'
-        });
-        this.$game.append(this.$box3);
+      this._createBox();
+      this.$feet.removeClass('walk');
+      this.$hero[0].style['transition-duration'] = '';
+      this.$hero[0].style['transition-timing-function'] = '';
+      this.$hero.css('left', parseInt(this.$hero.css('left'), 10) - this.dx + 'px');
+      this.$box1.css('left', parseInt(this.$box1.css('left'), 10) - this.dx + 'px');
+      this.$box2.css('left', parseInt(this.$box2.css('left'), 10) - this.dx + 'px');
+      this.$movedStick.css('left', parseInt(this.$movedStick.css('left'), 10) - this.dx + 'px');
+      this.$box3 = $('<div />').addClass('box').css({
+        height: BOX_HEIGHT + 'px',
+        width: this._newBox.width + 'px',
+        left: '200%'
+      });
+      this.$game.append(this.$box3);
 
-        var self = this;
-        setTimeout(function() {
-          self.$box3.css('left', self._newBox.left + 'px');
-        }, 0);
+      var self = this;
+      setTimeout(function() {
+        self.$box3.css('left', self._newBox.left + 'px');
+      }, 0);
 
-        this.$activeStick.css('left', STICK_INIT_LEFT - this.dx + 'px');
-
-        this._firstRun = false;
-      }
+      this.$activeStick.css('left', STICK_INIT_LEFT - this.dx + 'px');
     };
 
-    this.dyingState = function() {
-      if (this._firstRun) {
-        this.nextAfterAnimated(this.$hero, STATES.DEAD);
+    this.dying = function() {
+      this.nextAfterAnimation(this.$hero, STATES.DEAD);
 
-        this.$hero[0].style['transition-duration'] = '';
-        this.$hero[0].style['transition-timing-function'] = '';
-        this.$hero.css('bottom', -(HERO_HEIGHT + 20) + 'px');
-        this.$activeStick.addClass('died');
-
-        this._firstRun = false;
-      }
+      this.$hero[0].style['transition-duration'] = '';
+      this.$hero[0].style['transition-timing-function'] = '';
+      this.$hero.css('bottom', -(HERO_HEIGHT + 20) + 'px');
+      this.$activeStick.addClass('died');
     };
 
-    this.updateState = function() {
+    this.update = function() {
       this.score++;
       this.total++;
       this.updateScore();
@@ -442,7 +370,7 @@ $(function() {
       this.next(STATES.BEGIN);
     };
 
-    this.deadState = function() {
+    this.dead = function() {
       this.$liveScore.hide();
       this.$gameover.show();
       this.$game.addClass('bounce');
@@ -464,10 +392,6 @@ $(function() {
       this.$best.text(this.best);
     };
 
-    this._isPressed = function() {
-      return (DOWNKEYS[32] || DOWNKEYS['touching']);
-    };
-
     this._createBox = function() {
       this._newBox = {
         left: this._getRandom(BOX_LEFT_MIN, BOX_LEFT_MAX),
@@ -484,6 +408,22 @@ $(function() {
     return this;
   }
 
+  function getKey(object, value) {
+    for (var prop in object) {
+      if (object.hasOwnProperty(prop) && object[prop] === value) {
+        return prop;
+      }
+    }
+  }
+
+  function camelCase(input) {
+    if (input) {
+      return input.toLowerCase().replace(/_(.)/g, function(match, d) {
+        return d.toUpperCase();
+      });
+    }
+  }
+
   var viewportWidth = $(window).width();
   var viewportHeight = $(window).height();
   var options = {};
@@ -491,5 +431,7 @@ $(function() {
     options.width = viewportWidth;
     options.height = viewportHeight;
   }
-  new Game(options).play();
+
+  new Game(options).start();
+
 });
