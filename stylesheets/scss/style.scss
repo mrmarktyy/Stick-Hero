@@ -134,6 +134,10 @@ $main-color: black;
       -webkit-animation: hinge 2s ease-in-out;
               animation: hinge 2s ease-in-out;
     }
+    &.bounceOutLeft {
+      -webkit-animation: bounceOutLeft 1s ease-in-out;
+              animation: bounceOutLeft 1s ease-in-out;
+    }
   }
   .btn-play {
     position: absolute;
@@ -156,6 +160,11 @@ $main-color: black;
       top: 50%;
       -webkit-transform: translate(0, -50%);
               transform: translate(0, -50%);
+    }
+
+    &.bounceOutRight {
+      -webkit-animation: bounceOutRight 1s ease-in-out;
+              animation: bounceOutRight 1s ease-in-out;
     }
   }
   .btn-hero {

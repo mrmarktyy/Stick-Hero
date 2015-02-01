@@ -100,6 +100,7 @@ $(function() {
       this.$liveScore = $('.live-score');
       this.$watermelon = $('.watermelon');
       this.$instruction = $('.instruction');
+      this.$btnPlay = $('.btn-play');
       this.$score = $('.score');
       this.$best = $('.best');
       this.$total = $('.total');
@@ -154,7 +155,8 @@ $(function() {
       var self = this;
       $(document).on('click touchstart', '.btn-play', function() {
         self.nextAfterAnimation(self.$gamename, STATES.PRE_BEGIN);
-        self.$gamename.addClass('hinge');
+        self.$gamename.addClass('bounceOutLeft');
+        self.$btnPlay.addClass('bounceOutRight');
       });
       $(document).on('click touchstart', '.btn-playagain', function() {
         self.reset();
@@ -194,6 +196,8 @@ $(function() {
       this.$game
         .removeClass('bounce bg1 bg2 bg3 bg4 bg5')
         .addClass('bg' + this._getRandom(1, 5));
+      this.$gamename.removeClass('bounceOutLeft');
+      this.$btnPlay.removeClass('bounceOutRight');
       this.$liveScore.hide();
       this.$gameover.hide();
       this.$welcome.hide();

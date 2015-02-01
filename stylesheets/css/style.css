@@ -62,13 +62,23 @@
   20%, 60% { -webkit-transform: rotate3d(0, 0, 1, 80deg); transform: rotate3d(0, 0, 1, 80deg); }
   40%, 80% { -webkit-transform: rotate3d(0, 0, 1, 60deg); transform: rotate3d(0, 0, 1, 60deg); }
   100% { -webkit-transform: translate3d(0, 700px, 0); transform: translate3d(0, 700px, 0); } }
+/* animate.css */
+@-webkit-keyframes bounceOutLeft { 20% { opacity: 1; -webkit-transform: translate3d(20px, 0, 0); }
+  100% { opacity: 0; -webkit-transform: translate3d(-1000px, 0, 0); } }
+@keyframes bounceOutLeft { 20% { opacity: 1; transform: translate3d(20px, 0, 0); }
+  100% { opacity: 0; transform: translate3d(-1000px, 0, 0); } }
+/* animate.css */
+@-webkit-keyframes bounceOutRight { 20% { opacity: 1; -webkit-transform: translate3d(-20px, 0, 0); }
+  100% { opacity: 0; -webkit-transform: translate3d(1000px, 0, 0); } }
+@keyframes bounceOutRight { 20% { opacity: 1; transform: translate3d(-20px, 0, 0); }
+  100% { opacity: 0; transform: translate3d(1000px, 0, 0); } }
 /* arrow */
 @-webkit-keyframes arrow { 0% { top: 0; }
   50% { top: 15px; }
   100% { top: 0; } }
 @keyframes arrow { 0% { top: 0; }
   50% { top: 15px; }
-  1000% { top: 0; } }
+  100% { top: 0; } }
 .hero1 { display: none; border-radius: 5px; background: black; position: absolute; left: 0; -webkit-transition: -webkit-transform 0.5s ease; transition: transform 0.5s ease; }
 .hero1 .hat { width: 20px; height: 4px; background: red; position: absolute; left: -1px; top: 5px; }
 
@@ -113,8 +123,10 @@
 .welcome { display: none; }
 .welcome .game-name { position: absolute; top: 10%; width: 150px; left: 0; right: 0; margin: 0 auto; font-size: 64px; line-height: 1; -webkit-transform-origin: top left; transform-origin: top left; -webkit-animation-fill-mode: forwards; animation-fill-mode: forwards; }
 .welcome .game-name.hinge { -webkit-animation: hinge 2s ease-in-out; animation: hinge 2s ease-in-out; }
+.welcome .game-name.bounceOutLeft { -webkit-animation: bounceOutLeft 1s ease-in-out; animation: bounceOutLeft 1s ease-in-out; }
 .welcome .btn-play { position: absolute; color: white; cursor: pointer; background: lightcoral; border-radius: 50%; width: 100px; height: 100px; text-align: center; left: 0; right: 0; margin: 0 auto; font-size: 20px; top: 40%; -webkit-animation: fly 2.5s infinite linear; animation: fly 2.5s infinite linear; }
 .welcome .btn-play div { position: relative; top: 50%; -webkit-transform: translate(0, -50%); transform: translate(0, -50%); }
+.welcome .btn-play.bounceOutRight { -webkit-animation: bounceOutRight 1s ease-in-out; animation: bounceOutRight 1s ease-in-out; }
 .welcome .btn-hero { position: absolute; cursor: pointer; color: white; background: rgba(0, 0, 0, 0.3); padding: 5px 10px 10px 14px; border-radius: 50%; width: 40px; height: 40px; box-sizing: border-box; font-weight: 900; font-size: 12px; top: 80%; right: 20px; }
 
 .live-score { display: none; font-family: Helvetica, Georgia; position: absolute; padding: 10px 20px 7px; top: 30px; background: rgba(0, 0, 0, 0.3); color: white; border-radius: 10px; font-size: 30px; left: 50%; -webkit-transform: translate(-50%); transform: translate(-50%); }
