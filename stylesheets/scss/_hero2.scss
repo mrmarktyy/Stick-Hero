@@ -5,9 +5,11 @@
   border-radius: 5px;
   background: black;
   position: absolute;
+  left: 0;
   // left: 25px;
   // bottom: 85px;
-  transition: left 0.5s ease, bottom 0.2s ease;
+  -webkit-transition: -webkit-transform 0.5s ease;
+          transition: transform 0.5s ease;
 
   .hat {
     width: 20px;
@@ -32,7 +34,7 @@
   position: absolute;
   border-radius: 100%;
   -webkit-transform: rotate(-20deg);
-  transform: rotate(-20deg);
+          transform: rotate(-20deg);
 }
 
 .ear-right {
@@ -45,7 +47,7 @@
   position: absolute;
   border-radius: 100%;
   -webkit-transform: rotate(-40deg);
-  transform: rotate(-40deg);
+          transform: rotate(-40deg);
 }
 
 .hand {
@@ -57,7 +59,7 @@
   top: 10px;
   left: 0;
   -webkit-transform: rotate(30deg);
-  transform: rotate(30deg);
+          transform: rotate(30deg);
 }
 
 .nose {

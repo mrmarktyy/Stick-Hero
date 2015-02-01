@@ -42,8 +42,8 @@ $main-color: black;
   position: absolute;
   // bottom: 80px;
   // left: 47px;
-        -webkit-transition: -webkit-transform 0.4s ease-in, left 0.5s ease;;
-                transition: transform 0.4s ease-in, left 0.5s ease;;
+        -webkit-transition: -webkit-transform 0.5s ease;
+                transition: transform 0.5s ease;
   -webkit-transform-origin: bottom right;
           transform-origin: bottom right;
 
@@ -62,7 +62,8 @@ $main-color: black;
   position: absolute;
   bottom: 0;
   // height: 80px;
-  transition: left 0.5s ease;
+  -webkit-transition: -webkit-transform 0.5s ease;
+          transition: transform 0.5s ease;
 }
 
 .hero {
@@ -93,8 +94,7 @@ $main-color: black;
     border-radius: 3px;
     background: black;
     -webkit-transform-origin: top center;
-    transform-origin: top center;
-
+            transform-origin: top center;
     &.left {
       left: 4px;
       &.walk {
@@ -102,7 +102,6 @@ $main-color: black;
                 animation: walk 0.4s infinite linear;
       }
     }
-
     &.right {
       right: 4px;
       &.walk {
@@ -124,13 +123,14 @@ $main-color: black;
     right: 0;
     margin: 0 auto;
     font-size: 64px;
-    text-align: center;
     line-height: 1;
     -webkit-transform-origin: top left;
-    transform-origin: top left;
+            transform-origin: top left;
+    -webkit-animation-fill-mode: forwards;
+            animation-fill-mode: forwards;
 
     &.hinge {
-                opacity: 0;
+                // opacity: 0;
       -webkit-animation: hinge 2s ease-in-out;
               animation: hinge 2s ease-in-out;
     }
@@ -141,22 +141,21 @@ $main-color: black;
     cursor: pointer;
     background: lightcoral;
     border-radius: 50%;
-    width: 80px;
-    height: 80px;
+    width: 100px;
+    height: 100px;
     text-align: center;
-    vertical-align: middle;
     left: 0;
     right: 0;
     margin: 0 auto;
     font-size: 20px;
+    top: 40%;
     -webkit-animation: fly 2.5s infinite linear;
             animation: fly 2.5s infinite linear;
-
     div {
-      -webkit-transform: translate(0, -50%);
-              transform: translate(0, -50%);
       position: relative;
       top: 50%;
+      -webkit-transform: translate(0, -50%);
+              transform: translate(0, -50%);
     }
   }
   .btn-hero {
@@ -280,13 +279,7 @@ $main-color: black;
 
 .heropick {
   display: none;
-  opacity: 0;
   transition: opacity 0.5s ease;
-
-  &.in {
-    display: block;
-    opacity: 1;
-  }
 
   .container {
     width: 180px;

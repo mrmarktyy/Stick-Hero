@@ -33,12 +33,12 @@
   50% { -webkit-transform: rotate(-40deg); transform: rotate(-40deg); }
   100% { -webkit-transform: rotate(-20deg); transform: rotate(-20deg); } }
 /* fly */
-@-webkit-keyframes fly { 0% { top: 40%; }
-  50% { top: 45%; }
-  100% { top: 40%; } }
-@keyframes fly { 0% { top: 40%; }
-  50% { top: 45%; }
-  100% { top: 40%; } }
+@-webkit-keyframes fly { 0% { -webkit-transform: translate3d(0, 0, 0); transform: translate3d(0, 0, 0); }
+  50% { -webkit-transform: translate3d(0, 20px, 0); transform: translate3d(0, 20px, 0); }
+  100% { -webkit-transform: translate3d(0, 0, 0); transform: translate3d(0, 0, 0); } }
+@keyframes fly { 0% { -webkit-transform: translate3d(0, 0, 0); transform: translate3d(0, 0, 0); }
+  50% { -webkit-transform: translate3d(0, -20px, 0); transform: translate3d(0, -20px, 0); }
+  100% { -webkit-transform: translate3d(0, 0, 0); transform: translate3d(0, 0, 0); } }
 /* shaking */
 @-webkit-keyframes shaking { 0% { top: 0; }
   50% { top: 3px; }
@@ -54,14 +54,14 @@
   20%, 60% { -webkit-transform: translate3d(0, -3px, 0); transform: translate3d(0, -3px, 0); }
   40%, 80% { -webkit-transform: translate3d(0, 3px, 0); transform: translate3d(0, 3px, 0); } }
 /* animate.css */
-@-webkit-keyframes hinge { 0% { opacity: 1; }
+@-webkit-keyframes hinge { 0% { -webkit-transform: rotate3d(0, 0, 0, 0deg); transform: rotate3d(0, 0, 0, 0deg); }
   20%, 60% { -webkit-transform: rotate3d(0, 0, 1, 80deg); transform: rotate3d(0, 0, 1, 80deg); }
-  40%, 80% { -webkit-transform: rotate3d(0, 0, 1, 60deg); transform: rotate3d(0, 0, 1, 60deg); opacity: 1; }
-  100% { -webkit-transform: translate3d(0, 700px, 0); transform: translate3d(0, 700px, 0); opacity: 0; } }
-@keyframes hinge { 0% { opacity: 1; }
+  40%, 80% { -webkit-transform: rotate3d(0, 0, 1, 60deg); transform: rotate3d(0, 0, 1, 60deg); }
+  100% { -webkit-transform: translate3d(0, 700px, 0); transform: translate3d(0, 700px, 0); } }
+@keyframes hinge { 0% { -webkit-transform: rotate3d(0, 0, 0, 0deg); transform: rotate3d(0, 0, 0, 0deg); }
   20%, 60% { -webkit-transform: rotate3d(0, 0, 1, 80deg); transform: rotate3d(0, 0, 1, 80deg); }
-  40%, 80% { -webkit-transform: rotate3d(0, 0, 1, 60deg); transform: rotate3d(0, 0, 1, 60deg); opacity: 1; }
-  100% { -webkit-transform: translate3d(0, 700px, 0); transform: translate3d(0, 700px, 0); opacity: 0; } }
+  40%, 80% { -webkit-transform: rotate3d(0, 0, 1, 60deg); transform: rotate3d(0, 0, 1, 60deg); }
+  100% { -webkit-transform: translate3d(0, 700px, 0); transform: translate3d(0, 700px, 0); } }
 /* arrow */
 @-webkit-keyframes arrow { 0% { top: 0; }
   50% { top: 15px; }
@@ -69,21 +69,14 @@
 @keyframes arrow { 0% { top: 0; }
   50% { top: 15px; }
   1000% { top: 0; } }
-@-webkit-keyframes test { 0% { -webkit-transform: translate3d(200px, 0, 0); transform: translate3d(200px, 0, 0); }
-  50% { -webkit-transform: translate3d(-100px, 0, 0); transform: translate3d(-100px, 0, 0); }
-  100% { -webkit-transform: translate3d(200px, 0, 0); transform: translate3d(200px, 0, 0); } }
-@keyframes test { 0% { -webkit-transform: translate3d(100px, 0, 0); transform: translate3d(100px, 0, 0); }
-  50% { -webkit-transform: translate3d(0, 0, 0); transform: translate3d(0, 0, 0); }
-  100% { -webkit-transform: translate3d(100px, 0, 0); transform: translate3d(100px, 0, 0); } }
-.hero1 { display: none; border-radius: 5px; background: black; position: absolute; -webkit-transition: -webkit-transform 0.5s ease; transition: transform 0.5s ease; }
-.hero1.test { -webkit-animation: test 2s infinite linear; animation: test 2s infinite linear; }
+.hero1 { display: none; border-radius: 5px; background: black; position: absolute; left: 0; -webkit-transition: -webkit-transform 0.5s ease; transition: transform 0.5s ease; }
 .hero1 .hat { width: 20px; height: 4px; background: red; position: absolute; left: -1px; top: 5px; }
 
 .ribbon-up { position: absolute; width: 0; height: 0; border-left: 6px solid transparent; border-right: 3px solid transparent; border-top: 5px solid red; left: -10px; top: 6px; -webkit-transform-origin: 10px 5px; transform-origin: 10px 5px; -webkit-animation: ribbonup 0.4s infinite ease; animation: ribbonup 0.4s infinite ease; }
 
 .ribbon-down { position: absolute; width: 0; height: 0; border-left: 6px solid transparent; border-right: 4px solid transparent; border-top: 3px solid red; left: -8px; top: 7px; -webkit-transform-origin: 10px 5px; transform-origin: 10px 5px; animation: ribbondown 0.4s infinite ease; -webkit-animation: ribbondown 0.4s infinite ease; }
 
-.hero2 { display: none; border-radius: 5px; background: black; position: absolute; transition: left 0.5s ease, bottom 0.2s ease; }
+.hero2 { display: none; border-radius: 5px; background: black; position: absolute; left: 0; -webkit-transition: -webkit-transform 0.5s ease; transition: transform 0.5s ease; }
 .hero2 .hat { width: 20px; background: #ffcae6; height: 10px; position: absolute; left: -1px; top: -1px; border-top-left-radius: 6px; border-top-right-radius: 6px; z-index: 2; }
 
 .ear-left { background: #ff97c8; width: 8px; height: 20px; z-index: 1; top: -12px; left: 6px; position: absolute; border-radius: 100%; -webkit-transform: rotate(-20deg); transform: rotate(-20deg); }
@@ -102,11 +95,11 @@
 #game.bg5 { background-image: url("../../images/bg5.jpg"); }
 #game.bounce { -webkit-animation: bounce 0.5s linear; animation: bounce 0.5s linear; }
 
-.stick { width: 3px; background: black; position: absolute; -webkit-transition: -webkit-transform 0.4s ease-in, left 0.5s ease; transition: transform 0.4s ease-in, left 0.5s ease; -webkit-transform-origin: bottom right; transform-origin: bottom right; }
+.stick { width: 3px; background: black; position: absolute; -webkit-transition: -webkit-transform 0.5s ease; transition: transform 0.5s ease; -webkit-transform-origin: bottom right; transform-origin: bottom right; }
 .stick.rotate { -webkit-transform: rotate(90deg); transform: rotate(90deg); }
 .stick.died { -webkit-transform: rotate(180deg); transform: rotate(180deg); }
 
-.box { background: black; position: absolute; bottom: 0; transition: left 0.5s ease; }
+.box { background: black; position: absolute; bottom: 0; -webkit-transition: -webkit-transform 0.5s ease; transition: transform 0.5s ease; }
 
 .hero { position: relative; width: 100%; height: 100%; }
 .hero.shake { -webkit-animation: shaking 0.3s infinite linear; animation: shaking 0.3s infinite linear; }
@@ -118,10 +111,10 @@
 .hero .foot.right.walk { -webkit-animation: walk 0.4s infinite linear 0.2s; animation: walk 0.4s infinite linear 0.2s; }
 
 .welcome { display: none; }
-.welcome .game-name { position: absolute; top: 10%; width: 150px; left: 0; right: 0; margin: 0 auto; font-size: 64px; text-align: center; line-height: 1; -webkit-transform-origin: top left; transform-origin: top left; }
-.welcome .game-name.hinge { opacity: 0; -webkit-animation: hinge 2s ease-in-out; animation: hinge 2s ease-in-out; }
-.welcome .btn-play { position: absolute; color: white; cursor: pointer; background: lightcoral; border-radius: 50%; width: 80px; height: 80px; text-align: center; vertical-align: middle; left: 0; right: 0; margin: 0 auto; font-size: 20px; -webkit-animation: fly 2.5s infinite linear; animation: fly 2.5s infinite linear; }
-.welcome .btn-play div { -webkit-transform: translate(0, -50%); transform: translate(0, -50%); position: relative; top: 50%; }
+.welcome .game-name { position: absolute; top: 10%; width: 150px; left: 0; right: 0; margin: 0 auto; font-size: 64px; line-height: 1; -webkit-transform-origin: top left; transform-origin: top left; -webkit-animation-fill-mode: forwards; animation-fill-mode: forwards; }
+.welcome .game-name.hinge { -webkit-animation: hinge 2s ease-in-out; animation: hinge 2s ease-in-out; }
+.welcome .btn-play { position: absolute; color: white; cursor: pointer; background: lightcoral; border-radius: 50%; width: 100px; height: 100px; text-align: center; left: 0; right: 0; margin: 0 auto; font-size: 20px; top: 40%; -webkit-animation: fly 2.5s infinite linear; animation: fly 2.5s infinite linear; }
+.welcome .btn-play div { position: relative; top: 50%; -webkit-transform: translate(0, -50%); transform: translate(0, -50%); }
 .welcome .btn-hero { position: absolute; cursor: pointer; color: white; background: rgba(0, 0, 0, 0.3); padding: 5px 10px 10px 14px; border-radius: 50%; width: 40px; height: 40px; box-sizing: border-box; font-weight: 900; font-size: 12px; top: 80%; right: 20px; }
 
 .live-score { display: none; font-family: Helvetica, Georgia; position: absolute; padding: 10px 20px 7px; top: 30px; background: rgba(0, 0, 0, 0.3); color: white; border-radius: 10px; font-size: 30px; left: 50%; -webkit-transform: translate(-50%); transform: translate(-50%); }
@@ -141,8 +134,7 @@
 .game-over .actions { position: absolute; top: 45%; color: white; left: 0; right: 0; text-align: center; }
 .game-over .actions .btn { cursor: pointer; background: lightcoral; padding: 10px; border-radius: 10px; margin: 5px auto; width: 100px; }
 
-.heropick { display: none; opacity: 0; transition: opacity 0.5s ease; }
-.heropick.in { display: block; opacity: 1; }
+.heropick { display: none; transition: opacity 0.5s ease; }
 .heropick .container { width: 180px; background: white; height: 120px; top: 50%; left: 50%; position: absolute; -webkit-transform: translate(-50%, -50%); transform: translate(-50%, -50%); border-radius: 20px; }
 .heropick .wrapper { cursor: pointer; padding: 20px; display: inline-block; position: relative; left: 28px; top: 26px; border: 1px solid transparent; }
 .heropick .wrapper:hover, .heropick .wrapper.selected { border: 1px solid grey; }

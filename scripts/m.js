@@ -47,17 +47,17 @@ $(function() {
     var STICK_LEFT = BOX_BASE_WIDTH - STICK_WIDTH;
     var STICK_BOTTOM = BOX_HEIGHT;
     var GAP = 4;
-    var STICK_INIT_LEFT = BOX_BASE_WIDTH - STICK_WIDTH;
     var BOX_LEFT_MIN = BOX_BASE_WIDTH + 20;
     var BOX_LEFT_MAX = GAME_WIDTH - BOX_BASE_WIDTH;
     var BOX_WIDTH_MIN = Math.round(15 * WIDTH_RATIO); //
     var BOX_WIDTH_MAX = Math.round(69 * WIDTH_RATIO); //
     var STICK_INC = 3;
-    var ANIMATION_END_EVENTS = 'transitionend webkitTransitionEnd animationend webkitAnimationEnd MSAnimationEnd oAnimationEnd';
+    var ANIMATION_END_EVENTS = 'webkitTransitionEnd transitionend animationend webkitAnimationEnd';
     var TITLE_DEFAULT = '';
     var IS_TOUCHING = false;
     var PRESS_STARTED = false;
     var IS_WECHAT = !!navigator.userAgent.match(/MicroMessenger/);
+    var IS_ANDROID = navigator.userAgent.toLowerCase().indexOf('android') > -1;
     var HERO_WIDTH; //
     var HERO_HEIGHT; //
     var HERO_HAT;
@@ -117,8 +117,8 @@ $(function() {
       this.$heros = $('.hero > .hero1, .hero > .hero2');
       for (var i = 0; i < HEROS.length; i++) {
         $('.hero' + (i+1)).css({
-          width: Math.round(HEROS[i][0] * WIDTH_RATIO) + 'px',
-          height: Math.round(HEROS[i][1] * WIDTH_RATIO) + 'px'
+          'width': Math.round(HEROS[i][0] * WIDTH_RATIO) + 'px',
+          'height': Math.round(HEROS[i][1] * WIDTH_RATIO) + 'px'
         });
       }
     };
@@ -138,11 +138,12 @@ $(function() {
       this.$heros.hide();
       this.$hero = $('.hero > .hero' + this.hero)
         .css({
-          bottom: HERO_BOTTOM + 'px',
-          left: (GAME_WIDTH - HERO_WIDTH) / 2 + 'px'
+          'bottom': HERO_BOTTOM + 'px',
+          'transform': 'translate3d(' + (GAME_WIDTH - HERO_WIDTH) / 2 + 'px, 0, 0)',
+          '-webkit-transform': 'translate3d(' + (GAME_WIDTH - HERO_WIDTH) / 2 + 'px, 0, 0)'
         }).show();
       this.$hat = this.$hero.find('.hat').css({
-        width: HERO_HAT + 'px'
+        'width': HERO_HAT + 'px'
       });
       this.$feet = this.$hero.find('.foot');
       $('.wrapper').removeClass('selected');
@@ -159,18 +160,22 @@ $(function() {
         self.reset();
         self.next(STATES.PRE_BEGIN);
       });
-      $(document).on('click touchstart', '.btn-share', function() {
+      $(document).on('click touchstart', '.btn-share', function(event) {
         self.$share.show();
+        $(document).on(event.type, '.share.overlay', function() {
+          $(document).off(event.type, '.share.overlay');
+          self.$share.hide();
+        });
       });
-      $(document).on('click touchstart', '.btn-hero', function() {
-        self.$heropick.addClass('in');
+      $(document).on('click touchstart', '.btn-hero', function(event) {
+        self.$heropick.show();
+        $(document).on(event.type, '.heropick.overlay', function() {
+          $(document).off(event.type, '.heropick.overlay');
+          self.$heropick.hide();
+        });
       });
       $(document).on('click touchstart', '.heropick .wrapper', function(event) {
         self.switchHero($(event.currentTarget).data('src'));
-      });
-      $(document).on('click touchstart', '.share.overlay, .heropick.overlay', function() {
-        self.$share.hide();
-        self.$heropick.removeClass('in');
       });
       $(document).on('mousedown touchstart', function(event) {
         IS_TOUCHING = true;
@@ -195,15 +200,19 @@ $(function() {
       this.updateScore();
 
       $('.box, .stick').remove();
+      this.BOX1 = { left: 0, width: BOX_BASE_WIDTH };
       this.$box1 = $('<div />').addClass('box').css({
-        height: BOX_HEIGHT + 'px',
-        left: (GAME_WIDTH - BOX_BASE_WIDTH) / 2 + 'px',
-        width: BOX_BASE_WIDTH + 'px'
+        'height': BOX_HEIGHT + 'px',
+        'width': this.BOX1.width + 'px',
+        'right': -this.BOX1.width + 'px',
+        'transform': 'translate3d(' + -(GAME_WIDTH + this.BOX1.width) / 2 + 'px, 0, 0)',
+        '-webkit-transform': 'translate3d(' + -(GAME_WIDTH + this.BOX1.width) / 2 + 'px, 0, 0)'
       });
-      this.$hero.css({
-        bottom: HERO_BOTTOM + 'px',
-        left: (GAME_WIDTH - HERO_WIDTH) / 2 + 'px'
-      });
+      this.$hero.hide().css({
+        'bottom': HERO_BOTTOM + 'px',
+        'transform': 'translate3d(' + (GAME_WIDTH - HERO_WIDTH) / 2 + 'px, 0, 0)',
+        '-webkit-transform': 'translate3d(' + (GAME_WIDTH - HERO_WIDTH) / 2 + 'px, 0, 0)'
+      }).show();
       this.$game.append(this.$box1);
     };
 
@@ -246,30 +255,38 @@ $(function() {
       this.$copyright.hide();
       this.$liveScore.show();
       this.$watermelon.show();
-
-      this._createBox();
-      this.$box2 = $('<div />').addClass('box').css({
-        height: BOX_HEIGHT + 'px',
-        width: this._newBox.width + 'px',
-        left: '200%'
-      });
-      this.$game.append(this.$box2.hide().show(0));
-      this.nextAfterAnimation(this.$box2);
-
-      this.$hero.css({ left: (BOX_BASE_WIDTH - HERO_WIDTH - GAP - STICK_WIDTH) + 'px' });
-      this.$box1.css({ left: 0 });
       this.$instruction.addClass('in');
 
+      this.BOX2 = this._createBox();
+      this.$box2 = $('<div />').addClass('box').css({
+        'height': BOX_HEIGHT + 'px',
+        'width': this.BOX2.width + 'px',
+        'right': -this.BOX2.width + 'px'
+      });
+      this.$game.append(this.$box2);
+      this.nextAfterAnimation(this.$box2);
+
+      this.$hero.css({
+        'transform': 'translate3d(' + (BOX_BASE_WIDTH - HERO_WIDTH - GAP - STICK_WIDTH) + 'px, 0, 0)',
+        '-webkit-transform': 'translate3d(' + (BOX_BASE_WIDTH - HERO_WIDTH - GAP - STICK_WIDTH) + 'px, 0, 0)'
+      });
+      this.$box1.css({
+        'transform': 'translate3d(' + -GAME_WIDTH + 'px, 0, 0)',
+        '-webkit-transform': 'translate3d(' + -GAME_WIDTH + 'px, 0, 0)'
+      });
       var self = this;
       setTimeout(function() {
-        self.$box2.css({left: self._newBox.left + 'px'});
-      }, 0);
+        self.$box2.css({
+          'transform': 'translate3d(' + -(GAME_WIDTH - self.BOX2.left) + 'px, 0, 0)',
+          '-webkit-transform': 'translate3d(' + -(GAME_WIDTH - self.BOX2.left) + 'px, 0, 0)'
+        });
+      }, 100);
     };
 
     this.begin = function() {
       this._activeStickHeight = 0;
-      this._validStickMin = this._newBox.left - BOX_BASE_WIDTH;
-      this._validStickMax = this._validStickMin + this._newBox.width;
+      this._validStickMin = this.BOX2.left - BOX_BASE_WIDTH;
+      this._validStickMax = this._validStickMin + this.BOX2.width;
 
       this.$activeStick = $('<div />')
         .addClass('stick')
@@ -305,61 +322,112 @@ $(function() {
       this.nextAfterAnimation(this.$activeStick);
 
       this.$heroContainer.removeClass('shake');
-      this.$activeStick.addClass('rotate');
+      this.$activeStick
+        .css({
+          'transition-duration': '0.4s',
+          '-webkit-transition-duration': '0.4s',
+          'transition-timing-function': 'ease-in',
+          '-webkit-transition-timing-function': 'ease-in'
+        }).addClass('rotate');
     };
 
     this.heroWalk = function() {
-      this.$feet.addClass('walk');
+      this.dx = this.BOX2.left + this.BOX2.width - BOX_BASE_WIDTH;
 
-      this.dx = this._newBox.left + this._newBox.width - BOX_BASE_WIDTH;
-      if (this._activeStickHeight > this._validStickMin &&
-        this._activeStickHeight < this._validStickMax) {
+      if (this._activeStickHeight > this._validStickMin && this._activeStickHeight < this._validStickMax) {
         this.nextAfterAnimation(this.$hero, STATES.SHIFTING);
 
-        this.$hero.css({left: HERO_INIT_LEFT + this.dx + 'px'});
-        this.$hero[0].style['transition-duration'] = this.dx / 225 + 's';
-        this.$hero[0].style['transition-timing-function'] = 'linear';
+        this.$hero.css({
+          'transform': 'translate3d(' + (this.BOX2.left + this.BOX2.width - HERO_WIDTH - GAP - STICK_WIDTH) + 'px, 0, 0)',
+          '-webkit-transform': 'translate3d(' + (this.BOX2.left + this.BOX2.width - HERO_WIDTH - GAP - STICK_WIDTH) + 'px, 0, 0)',
+          'transition-duration': this.dx / 225 + 's',
+          '-webkit-transition-duration': this.dx / 225 + 's',
+          'transition-timing-function': 'linear',
+          '-webkit-transition-timing-function': 'linear'
+        });
       } else {
         this.nextAfterAnimation(this.$hero, STATES.DYING);
 
-        this.$hero.css({left: HERO_INIT_LEFT + GAP + HERO_WIDTH + this._activeStickHeight + 'px'});
-        this.$hero[0].style['transition-duration'] = (GAP + HERO_WIDTH + this._activeStickHeight) / 225 + 's';
-        this.$hero[0].style['transition-timing-function'] = 'linear';
+        this.$hero.css({
+          'transform': 'translate3d(' + (BOX_BASE_WIDTH + this._activeStickHeight) + 'px, 0, 0)',
+          '-webkit-transform': 'translate3d(' + (BOX_BASE_WIDTH + this._activeStickHeight) + 'px, 0, 0)',
+          'transition-duration': (GAP + HERO_WIDTH + this._activeStickHeight) / 225 + 's',
+          '-webkit-transition-duration': (GAP + HERO_WIDTH + this._activeStickHeight) / 225 + 's',
+          'transition-timing-function': 'linear',
+          '-webkit-transition-timing-function': 'linear'
+        });
       }
+      if (!IS_ANDROID) {
+        this.$feet.addClass('walk');
+      }
+      this.$activeStick.css({
+        'transition-duration': '',
+        '-webkit-transition-duration': '',
+        'transition-timing-function': '',
+        '-webkit-transition-timing-function': ''
+      });
     };
 
     this.shifting = function() {
       this.nextAfterAnimation(this.$hero, STATES.UPDATE);
 
-      this._createBox();
       this.$feet.removeClass('walk');
-      this.$hero[0].style['transition-duration'] = '';
-      this.$hero[0].style['transition-timing-function'] = '';
-      this.$hero.css('left', parseInt(this.$hero.css('left'), 10) - this.dx + 'px');
-      this.$box1.css('left', parseInt(this.$box1.css('left'), 10) - this.dx + 'px');
-      this.$box2.css('left', parseInt(this.$box2.css('left'), 10) - this.dx + 'px');
-      this.$movedStick.css('left', parseInt(this.$movedStick.css('left'), 10) - this.dx + 'px');
+      this.$hero.css({
+        'transform': 'translate3d(' + (BOX_BASE_WIDTH - HERO_WIDTH - GAP - STICK_WIDTH) + 'px, 0, 0)',
+        '-webkit-transform': 'translate3d(' + (BOX_BASE_WIDTH - HERO_WIDTH - GAP - STICK_WIDTH) + 'px, 0, 0)',
+        'transition-duration': '',
+        '-webkit-transition-duration': '',
+        'transition-timing-function': '',
+        '-webkit-transition-timing-function': ''
+      });
+      // Off Screen
+      this.$box1.css({
+        'transform': 'translate3d(' + -(this.dx + GAME_WIDTH) + 'px, 0, 0)',
+        '-webkit-transform': 'translate3d(' + -(this.dx + GAME_WIDTH) + 'px, 0, 0)'
+      });
+      this.$box2.css({
+        'transform': 'translate3d(' + -(GAME_WIDTH - BOX_BASE_WIDTH + this.BOX2.width) + 'px, 0, 0)',
+        '-webkit-transform': 'translate3d(' + -(GAME_WIDTH - BOX_BASE_WIDTH + this.BOX2.width) + 'px, 0, 0)'
+      });
+      // Off Screen
+      this.$movedStick.css({
+        'transform': 'translate3d(' + -(this.dx + GAME_WIDTH) + 'px, 0, 0) rotate(90deg)',
+        '-webkit-transform': 'translate3d(' + -(this.dx + GAME_WIDTH) + 'px, 0, 0) rotate(90deg)'
+      });
+
+      this.BOX3 = this._createBox();
       this.$box3 = $('<div />').addClass('box').css({
-        height: BOX_HEIGHT + 'px',
-        width: this._newBox.width + 'px',
-        left: '200%'
+        'height': BOX_HEIGHT + 'px',
+        'width': this.BOX3.width + 'px',
+        'right': -this.BOX3.width + 'px'
       });
       this.$game.append(this.$box3);
 
       var self = this;
       setTimeout(function() {
-        self.$box3.css('left', self._newBox.left + 'px');
-      }, 0);
+        self.$box3.css({
+          'transform': 'translate3d(' + -(GAME_WIDTH - self.BOX3.left) + 'px, 0, 0)',
+          '-webkit-transform': 'translate3d(' + -(GAME_WIDTH - self.BOX3.left) + 'px, 0, 0)'
+        });
+      }, 100);
 
-      this.$activeStick.css('left', STICK_INIT_LEFT - this.dx + 'px');
+      this.$activeStick.css({
+        'transform': 'translate3d(' + -this.dx + 'px, 0, 0) rotate(90deg)',
+        '-webkit-transform': 'translate3d(' + -this.dx + 'px, 0, 0) rotate(90deg)'
+      });
     };
 
     this.dying = function() {
       this.nextAfterAnimation(this.$hero, STATES.DEAD);
 
-      this.$hero[0].style['transition-duration'] = '';
-      this.$hero[0].style['transition-timing-function'] = '';
-      this.$hero.css('bottom', -(HERO_HEIGHT + 20) + 'px');
+      this.$hero.css({
+        'transform': 'translate3d(' + (BOX_BASE_WIDTH + this._activeStickHeight) + 'px, ' + (BOX_HEIGHT + HERO_HEIGHT + 20) + 'px , 0)',
+        '-webkit-transform': 'translate3d(' + (BOX_BASE_WIDTH + this._activeStickHeight) + 'px, ' + (BOX_HEIGHT + HERO_HEIGHT + 20) + 'px , 0)',
+        'transition-duration': '0.2s',
+        '-webkit-transition-duration': '0.2s',
+        'transition-timing-function': '',
+        '-webkit-transition-timing-function': ''
+      });
       this.$feet.removeClass('walk');
       this.$activeStick.addClass('died');
     };
@@ -371,7 +439,9 @@ $(function() {
 
       this.$box1.remove();
       this.$box1 = this.$box2;
+      this.BOX1 = this.BOX2;
       this.$box2 = this.$box3;
+      this.BOX2 = this.BOX3;
 
       this.$movedStick.remove();
       this.$movedStick = this.$activeStick;
@@ -383,6 +453,9 @@ $(function() {
       this.$liveScore.hide();
       this.$gameover.show();
       this.$game.addClass('bounce');
+      this.$hero.css({
+        'transition-duration': ''
+      });
       if (IS_WECHAT) {
         this.$title.text(TITLE_DEFAULT + ': ' + '我一不小心就前进了' + this.score + '步，你敢挑战我吗？小伙伴们快来一起玩耍吧！');
       }
@@ -402,7 +475,7 @@ $(function() {
     };
 
     this._createBox = function() {
-      this._newBox = {
+      return {
         left: this._getRandom(BOX_LEFT_MIN, BOX_LEFT_MAX),
         width: this._getRandom(BOX_WIDTH_MIN, BOX_WIDTH_MAX)
       };
