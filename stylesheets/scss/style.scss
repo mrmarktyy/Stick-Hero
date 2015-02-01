@@ -300,6 +300,7 @@ $main-color: black;
     -webkit-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
     border-radius: 20px;
+    pointer-events: none;
   }
   .wrapper {
     cursor: pointer;
