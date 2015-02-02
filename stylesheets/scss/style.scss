@@ -329,10 +329,15 @@ $main-color: black;
       .price {
         position: absolute;
         visibility: visible;
+        display: block;
       }
       img {
         margin-left: 8px;
       }
+    }
+
+    .price {
+      display: none;
     }
 
     & > div {

@@ -142,8 +142,9 @@
 .heropick .wrapper { cursor: pointer; padding: 22px 10px; display: inline-block; position: relative; width: 80px; height: 60px; box-sizing: border-box; border-radius: 10px; }
 .heropick .wrapper.locked { background-color: #ffff66; }
 .heropick .wrapper.locked > div { visibility: hidden; left: auto; top: auto; -webkit-transform: translate3d(0, 0, 0); transform: translate3d(0, 0, 0); }
-.heropick .wrapper.locked .price { position: absolute; visibility: visible; }
+.heropick .wrapper.locked .price { position: absolute; visibility: visible; display: block; }
 .heropick .wrapper.locked img { margin-left: 8px; }
+.heropick .wrapper .price { display: none; }
 .heropick .wrapper > div { display: block; position: absolute; left: 50%; top: 50%; -webkit-transform: translate3d(-50%, -50%, 0); transform: translate3d(-50%, -50%, 0); }
 
 .share { display: none; background: rgba(0, 0, 0, 0.7); color: white; }

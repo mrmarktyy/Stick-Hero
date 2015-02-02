@@ -113,9 +113,16 @@ $(function() {
 
     this.heroInit = function () {
       this.hero = localStorage.getItem('hero') || 1;
+      this.heros = [true];
       this.$heros = $('.hero > .hero1, .hero > .hero2');
       for (var i = 0; i < HEROS.length; i++) {
-        $('.hero' + (i+1)).css({
+        var heroIndex = i + 1;
+        //  hero picker
+        var unlocked = localStorage.getItem('hero' + heroIndex) === "true";
+        if (heroIndex !== 1 && !unlocked) {
+          $('.wrapper[data-src="' + heroIndex + '"]').addClass('locked');
+        }
+        $('.hero' + heroIndex).css({
           'width': Math.round(HEROS[i][0] * WIDTH_RATIO) + 'px',
           'height': Math.round(HEROS[i][1] * WIDTH_RATIO) + 'px'
         });
@@ -172,8 +179,23 @@ $(function() {
         });
       });
       $(document).on('click touchstart', '.heropick .wrapper', function(event) {
-        self.switchHero($(event.currentTarget).data('src'));
-        self.$heropick.hide();
+        var $target = $(event.currentTarget);
+        var price = parseInt($target.data('price'), 10);
+        var src = $target.data('src');
+        if ($target.hasClass('locked')) {
+          if (self.total >= price) {
+            self.total -= price;
+            localStorage.setItem('hero' + src, true);
+            self.updateScore();
+            $target.removeClass('locked');
+          } else {
+            event.preventDefault();
+            event.stopPropagation();
+          }
+        } else {
+          self.switchHero(src);
+          self.$heropick.hide();
+        }
       });
       $(document).on('mousedown touchstart', function(event) {
         IS_TOUCHING = true;
