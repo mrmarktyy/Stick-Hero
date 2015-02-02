@@ -280,9 +280,9 @@ $main-color: black;
 
 .heropick {
   display: none;
-  width: 180px;
   background: white;
-  height: 120px;
+  width: 210px;
+  height: 140px;
   top: 50%;
   left: 50%;
   position: absolute;
@@ -291,31 +291,57 @@ $main-color: black;
   border-radius: 20px;
   z-index: 1001;
 
+  .title {
+    padding: 12px;
+  }
+  .total {
+    float: right;
+    margin-right: 5px;
+  }
+  img {
+    width: 18px;
+    float: right;
+    margin-right: 5px;
+  }
+  .heros {
+    padding: 10px 20px;
+  }
+
   .wrapper {
     cursor: pointer;
-    padding: 20px;
+    padding: 22px 10px;
     display: inline-block;
     position: relative;
-    left: 28px;
-    top: 26px;
-    border: 1px solid transparent;
+    width: 80px;
+    height: 60px;
+    box-sizing: border-box;
+    border-radius: 10px;
 
-    &:hover,
-    &.selected {
-      border: 1px solid grey;
+    &.locked {
+      background-color: #ffff66;
+      & > div {
+        visibility: hidden;
+        left: auto;
+        top: auto;
+        -webkit-transform: translate3d(0, 0, 0);
+                transform: translate3d(0, 0, 0);
+      }
+      .price {
+        position: absolute;
+        visibility: visible;
+      }
+      img {
+        margin-left: 8px;
+      }
     }
 
-    .hero1 {
+    & > div {
       display: block;
-      position: relative;
-      bottom: 0 !important;
-      left: 0 !important;
-    }
-    .hero2 {
-      display: block;
-      position: relative;
-      bottom: 0 !important;
-      left: 0 !important;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      -webkit-transform: translate3d(-50%, -50%, 0);
+              transform: translate3d(-50%, -50%, 0);
     }
   }
 }

@@ -145,8 +145,6 @@ $(function() {
         'width': HERO_HAT + 'px'
       });
       this.$feet = this.$hero.find('.foot');
-      $('.wrapper').removeClass('selected');
-      $('.wrapper[data-src="' + this.hero + '"]').addClass('selected');
     };
 
     this.bindEvents = function() {
