@@ -155,7 +155,7 @@ $(function() {
       var self = this;
       $(document).on('click touchstart', '.btn-play', function() {
         self.nextAfterAnimation(self.$gamename, STATES.PRE_BEGIN);
-        self.$gamename.addClass('bounceOutLeft');
+        self.$gamename.addClass('hinge');
         self.$btnPlay.addClass('bounceOutRight');
       });
       $(document).on('click touchstart', '.btn-playagain', function() {
@@ -171,8 +171,8 @@ $(function() {
       });
       $(document).on('click touchstart', '.btn-hero', function(event) {
         self.$heropick.show();
-        $(document).on(event.type, '.heropick.overlay', function() {
-          $(document).off(event.type, '.heropick.overlay');
+        $(document).on(event.type, '.overlay', function(e) {
+          $(document).off(event.type, '.overlay');
           self.$heropick.hide();
         });
       });
@@ -196,7 +196,7 @@ $(function() {
       this.$game
         .removeClass('bounce bg1 bg2 bg3 bg4 bg5')
         .addClass('bg' + this._getRandom(1, 5));
-      this.$gamename.removeClass('bounceOutLeft');
+      this.$gamename.removeClass('hinge');
       this.$btnPlay.removeClass('bounceOutRight');
       this.$liveScore.hide();
       this.$gameover.hide();

@@ -170,47 +170,32 @@
 @-webkit-keyframes hinge {
   0% {
     -webkit-transform: rotate3d(0, 0, 0, 0deg);
-            transform: rotate3d(0, 0, 0, 0deg);
-              // opacity: 1;
   }
   20%, 60% {
     -webkit-transform: rotate3d(0, 0, 1, 80deg);
-            transform: rotate3d(0, 0, 1, 80deg);
-              // opacity: 1;
   }
   40%, 80% {
     -webkit-transform: rotate3d(0, 0, 1, 60deg);
-            transform: rotate3d(0, 0, 1, 60deg);
-              // opacity: 1;
   }
   100% {
     -webkit-transform: translate3d(0, 700px, 0);
-            transform: translate3d(0, 700px, 0);
-              // opacity: 0;
   }
 }
 @keyframes hinge {
   0% {
-    -webkit-transform: rotate3d(0, 0, 0, 0deg);
-            transform: rotate3d(0, 0, 0, 0deg);
-              // opacity: 1;
+    transform: rotate3d(0, 0, 0, 0deg);
   }
   20%, 60% {
-    -webkit-transform: rotate3d(0, 0, 1, 80deg);
-            transform: rotate3d(0, 0, 1, 80deg);
-              // opacity: 1;
+    transform: rotate3d(0, 0, 1, 80deg);
   }
   40%, 80% {
-    -webkit-transform: rotate3d(0, 0, 1, 60deg);
-            transform: rotate3d(0, 0, 1, 60deg);
-              // opacity: 1;
+    transform: rotate3d(0, 0, 1, 60deg);
   }
   100% {
-    -webkit-transform: translate3d(0, 700px, 0);
-            transform: translate3d(0, 700px, 0);
-              // opacity: 0;
+    transform: translate3d(0, 700px, 0);
   }
 }
+
 /* animate.css */
 @-webkit-keyframes bounceOutLeft {
   20% {

@@ -124,19 +124,16 @@ $main-color: black;
     margin: 0 auto;
     font-size: 64px;
     line-height: 1;
+    -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
     -webkit-transform-origin: top left;
             transform-origin: top left;
     -webkit-animation-fill-mode: forwards;
             animation-fill-mode: forwards;
 
     &.hinge {
-                // opacity: 0;
       -webkit-animation: hinge 2s ease-in-out;
               animation: hinge 2s ease-in-out;
-    }
-    &.bounceOutLeft {
-      -webkit-animation: bounceOutLeft 1s ease-in-out;
-              animation: bounceOutLeft 1s ease-in-out;
     }
   }
   .btn-play {
@@ -288,20 +285,17 @@ $main-color: black;
 
 .heropick {
   display: none;
-  transition: opacity 0.5s ease;
+  width: 180px;
+  background: white;
+  height: 120px;
+  top: 50%;
+  left: 50%;
+  position: absolute;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  border-radius: 20px;
+  z-index: 1001;
 
-  .container {
-    width: 180px;
-    background: white;
-    height: 120px;
-    top: 50%;
-    left: 50%;
-    position: absolute;
-    -webkit-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-    border-radius: 20px;
-    pointer-events: none;
-  }
   .wrapper {
     cursor: pointer;
     padding: 20px;
