@@ -139,30 +139,24 @@
 @-webkit-keyframes bounce {
   0%, 100% {
     -webkit-transform: translate3d(0, 0, 0);
-            transform: translate3d(0, 0, 0);
   }
   10%, 30%, 50%, 70%, 90% {
     -webkit-transform: translate3d(0, -5px, 0);
-            transform: translate3d(0, -5px, 0);
   }
   20%, 40%, 60%, 80% {
     -webkit-transform: translate3d(0, 5px, 0);
-            transform: translate3d(0, 5px, 0);
   }
 }
 
 @keyframes bounce {
   0%, 100% {
-    -webkit-transform: translate3d(0, 0, 0);
-            transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
   }
   20%, 60% {
-    -webkit-transform: translate3d(0, -3px, 0);
-            transform: translate3d(0, -3px, 0);
+    transform: translate3d(0, -3px, 0);
   }
   40%, 80% {
-    -webkit-transform: translate3d(0, 3px, 0);
-            transform: translate3d(0, 3px, 0);
+    transform: translate3d(0, 3px, 0);
   }
 }
 
@@ -193,53 +187,6 @@
   }
   100% {
     transform: translate3d(0, 700px, 0);
-  }
-}
-
-/* animate.css */
-@-webkit-keyframes bounceOutLeft {
-  20% {
-    opacity: 1;
-    -webkit-transform: translate3d(20px, 0, 0);
-  }
-
-  100% {
-    opacity: 0;
-    -webkit-transform: translate3d(-1000px, 0, 0);
-  }
-}
-@keyframes bounceOutLeft {
-  20% {
-    opacity: 1;
-    transform: translate3d(20px, 0, 0);
-  }
-
-  100% {
-    opacity: 0;
-    transform: translate3d(-1000px, 0, 0);
-  }
-}
-/* animate.css */
-@-webkit-keyframes bounceOutRight {
-  20% {
-    opacity: 1;
-    -webkit-transform: translate3d(-20px, 0, 0);
-  }
-
-  100% {
-    opacity: 0;
-    -webkit-transform: translate3d(1000px, 0, 0);
-  }
-}
-@keyframes bounceOutRight {
-  20% {
-    opacity: 1;
-    transform: translate3d(-20px, 0, 0);
-  }
-
-  100% {
-    opacity: 0;
-    transform: translate3d(1000px, 0, 0);
   }
 }
 

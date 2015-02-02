@@ -57,7 +57,6 @@ $(function() {
     var IS_TOUCHING = false;
     var PRESS_STARTED = false;
     var IS_WECHAT = !!navigator.userAgent.match(/MicroMessenger/);
-    var IS_ANDROID = navigator.userAgent.toLowerCase().indexOf('android') > -1;
     var HERO_WIDTH; //
     var HERO_HEIGHT; //
     var HERO_HAT;
@@ -100,7 +99,6 @@ $(function() {
       this.$liveScore = $('.live-score');
       this.$watermelon = $('.watermelon');
       this.$instruction = $('.instruction');
-      this.$btnPlay = $('.btn-play');
       this.$score = $('.score');
       this.$best = $('.best');
       this.$total = $('.total');
@@ -156,7 +154,6 @@ $(function() {
       $(document).on('click touchstart', '.btn-play', function() {
         self.nextAfterAnimation(self.$gamename, STATES.PRE_BEGIN);
         self.$gamename.addClass('hinge');
-        self.$btnPlay.addClass('bounceOutRight');
       });
       $(document).on('click touchstart', '.btn-playagain', function() {
         self.reset();
@@ -178,6 +175,7 @@ $(function() {
       });
       $(document).on('click touchstart', '.heropick .wrapper', function(event) {
         self.switchHero($(event.currentTarget).data('src'));
+        self.$heropick.hide();
       });
       $(document).on('mousedown touchstart', function(event) {
         IS_TOUCHING = true;
@@ -197,7 +195,6 @@ $(function() {
         .removeClass('bounce bg1 bg2 bg3 bg4 bg5')
         .addClass('bg' + this._getRandom(1, 5));
       this.$gamename.removeClass('hinge');
-      this.$btnPlay.removeClass('bounceOutRight');
       this.$liveScore.hide();
       this.$gameover.hide();
       this.$welcome.hide();
@@ -361,9 +358,7 @@ $(function() {
           '-webkit-transition-timing-function': 'linear'
         });
       }
-      if (!IS_ANDROID) {
-        this.$feet.addClass('walk');
-      }
+      this.$feet.addClass('walk');
       this.$activeStick.css({
         'transition-duration': '',
         '-webkit-transition-duration': '',
@@ -375,7 +370,11 @@ $(function() {
     this.shifting = function() {
       this.nextAfterAnimation(this.$hero, STATES.UPDATE);
 
-      this.$feet.removeClass('walk');
+      var self = this;
+      this.$feet.removeClass('walk').css('opacity', 0.99);
+      setTimeout(function () {
+        self.$feet.css('opacity', 1);
+      }, 0);
       this.$hero.css({
         'transform': 'translate3d(' + (BOX_BASE_WIDTH - HERO_WIDTH - GAP - STICK_WIDTH) + 'px, 0, 0)',
         '-webkit-transform': 'translate3d(' + (BOX_BASE_WIDTH - HERO_WIDTH - GAP - STICK_WIDTH) + 'px, 0, 0)',
@@ -407,7 +406,6 @@ $(function() {
       });
       this.$game.append(this.$box3);
 
-      var self = this;
       setTimeout(function() {
         self.$box3.css({
           'transform': 'translate3d(' + -(GAME_WIDTH - self.BOX3.left) + 'px, 0, 0)',
