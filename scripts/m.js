@@ -308,10 +308,11 @@ $(function() {
           if (!PRESS_STARTED) {
             self.$heroContainer.addClass('shake');
             self.$instruction.removeClass('in');
+            PRESS_STARTED = true;
           }
           self._activeStickHeight += STICK_INC;
-          self.$activeStick.css({height: self._activeStickHeight + 'px'});
-          PRESS_STARTED = true;
+          self.$activeStick[0].style.height = self._activeStickHeight + 'px';
+          // self.$activeStick.css({height: self._activeStickHeight + 'px'});
         }
         if (!IS_TOUCHING && PRESS_STARTED) {
           self.next();
