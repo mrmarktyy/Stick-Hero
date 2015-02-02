@@ -1,13 +1,11 @@
 .hero1 {
   display: none;
-  // width: 18px;
-  // height: 24px;
+  // width: 18px; [width]
+  // height: 24px; [height]
   border-radius: 5px;
   background: black;
   position: absolute;
   left: 0;
-  // left: 25px;
-  // bottom: 85px;
   -webkit-transition: -webkit-transform 0.5s ease;
           transition: transform 0.5s ease;
 
@@ -18,6 +16,17 @@
     position: absolute;
     left: -1px;
     top: 5px;
+  }
+
+  .foot {
+    position: absolute;
+    width: 3px;
+    height: 5px;
+    bottom: -5px;  // [feet_bottom]
+    border-radius: 3px;
+    background: black;
+    -webkit-transform-origin: top center;
+            transform-origin: top center;
   }
 }
 

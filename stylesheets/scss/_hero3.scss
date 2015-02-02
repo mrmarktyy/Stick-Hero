@@ -1,0 +1,65 @@
+.hero3 {
+  display: none;
+  // width: 20px; [width]
+  // height: 18px; [height]
+  border-radius: 10px;
+  background: black;
+  position: absolute;
+  left: 0;
+  -webkit-transition: -webkit-transform 0.5s ease;
+          transition: transform 0.5s ease;
+
+  .hat-up {
+    position: absolute;
+    background: #843cc3;
+    width: 18px;
+    height: 5px;
+    border-radius: 50%;
+    top: -3px;
+    left: 1px;
+  }
+
+  .hat-down {
+    position: absolute;
+    background: #843cc3;
+    width: 28px;
+    height: 7px;
+    border-radius: 60%;
+    left: -4px;
+  }
+
+  .hand {
+    position: absolute;
+    width: 2px;
+    background: black;
+    height: 10px;
+    -webkit-transform: rotate(50deg);
+            transform: rotate(50deg);
+    top: 8px;
+    left: 0px;
+  }
+
+  .foot {
+    position: absolute;
+    width: 2px;
+    height: 15px;
+    bottom: -14px; // [feet_bottom]
+    border-radius: 3px;
+    background: black;
+    // &.left {
+    //   left: 4px;
+    //   &.walk {
+    //     -webkit-animation: walk 0.4s infinite linear;
+    //             animation: walk 0.4s infinite linear;
+    //   }
+    // }
+    // &.right {
+    //   right: 4px;
+    //   &.walk {
+    //     -webkit-animation: walk 0.4s infinite linear 0.2s;
+    //             animation: walk 0.4s infinite linear 0.2s;
+    //   }
+    // }
+  }
+
+}

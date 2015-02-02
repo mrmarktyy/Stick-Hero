@@ -1,13 +1,11 @@
 .hero2 {
   display: none;
-  // width: 18px;
-  // height: 24px;
+  // width: 18px; [width]
+  // height: 24px; [height]
   border-radius: 5px;
   background: black;
   position: absolute;
   left: 0;
-  // left: 25px;
-  // bottom: 85px;
   -webkit-transition: -webkit-transform 0.5s ease;
           transition: transform 0.5s ease;
 
@@ -21,6 +19,29 @@
     border-top-left-radius: 6px;
     border-top-right-radius: 6px;
     z-index: 2;
+  }
+
+  .hand {
+    background: black;
+    position: absolute;
+    border-radius: 10px;
+    width: 3px;
+    height: 12px;
+    top: 10px;
+    left: 0;
+    -webkit-transform: rotate(30deg);
+            transform: rotate(30deg);
+  }
+
+  .foot {
+    position: absolute;
+    width: 3px;
+    height: 5px;
+    bottom: -5px;  // [feet_bottom]
+    border-radius: 3px;
+    background: black;
+    -webkit-transform-origin: top center;
+            transform-origin: top center;
   }
 }
 
@@ -48,18 +69,6 @@
   border-radius: 100%;
   -webkit-transform: rotate(-40deg);
           transform: rotate(-40deg);
-}
-
-.hand {
-  background: black;
-  position: absolute;
-  border-radius: 10px;
-  width: 3px;
-  height: 12px;
-  top: 10px;
-  left: 0;
-  -webkit-transform: rotate(30deg);
-          transform: rotate(30deg);
 }
 
 .nose {

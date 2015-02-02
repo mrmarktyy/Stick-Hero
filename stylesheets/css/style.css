@@ -71,6 +71,7 @@
   100% { top: 0; } }
 .hero1 { display: none; border-radius: 5px; background: black; position: absolute; left: 0; -webkit-transition: -webkit-transform 0.5s ease; transition: transform 0.5s ease; }
 .hero1 .hat { width: 20px; height: 4px; background: red; position: absolute; left: -1px; top: 5px; }
+.hero1 .foot { position: absolute; width: 3px; height: 5px; bottom: -5px; border-radius: 3px; background: black; -webkit-transform-origin: top center; transform-origin: top center; }
 
 .ribbon-up { position: absolute; width: 0; height: 0; border-left: 6px solid transparent; border-right: 3px solid transparent; border-top: 5px solid red; left: -10px; top: 6px; -webkit-transform-origin: 10px 5px; transform-origin: 10px 5px; -webkit-animation: ribbonup 0.4s infinite ease; animation: ribbonup 0.4s infinite ease; }
 
@@ -78,14 +79,20 @@
 
 .hero2 { display: none; border-radius: 5px; background: black; position: absolute; left: 0; -webkit-transition: -webkit-transform 0.5s ease; transition: transform 0.5s ease; }
 .hero2 .hat { width: 20px; background: #ffcae6; height: 10px; position: absolute; left: -1px; top: -1px; border-top-left-radius: 6px; border-top-right-radius: 6px; z-index: 2; }
+.hero2 .hand { background: black; position: absolute; border-radius: 10px; width: 3px; height: 12px; top: 10px; left: 0; -webkit-transform: rotate(30deg); transform: rotate(30deg); }
+.hero2 .foot { position: absolute; width: 3px; height: 5px; bottom: -5px; border-radius: 3px; background: black; -webkit-transform-origin: top center; transform-origin: top center; }
 
 .ear-left { background: #ff97c8; width: 8px; height: 20px; z-index: 1; top: -12px; left: 6px; position: absolute; border-radius: 100%; -webkit-transform: rotate(-20deg); transform: rotate(-20deg); }
 
 .ear-right { background: #ff97c8; width: 8px; height: 20px; z-index: 3; top: -13px; left: -6px; position: absolute; border-radius: 100%; -webkit-transform: rotate(-40deg); transform: rotate(-40deg); }
 
-.hand { background: black; position: absolute; border-radius: 10px; width: 3px; height: 12px; top: 10px; left: 0; -webkit-transform: rotate(30deg); transform: rotate(30deg); }
-
 .nose { background: black; position: absolute; width: 5px; height: 5px; border-radius: 50%; right: -4px; top: 10px; }
+
+.hero3 { display: none; border-radius: 10px; background: black; position: absolute; left: 0; -webkit-transition: -webkit-transform 0.5s ease; transition: transform 0.5s ease; }
+.hero3 .hat-up { position: absolute; background: #843cc3; width: 18px; height: 5px; border-radius: 50%; top: -3px; left: 1px; }
+.hero3 .hat-down { position: absolute; background: #843cc3; width: 28px; height: 7px; border-radius: 60%; left: -4px; }
+.hero3 .hand { position: absolute; width: 2px; background: black; height: 10px; -webkit-transform: rotate(50deg); transform: rotate(50deg); top: 8px; left: 0px; }
+.hero3 .foot { position: absolute; width: 2px; height: 15px; bottom: -14px; border-radius: 3px; background: black; }
 
 #game { font-family: 'Poiret One', Helvetica, Georgia; position: relative; overflow: hidden; background-image: url("../../images/bg.jpg"); background-repeat: no-repeat; background-size: 100% 100%; }
 #game.bg1 { background-image: url("../../images/bg.jpg"); }
@@ -104,7 +111,6 @@
 .hero { position: relative; width: 100%; height: 100%; }
 .hero.shake { -webkit-animation: shaking 0.3s infinite linear; animation: shaking 0.3s infinite linear; }
 .hero .eye { width: 4px; height: 4px; background: white; border-radius: 50%; position: absolute; right: 2px; top: 8px; }
-.hero .foot { position: absolute; width: 3px; height: 5px; bottom: -5px; border-radius: 3px; background: black; -webkit-transform-origin: top center; transform-origin: top center; }
 .hero .foot.left { left: 4px; }
 .hero .foot.left.walk { -webkit-animation: walk 0.4s infinite linear; animation: walk 0.4s infinite linear; }
 .hero .foot.right { right: 4px; }
@@ -134,7 +140,7 @@
 .game-over .actions { position: absolute; top: 45%; color: white; left: 0; right: 0; text-align: center; }
 .game-over .actions .btn { cursor: pointer; background: lightcoral; padding: 10px; border-radius: 10px; margin: 5px auto; width: 100px; }
 
-.heropick { display: none; background: white; width: 210px; height: 140px; top: 50%; left: 50%; position: absolute; -webkit-transform: translate(-50%, -50%); transform: translate(-50%, -50%); border-radius: 20px; z-index: 1001; }
+.heropick { display: none; background: white; width: 210px; height: 200px; top: 50%; left: 50%; position: absolute; -webkit-transform: translate(-50%, -50%); transform: translate(-50%, -50%); border-radius: 20px; z-index: 1001; }
 .heropick .title { padding: 12px; }
 .heropick .total { float: right; margin-right: 5px; }
 .heropick img { width: 18px; float: right; margin-right: 5px; }
