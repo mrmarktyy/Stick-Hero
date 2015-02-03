@@ -35,6 +35,7 @@ $(function() {
   function Game(options) {
 
     this.options = options || {};
+    var VERSION = '1.0.0';
     var GAME_DEFAULT_WIDTH = 320;
     var GAME_DEFAULT_HEIGHT = 480;
     var GAME_WIDTH = this.options.width || GAME_DEFAULT_WIDTH;
@@ -79,9 +80,20 @@ $(function() {
     var LAST_STATE = Object.keys(STATES).length - 1;
 
     this.init = function() {
+      this.checkVersion();
       this.initVars();
       this.bindEvents();
       this.reset();
+    };
+
+    this.checkVersion = function () {
+      var version = localStorage.getItem('version') || '0.0.0';
+      localStorage.setItem('version', VERSION);
+      this.upgrade(version, VERSION);
+    };
+
+    this.upgrade = function () {
+
     };
 
     this.initVars = function() {
@@ -115,7 +127,6 @@ $(function() {
 
     this.heroInit = function () {
       this.hero = localStorage.getItem('hero') || 1;
-      this.heros = [true];
       this.$heros = $('.hero > .hero1, .hero > .hero2, .hero > .hero3, .hero > .hero4');
       for (var i = 0; i < HEROS.length; i++) {
         var heroIndex = i + 1;
