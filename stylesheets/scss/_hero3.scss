@@ -28,6 +28,16 @@
     left: -4px;
   }
 
+  .eye {
+    width: 4px;
+    height: 4px;
+    background: white;
+    border-radius: 50%;
+    position: absolute;
+    right: 2px;
+    top: 8px;
+  }
+
   .hand {
     position: absolute;
     width: 2px;
@@ -46,20 +56,12 @@
     bottom: -14px; // [feet_bottom]
     border-radius: 3px;
     background: black;
-    // &.left {
-    //   left: 4px;
-    //   &.walk {
-    //     -webkit-animation: walk 0.4s infinite linear;
-    //             animation: walk 0.4s infinite linear;
-    //   }
-    // }
-    // &.right {
-    //   right: 4px;
-    //   &.walk {
-    //     -webkit-animation: walk 0.4s infinite linear 0.2s;
-    //             animation: walk 0.4s infinite linear 0.2s;
-    //   }
-    // }
+    &.left {
+      left: 4px;
+    }
+    &.right {
+      right: 4px;
+    }
   }
 
 }

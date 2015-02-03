@@ -71,16 +71,19 @@
   100% { top: 0; } }
 .hero1 { display: none; border-radius: 5px; background: black; position: absolute; left: 0; -webkit-transition: -webkit-transform 0.5s ease; transition: transform 0.5s ease; }
 .hero1 .hat { width: 20px; height: 4px; background: red; position: absolute; left: -1px; top: 5px; }
+.hero1 .ribbon-up, .hero1 .ribbon-down { border-top-color: red; }
+.hero1 .eye { width: 4px; height: 4px; background: white; border-radius: 50%; position: absolute; right: 2px; top: 8px; }
 .hero1 .foot { position: absolute; width: 3px; height: 5px; bottom: -5px; border-radius: 3px; background: black; -webkit-transform-origin: top center; transform-origin: top center; }
-
-.ribbon-up { position: absolute; width: 0; height: 0; border-left: 6px solid transparent; border-right: 3px solid transparent; border-top: 5px solid red; left: -10px; top: 6px; -webkit-transform-origin: 10px 5px; transform-origin: 10px 5px; -webkit-animation: ribbonup 0.4s infinite ease; animation: ribbonup 0.4s infinite ease; }
-
-.ribbon-down { position: absolute; width: 0; height: 0; border-left: 6px solid transparent; border-right: 4px solid transparent; border-top: 3px solid red; left: -8px; top: 7px; -webkit-transform-origin: 10px 5px; transform-origin: 10px 5px; animation: ribbondown 0.4s infinite ease; -webkit-animation: ribbondown 0.4s infinite ease; }
+.hero1 .foot.left { left: 4px; }
+.hero1 .foot.right { right: 4px; }
 
 .hero2 { display: none; border-radius: 5px; background: black; position: absolute; left: 0; -webkit-transition: -webkit-transform 0.5s ease; transition: transform 0.5s ease; }
 .hero2 .hat { width: 20px; background: #ffcae6; height: 10px; position: absolute; left: -1px; top: -1px; border-top-left-radius: 6px; border-top-right-radius: 6px; z-index: 2; }
+.hero2 .eye { width: 4px; height: 4px; background: white; border-radius: 50%; position: absolute; right: 2px; top: 8px; }
 .hero2 .hand { background: black; position: absolute; border-radius: 10px; width: 3px; height: 12px; top: 10px; left: 0; -webkit-transform: rotate(30deg); transform: rotate(30deg); }
 .hero2 .foot { position: absolute; width: 3px; height: 5px; bottom: -5px; border-radius: 3px; background: black; -webkit-transform-origin: top center; transform-origin: top center; }
+.hero2 .foot.left { left: 4px; }
+.hero2 .foot.right { right: 4px; }
 
 .ear-left { background: #ff97c8; width: 8px; height: 20px; z-index: 1; top: -12px; left: 6px; position: absolute; border-radius: 100%; -webkit-transform: rotate(-20deg); transform: rotate(-20deg); }
 
@@ -91,8 +94,22 @@
 .hero3 { display: none; border-radius: 10px; background: black; position: absolute; left: 0; -webkit-transition: -webkit-transform 0.5s ease; transition: transform 0.5s ease; }
 .hero3 .hat-up { position: absolute; background: #843cc3; width: 18px; height: 5px; border-radius: 50%; top: -3px; left: 1px; }
 .hero3 .hat-down { position: absolute; background: #843cc3; width: 28px; height: 7px; border-radius: 60%; left: -4px; }
+.hero3 .eye { width: 4px; height: 4px; background: white; border-radius: 50%; position: absolute; right: 2px; top: 8px; }
 .hero3 .hand { position: absolute; width: 2px; background: black; height: 10px; -webkit-transform: rotate(50deg); transform: rotate(50deg); top: 8px; left: 0px; }
 .hero3 .foot { position: absolute; width: 2px; height: 15px; bottom: -14px; border-radius: 3px; background: black; }
+.hero3 .foot.left { left: 4px; }
+.hero3 .foot.right { right: 4px; }
+
+.hero4 { display: none; border-radius: 5px; position: absolute; background: black; left: 0; -webkit-transition: -webkit-transform 0.5s ease; transition: transform 0.5s ease; }
+.hero4 .hat { width: 20px; height: 4px; background: #843cc3; position: absolute; left: -1px; top: 3px; }
+.hero4 .ribbon-up, .hero4 .ribbon-down { border-top-color: #843cc3; }
+.hero4 .eye { width: 4px; height: 4px; background: white; border-radius: 50%; position: absolute; right: 1px; top: 7px; }
+.hero4 .eyeball { position: absolute; background: black; width: 2px; height: 2px; border-radius: 50%; right: 1px; }
+.hero4 .mouse { width: 33px; height: 31px; border-radius: 50%; box-shadow: 4px 8px 0px -7px white; transform: rotate(20deg); position: absolute; top: -16px; left: -4px; }
+.hero4 .body { position: absolute; background: black; width: 22px; height: 11px; border-radius: 40%; top: 13px; }
+.hero4 .foot { position: absolute; width: 3px; height: 2px; bottom: -7px; background: black; }
+.hero4 .foot.left { left: 2px; }
+.hero4 .foot.right { right: 0; }
 
 #game { font-family: 'Poiret One', Helvetica, Georgia; position: relative; overflow: hidden; background-image: url("../../images/bg.jpg"); background-repeat: no-repeat; background-size: 100% 100%; }
 #game.bg1 { background-image: url("../../images/bg.jpg"); }
@@ -110,11 +127,10 @@
 
 .hero { position: relative; width: 100%; height: 100%; }
 .hero.shake { -webkit-animation: shaking 0.3s infinite linear; animation: shaking 0.3s infinite linear; }
-.hero .eye { width: 4px; height: 4px; background: white; border-radius: 50%; position: absolute; right: 2px; top: 8px; }
-.hero .foot.left { left: 4px; }
 .hero .foot.left.walk { -webkit-animation: walk 0.4s infinite linear; animation: walk 0.4s infinite linear; }
-.hero .foot.right { right: 4px; }
 .hero .foot.right.walk { -webkit-animation: walk 0.4s infinite linear 0.2s; animation: walk 0.4s infinite linear 0.2s; }
+.hero .ribbon-up { position: absolute; width: 0; height: 0; border-left: 6px solid transparent; border-right: 3px solid transparent; border-top-width: 5px; border-top-style: solid; left: -10px; top: 6px; -webkit-transform-origin: 10px 5px; transform-origin: 10px 5px; -webkit-animation: ribbonup 0.4s infinite ease; animation: ribbonup 0.4s infinite ease; }
+.hero .ribbon-down { position: absolute; width: 0; height: 0; border-left: 6px solid transparent; border-right: 4px solid transparent; border-top-width: 3px; border-top-style: solid; left: -8px; top: 7px; -webkit-transform-origin: 10px 5px; transform-origin: 10px 5px; -webkit-animation: ribbondown 0.4s infinite ease; animation: ribbondown 0.4s infinite ease; }
 
 .welcome { display: none; }
 .welcome .game-name { position: absolute; top: 10%; width: 150px; left: 0; right: 0; margin: 0 auto; font-size: 64px; line-height: 1; -webkit-backface-visibility: hidden; backface-visibility: hidden; -webkit-transform-origin: top left; transform-origin: top left; -webkit-animation-fill-mode: forwards; animation-fill-mode: forwards; }

@@ -63,7 +63,7 @@ $(function() {
     var HERO_FEET;
     var HERO_BOTTOM;
     var HERO_INIT_LEFT;
-    var HEROS = [[18, 24, 5], [18, 24, 5], [20, 18, 14]];  // [width, height, feet_bottom]
+    var HEROS = [[18, 24, 5], [18, 24, 5], [20, 18, 14], [18, 18, 7]];  // [width, height, feet_bottom]
     var STATES = {
       WELCOME: 0,
       PRE_BEGIN: 1,
@@ -114,7 +114,7 @@ $(function() {
     this.heroInit = function () {
       this.hero = localStorage.getItem('hero') || 1;
       this.heros = [true];
-      this.$heros = $('.hero > .hero1, .hero > .hero2, .hero > .hero3');
+      this.$heros = $('.hero > .hero1, .hero > .hero2, .hero > .hero3, .hero > .hero4');
       for (var i = 0; i < HEROS.length; i++) {
         var heroIndex = i + 1;
         //  hero picker
