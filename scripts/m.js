@@ -47,6 +47,7 @@ $(function() {
     var STICK_LEFT = BOX_BASE_WIDTH - STICK_WIDTH;
     var STICK_BOTTOM = BOX_HEIGHT;
     var GAP = 4;
+    var PERFECT_WIDTH = 6;
     var BOX_LEFT_MIN = BOX_BASE_WIDTH + 20;
     var BOX_LEFT_MAX = GAME_WIDTH - BOX_BASE_WIDTH;
     var BOX_WIDTH_MIN = Math.round(15 * WIDTH_RATIO); //
@@ -99,12 +100,13 @@ $(function() {
       this.$liveScore = $('.live-score');
       this.$watermelon = $('.watermelon');
       this.$instruction = $('.instruction');
+      this.$perfect = $('.perfect');
       this.$score = $('.score');
       this.$best = $('.best');
       this.$total = $('.total');
       this.$movedStick = $('nothing');
       this._currentState = STATES.WELCOME;
-      this.total = localStorage.getItem('total') || 0;
+      this.total = parseInt(localStorage.getItem('total') || 0, 10);
       this.$total.text(this.total);
 
       this.heroInit();
@@ -173,7 +175,7 @@ $(function() {
       });
       $(document).on('click touchstart', '.btn-hero', function(event) {
         self.$heropick.show();
-        $(document).on(event.type, '.overlay', function(e) {
+        $(document).on(event.type, '.overlay', function() {
           $(document).off(event.type, '.overlay');
           self.$heropick.hide();
         });
@@ -222,7 +224,7 @@ $(function() {
 
       $('.box, .stick').remove();
       this.BOX1 = { left: 0, width: BOX_BASE_WIDTH };
-      this.$box1 = $('<div />').addClass('box').css({
+      this.$box1 = $('<div />').addClass('box init').css({
         'height': BOX_HEIGHT + 'px',
         'width': this.BOX1.width + 'px',
         'right': -this.BOX1.width + 'px',
@@ -359,6 +361,14 @@ $(function() {
       if (this._activeStickHeight > this._validStickMin && this._activeStickHeight < this._validStickMax) {
         this.nextAfterAnimation(this.$hero, STATES.SHIFTING);
 
+        this._perfectMin = this._validStickMin + (this.BOX2.width - PERFECT_WIDTH) / 2;
+        this._perfectMax = this._perfectMin + PERFECT_WIDTH;
+        this.inc = 1;
+        if (this._activeStickHeight >= this._perfectMin && this._activeStickHeight <= this._perfectMax) {
+          this.inc = 2;
+          this.$perfect.addClass('in');
+        }
+
         this.$hero.css({
           'transform': 'translate3d(' + (this.BOX2.left + this.BOX2.width - HERO_WIDTH - GAP - STICK_WIDTH) + 'px, 0, 0)',
           '-webkit-transform': 'translate3d(' + (this.BOX2.left + this.BOX2.width - HERO_WIDTH - GAP - STICK_WIDTH) + 'px, 0, 0)',
@@ -396,6 +406,7 @@ $(function() {
       setTimeout(function () {
         self.$feet.css('opacity', 1);
       }, 0);
+      this.$perfect.removeClass('in');
       this.$hero.css({
         'transform': 'translate3d(' + (BOX_BASE_WIDTH - HERO_WIDTH - GAP - STICK_WIDTH) + 'px, 0, 0)',
         '-webkit-transform': 'translate3d(' + (BOX_BASE_WIDTH - HERO_WIDTH - GAP - STICK_WIDTH) + 'px, 0, 0)',
@@ -456,8 +467,8 @@ $(function() {
     };
 
     this.update = function() {
-      this.score++;
-      this.total++;
+      this.score += this.inc;
+      this.total += this.inc;
       this.updateScore();
 
       this.$box1.remove();
