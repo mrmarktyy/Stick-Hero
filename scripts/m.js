@@ -119,10 +119,9 @@ $(function() {
       this.$heros = $('.hero > .hero1, .hero > .hero2, .hero > .hero3, .hero > .hero4');
       for (var i = 0; i < HEROS.length; i++) {
         var heroIndex = i + 1;
-        //  hero picker
         var unlocked = localStorage.getItem('hero' + heroIndex) === 'true';
-        if (heroIndex !== 1 && !unlocked) {
-          $('.wrapper[data-src="' + heroIndex + '"]').addClass('locked');
+        if (heroIndex !== 1 && unlocked) {
+          $('.wrapper[data-src="' + heroIndex + '"]').removeClass('locked');
         }
         $('.hero' + heroIndex).css({
           'width': Math.round(HEROS[i][0] * WIDTH_RATIO) + 'px',
@@ -165,6 +164,10 @@ $(function() {
       $(document).on('click touchstart', '.btn-playagain', function() {
         self.reset();
         self.next(STATES.PRE_BEGIN);
+      });
+      $(document).on('click touchstart', '.btn-home', function() {
+        self.reset();
+        self.next(STATES.WELCOME);
       });
       $(document).on('click touchstart', '.btn-share', function(event) {
         self.$share.show();

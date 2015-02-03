@@ -178,7 +178,7 @@ $main-color: black;
     top: 40%;
     -webkit-animation: fly 2.5s infinite linear;
             animation: fly 2.5s infinite linear;
-    div {
+    & > div {
       position: relative;
       top: 50%;
       -webkit-transform: translate(0, -50%);
@@ -226,7 +226,7 @@ $main-color: black;
     width: 20px;
     position: relative;
     top: 3px;
-    margin-right: 2px
+    margin-left: 2px
   }
 }
 
@@ -339,12 +339,11 @@ $main-color: black;
   }
   .total {
     float: right;
-    margin-right: 5px;
   }
   img {
     width: 18px;
     float: right;
-    margin-right: 5px;
+    margin-left: 5px;
   }
   .heros {
     padding: 10px 20px;

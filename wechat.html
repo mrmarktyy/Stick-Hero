@@ -24,6 +24,63 @@
   }
 </script>
 <div id="game">
+  <div class="welcome overlay">
+    <div class="game-name">STICK HERO</div>
+    <div class="btn-play"><div>开始</div></div>
+    <div class="btn-hero">英雄</div>
+  </div>
+  <div class="heropick hero">
+    <div class="title">英雄家族 <img src="images/watermelon.png"/><span class="total"></span></div>
+    <div class="heros">
+      <div class="wrapper" data-src="1">
+        <div class="hero1">
+          <div class="eye"></div>
+          <div class="hat"></div>
+          <div class="ribbon-up"></div>
+          <div class="ribbon-down"></div>
+          <div class="foot left"></div>
+          <div class="foot right"></div>
+        </div>
+      </div>
+      <div class="wrapper locked" data-src="2" data-price="100">
+        <div class="price">100 <img src="images/watermelon.png"></div>
+        <div class="hero2">
+          <div class="eye"></div>
+          <div class="nose"></div>
+          <div class="hat"></div>
+          <div class="ear-left"></div>
+          <div class="ear-right"></div>
+          <div class="hand"></div>
+          <div class="foot left"></div>
+          <div class="foot right"></div>
+        </div>
+      </div>
+      <div class="wrapper locked" data-src="3" data-price="300">
+        <div class="price">300 <img src="images/watermelon.png"></div>
+        <div class="hero3">
+          <div class="hat-up"></div>
+          <div class="hat-down"></div>
+          <div class="eye"></div>
+          <div class="hand"></div>
+          <div class="foot left"></div>
+          <div class="foot right"></div>
+        </div>
+      </div>
+      <div class="wrapper locked" data-src="4" data-price="500">
+        <div class="price">500 <img src="images/watermelon.png"></div>
+        <div class="hero4">
+          <div class="hat"></div>
+          <div class="ribbon-up"></div>
+          <div class="ribbon-down"></div>
+          <div class="eye"><div class="eyeball"></div></div>
+          <div class="body"></div>
+          <div class="mouse"></div>
+          <div class="foot left"></div>
+          <div class="foot right"></div>
+        </div>
+      </div>
+    </div>
+  </div>
   <div class="game-over overlay">
     <div class="title">游戏失败!</div>
     <div class="board">
@@ -35,35 +92,7 @@
     <div class="actions">
       <div class="btn btn-playagain">再玩一次</div>
       <div class="btn btn-share">分享成绩</div>
-    </div>
-  </div>
-  <div class="welcome overlay">
-    <div class="game-name">STICK HERO</div>
-    <div class="btn-play"><div>开始</div></div>
-    <div class="btn-hero">英雄</div>
-  </div>
-  <div class="heropick hero">
-    <div class="wrapper" data-src="1">
-      <div class="hero1">
-        <div class="eye"></div>
-        <div class="hat"></div>
-        <div class="ribbon-up"></div>
-        <div class="ribbon-down"></div>
-        <div class="foot left"></div>
-        <div class="foot right"></div>
-      </div>
-    </div>
-    <div class="wrapper" data-src="2">
-      <div class="hero2">
-        <div class="eye"></div>
-        <div class="nose"></div>
-        <div class="hat"></div>
-        <div class="ear-left"></div>
-        <div class="ear-right"></div>
-        <div class="hand"></div>
-        <div class="foot left"></div>
-        <div class="foot right"></div>
-      </div>
+      <div class="btn btn-home">返回首页</div>
     </div>
   </div>
   <div class="share overlay">
@@ -75,7 +104,8 @@
     </div>
   </div>
   <div class="instruction">常按屏幕使棍子变长</div>
-  <div class="watermelon"><img src="images/watermelon.png"/><span class="total"></span></div>
+  <div class="perfect">完美！！！</div>
+  <div class="watermelon"><span class="total"></span><img src="images/watermelon.png"/></div>
   <div class="live-score"></div>
   <div class="hero">
     <div class="hero1">
@@ -96,12 +126,27 @@
       <div class="foot left"></div>
       <div class="foot right"></div>
     </div>
+    <div class="hero3">
+      <div class="hat-up"></div>
+      <div class="hat-down"></div>
+      <div class="eye"></div>
+      <div class="hand"></div>
+      <div class="foot left"></div>
+      <div class="foot right"></div>
+    </div>
+    <div class="hero4">
+      <div class="hat"></div>
+      <div class="ribbon-up"></div>
+      <div class="ribbon-down"></div>
+      <div class="eye"><div class="eyeball"></div></div>
+      <div class="body"></div>
+      <div class="mouse"></div>
+      <div class="foot left"></div>
+      <div class="foot right"></div>
+    </div>
   </div>
   <div class="copyright">made with <span class="copyright__heart">♥</span> by Mark Zhou</div>
 </div>
- <!--  <div id="loader">
-      <p>LOADING...</p>
-  </div> -->
 <script src="dist/js/m.min.js"></script>
 </body>
 </html>
