@@ -343,7 +343,7 @@ $main-color: black;
   img {
     width: 18px;
     float: right;
-    margin-left: 5px;
+    margin-left: 10px;
   }
   .heros {
     padding: 10px 20px;
@@ -361,20 +361,18 @@ $main-color: black;
 
     &.locked {
       background-color: #ffff66;
-      & > div {
-        visibility: hidden;
-        left: auto;
-        top: auto;
-        -webkit-transform: translate3d(0, 0, 0);
-                transform: translate3d(0, 0, 0);
-      }
+
       .price {
         position: absolute;
-        visibility: visible;
         display: block;
+        width: 65px;
+        font-size: 14px;
+        img {
+          margin-left: 8px;
+        }
       }
-      img {
-        margin-left: 8px;
+      .hero-c {
+        visibility: hidden;
       }
     }
 
@@ -382,7 +380,7 @@ $main-color: black;
       display: none;
     }
 
-    & > div {
+    .hero-c {
       display: block;
       position: absolute;
       left: 50%;

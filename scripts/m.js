@@ -198,6 +198,7 @@ $(function() {
             event.stopPropagation();
           }
         } else {
+          $(document).off(event.type, '.overlay');
           self.switchHero(src);
           self.$heropick.hide();
         }
