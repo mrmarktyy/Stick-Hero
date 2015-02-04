@@ -35,7 +35,7 @@ $(function() {
   function Game(options) {
 
     this.options = options || {};
-    var VERSION = '1.0.0';
+    var VERSION = '1.0.1';
     var GAME_DEFAULT_WIDTH = 320;
     var GAME_DEFAULT_HEIGHT = 480;
     var GAME_WIDTH = this.options.width || GAME_DEFAULT_WIDTH;
@@ -43,7 +43,7 @@ $(function() {
     var WIDTH_RATIO = GAME_WIDTH / GAME_DEFAULT_WIDTH;
     var HEIGHT_RATIO = GAME_HEIGHT / GAME_DEFAULT_HEIGHT;
     var BOX_BASE_WIDTH = Math.round(50 * WIDTH_RATIO); //
-    var BOX_HEIGHT = Math.round(100 * HEIGHT_RATIO); //
+    var BOX_HEIGHT = Math.round(120 * HEIGHT_RATIO); //
     var STICK_WIDTH = 3;
     var STICK_LEFT = BOX_BASE_WIDTH - STICK_WIDTH;
     var STICK_BOTTOM = BOX_HEIGHT;
