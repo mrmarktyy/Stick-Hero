@@ -395,11 +395,13 @@ $(function() {
       } else {
         this.nextAfterAnimation(this.$hero, STATES.DYING);
 
+        var duration = (GAP + HERO_WIDTH + this._activeStickHeight) / 225;
+        duration = duration > 2 ? 2 : duration;
         this.$hero.css({
           'transform': 'translate3d(' + (BOX_BASE_WIDTH + this._activeStickHeight) + 'px, 0, 0)',
           '-webkit-transform': 'translate3d(' + (BOX_BASE_WIDTH + this._activeStickHeight) + 'px, 0, 0)',
-          'transition-duration': (GAP + HERO_WIDTH + this._activeStickHeight) / 225 + 's',
-          '-webkit-transition-duration': (GAP + HERO_WIDTH + this._activeStickHeight) / 225 + 's',
+          'transition-duration': duration + 's',
+          '-webkit-transition-duration': duration + 's',
           'transition-timing-function': 'linear',
           '-webkit-transition-timing-function': 'linear'
         });
