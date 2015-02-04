@@ -1,9 +1,3 @@
 body { margin: 0; font-family: 'Poiret One', Helvetica, Georgia; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; }
 
-.header { width: 100%; height: 9em; background: #12acef; color: white; margin-bottom: 2em; }
-
-.header__title { font-size: 4em; margin: 0; text-align: center; text-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5); }
-
-.header__subtitle { font-size: 1.2em; text-align: center; margin: 0; }
-
 @media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (orientation: landscape) { body { -webkit-transform-origin: 0% 0%; transform-origin: 0% 0%; -webkit-transform: rotate(90deg); transform: rotate(90deg); position: absolute; left: 100%; } }

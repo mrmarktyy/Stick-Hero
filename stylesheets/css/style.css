@@ -111,7 +111,7 @@
 .hero4 .foot.left { left: 2px; }
 .hero4 .foot.right { right: 0; }
 
-#game { font-family: 'Poiret One', Helvetica, Georgia; position: relative; overflow: hidden; background-image: url("../../images/bg.jpg"); background-repeat: no-repeat; background-size: 100% 100%; }
+#game { position: relative; overflow: hidden; background-image: url("../../images/bg.jpg"); background-repeat: no-repeat; background-size: 100% 100%; }
 #game.bg1 { background-image: url("../../images/bg.jpg"); }
 #game.bg2 { background-image: url("../../images/bg2.jpg"); }
 #game.bg3 { background-image: url("../../images/bg3.jpg"); }
@@ -146,11 +146,12 @@
 .watermelon { display: none; position: absolute; right: 5px; }
 .watermelon img { width: 20px; position: relative; top: 3px; margin-left: 2px; }
 
-.instruction { position: absolute; opacity: 0; top: 20%; width: 200px; left: 0; right: 0; margin: 0 auto; text-align: center; font-weight: bold; transition: opacity 3s ease; }
-.instruction.in { opacity: 1; }
+.perfect, .instruction { position: absolute; opacity: 0; top: 20%; width: 200px; left: 0; right: 0; margin: 0 auto; text-align: center; font-weight: bold; }
+.perfect.in, .instruction.in { opacity: 1; }
 
-.perfect { position: absolute; opacity: 0; top: 20%; width: 200px; left: 0; right: 0; margin: 0 auto; text-align: center; font-weight: bold; transition: opacity 2s ease; }
-.perfect.in { opacity: 1; }
+.instruction { transition: opacity 3s ease; }
+
+.perfect { transition: opacity 2s ease; }
 
 .overlay { position: absolute; top: 0; bottom: 0; left: 0; right: 0; z-index: 1000; }
 
