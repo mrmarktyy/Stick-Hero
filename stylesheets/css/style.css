@@ -105,8 +105,8 @@
 .hero4 .ribbon-up, .hero4 .ribbon-down { border-top-color: #843cc3; }
 .hero4 .eye { width: 4px; height: 4px; background: white; border-radius: 50%; position: absolute; right: 1px; top: 7px; }
 .hero4 .eyeball { position: absolute; background: black; width: 2px; height: 2px; border-radius: 50%; right: 1px; }
-.hero4 .mouse { width: 33px; height: 31px; border-radius: 50%; box-shadow: 4px 8px 0px -7px white; transform: rotate(20deg); position: absolute; top: -16px; left: -4px; }
-.hero4 .body { position: absolute; background: black; width: 22px; height: 11px; border-radius: 40%; top: 13px; }
+.hero4 .mouse { width: 33px; height: 31px; border-radius: 50%; box-shadow: 4px 8px 0px -7px white; position: absolute; top: -16px; left: -4px; -webkit-transform: rotate(20deg); transform: rotate(20deg); }
+.hero4 .body { position: absolute; background: black; border-radius: 40%; }
 .hero4 .foot { position: absolute; width: 3px; height: 2px; bottom: -7px; background: black; -webkit-transform-origin: top center; transform-origin: top center; }
 .hero4 .foot.left { left: 2px; }
 .hero4 .foot.right { right: 0; }

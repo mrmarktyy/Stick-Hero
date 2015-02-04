@@ -65,7 +65,8 @@ $(function() {
     var HERO_FEET;
     var HERO_BOTTOM;
     var HERO_INIT_LEFT;
-    var HEROS = [[18, 24, 5], [18, 24, 5], [20, 18, 14], [18, 18, 7]];  // [width, height, feet_bottom]
+    // [width, height, feet_bottom, body_width, body_height, body_top]
+    var HEROS = [[18, 24, 5], [18, 24, 5], [20, 18, 14], [18, 18, 7, 22, 11, 13]];
     var STATES = {
       WELCOME: 0,
       PRE_BEGIN: 1,
@@ -129,14 +130,25 @@ $(function() {
       this.hero = localStorage.getItem('hero') || 1;
       this.$heros = $('.hero > .hero1, .hero > .hero2, .hero > .hero3, .hero > .hero4');
       for (var i = 0; i < HEROS.length; i++) {
-        var heroIndex = i + 1;
-        var unlocked = localStorage.getItem('hero' + heroIndex) === 'true';
+        var heroIndex = i + 1,
+            unlocked = localStorage.getItem('hero' + heroIndex) === 'true',
+            heroWidth = Math.round(HEROS[i][0] * WIDTH_RATIO),
+            heroHeight = Math.round(HEROS[i][1] * WIDTH_RATIO),
+            heroHat = heroWidth + 2;
+
         if (heroIndex !== 1 && unlocked) {
           $('.wrapper[data-src="' + heroIndex + '"]').removeClass('locked');
         }
-        $('.hero' + heroIndex).css({
-          'width': Math.round(HEROS[i][0] * WIDTH_RATIO) + 'px',
-          'height': Math.round(HEROS[i][1] * WIDTH_RATIO) + 'px'
+        var $hero = $('.hero' + heroIndex);
+        $hero.css({
+          'width': heroWidth + 'px',
+          'height': heroHeight + 'px'
+        });
+        $hero.find('.hat').css({'width': heroHat + 'px'});
+        $hero.find('.body').css({
+          'width': Math.floor(HEROS[i][3] * WIDTH_RATIO) + 'px',
+          'height': Math.floor(HEROS[i][4] * WIDTH_RATIO) + 'px',
+          'top': Math.floor(HEROS[i][5] * WIDTH_RATIO) + 'px'
         });
       }
     };
@@ -160,9 +172,7 @@ $(function() {
           'transform': 'translate3d(' + (GAME_WIDTH - HERO_WIDTH) / 2 + 'px, 0, 0)',
           '-webkit-transform': 'translate3d(' + (GAME_WIDTH - HERO_WIDTH) / 2 + 'px, 0, 0)'
         }).show();
-      this.$hat = this.$hero.find('.hat').css({
-        'width': HERO_HAT + 'px'
-      });
+      this.$hat = this.$hero.find('.hat');
       this.$feet = this.$hero.find('.foot');
     };
 
@@ -396,7 +406,7 @@ $(function() {
         this.nextAfterAnimation(this.$hero, STATES.DYING);
 
         var duration = (GAP + HERO_WIDTH + this._activeStickHeight) / 225;
-        duration = duration > 2 ? 2 : duration;
+        duration = duration > 1 ? 1 : duration;
         this.$hero.css({
           'transform': 'translate3d(' + (BOX_BASE_WIDTH + this._activeStickHeight) + 'px, 0, 0)',
           '-webkit-transform': 'translate3d(' + (BOX_BASE_WIDTH + this._activeStickHeight) + 'px, 0, 0)',
