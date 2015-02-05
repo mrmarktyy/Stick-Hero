@@ -7,7 +7,11 @@ module.exports = function(grunt) {
     watch: {
       sass: {
         files: 'stylesheets/scss/**/*.scss',
-        tasks: ['sass:dist']
+        tasks: ['stylesheet']
+      },
+      js: {
+        files: 'scripts/m.js',
+        tasks: ['script']
       }
     },
 
@@ -61,7 +65,7 @@ module.exports = function(grunt) {
 
   grunt.registerTask('stylesheet', ['sass:dist', 'cssmin:dist']);
   grunt.registerTask('script', ['uglify:dist', 'concat:js']);
-  grunt.registerTask('release', ['stylesheet', 'script']);
-  grunt.registerTask('default', ['sass:dist', 'watch']);
+  grunt.registerTask('build', ['stylesheet', 'script']);
+  grunt.registerTask('default', ['build', 'watch']);
 
 };

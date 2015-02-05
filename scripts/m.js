@@ -35,7 +35,7 @@ $(function() {
   function Game(options) {
 
     this.options = options || {};
-    var VERSION = '1.0.1';
+    var VERSION = '1.0.2';
     var GAME_DEFAULT_WIDTH = 320;
     var GAME_DEFAULT_HEIGHT = 480;
     var GAME_WIDTH = this.options.width || GAME_DEFAULT_WIDTH;
@@ -113,6 +113,7 @@ $(function() {
       this.$liveScore = $('.live-score');
       this.$watermelon = $('.watermelon');
       this.$instruction = $('.instruction');
+      this.$about = $('.about');
       this.$perfect = $('.perfect');
       this.$score = $('.score');
       this.$best = $('.best');
@@ -192,16 +193,23 @@ $(function() {
       });
       $(document).on('click touchstart', '.btn-share', function(event) {
         self.$share.show();
-        $(document).on(event.type, '.share.overlay', function() {
-          $(document).off(event.type, '.share.overlay');
+        $(document).on(event.type, '.overlay', function() {
+          $(document).off(event.type, '.overlay');
           self.$share.hide();
         });
       });
       $(document).on('click touchstart', '.btn-hero', function(event) {
-        self.$heropick.show();
+        self.$heropick.addClass('in');
         $(document).on(event.type, '.overlay', function() {
           $(document).off(event.type, '.overlay');
-          self.$heropick.hide();
+          self.$heropick.removeClass('in');
+        });
+      });
+      $(document).on('click touchstart', '.btn-about', function(event) {
+        self.$about.show();
+        $(document).on(event.type, '.overlay', function() {
+          $(document).off(event.type, '.overlay');
+          self.$about.hide();
         });
       });
       $(document).on('click touchstart', '.heropick .wrapper', function(event) {
@@ -221,7 +229,7 @@ $(function() {
         } else {
           $(document).off(event.type, '.overlay');
           self.switchHero(src);
-          self.$heropick.hide();
+          self.$heropick.removeClass('in');
         }
       });
       $(document).on('mousedown touchstart', function(event) {
@@ -336,6 +344,7 @@ $(function() {
       this._validStickMin = this.BOX2.left - BOX_BASE_WIDTH;
       this._validStickMax = this._validStickMin + this.BOX2.width;
 
+      $('.plus-one').remove();
       this.$activeStick = $('<div />')
         .addClass('stick')
         .css({
@@ -392,6 +401,14 @@ $(function() {
         if (this._activeStickHeight >= this._perfectMin && this._activeStickHeight <= this._perfectMax) {
           this.inc = 2;
           this.$perfect.addClass('in');
+          var $plus = $('<div />').addClass('plus-one').css({
+            'left': this.BOX2.left + ((this.BOX2.width - 14) / 2) + 'px',
+            'bottom': BOX_HEIGHT + 10 + 'px'
+          }).text('+1');
+          this.$game.append($plus);
+          setTimeout(function () {
+            $plus.addClass('out');
+          }, 100);
         }
 
         this.$hero.css({
@@ -495,7 +512,7 @@ $(function() {
 
     this.update = function() {
       this.score += this.inc;
-      this.total += this.inc;
+      this.total += 1;
       this.updateScore();
 
       this.$box1.remove();

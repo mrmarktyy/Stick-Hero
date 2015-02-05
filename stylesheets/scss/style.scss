@@ -46,14 +46,15 @@ $main-color: black;
                 transition: transform 0.5s ease;
   -webkit-transform-origin: bottom right;
           transform-origin: bottom right;
-
+         -webkit-transform: translateZ(0);
+                 transform: translateZ(0);
   &.rotate {
-    -webkit-transform: rotate(90deg);
-            transform: rotate(90deg);
+    -webkit-transform: translateZ(0) rotate(90deg);
+            transform: translateZ(0) rotate(90deg);
   }
   &.died {
-    -webkit-transform: rotate(180deg);
-            transform: rotate(180deg);
+    -webkit-transform: translateZ(0) rotate(180deg);
+            transform: translateZ(0) rotate(180deg);
   }
 }
 
@@ -64,11 +65,9 @@ $main-color: black;
   // height: 80px;
   -webkit-transition: -webkit-transform 0.5s ease;
           transition: transform 0.5s ease;
-
   &.init:after {
     display: none;
   }
-
   &:after {
     width: 6px;
     height: 6px;
@@ -79,6 +78,21 @@ $main-color: black;
     -webkit-transform: translate(-50%);
             transform: translate(-50%);
     content: '';
+  }
+}
+
+.plus-one {
+  opacity: 1;
+  position: absolute;
+  font-size: 12px;
+  font-weight: bold;
+  font-family: Helvetica, Georgia;
+  -webkit-transition: -webkit-transform 2s, opacity 2s;
+          transition: transform 2s, opacity 2s;
+  &.out {
+    -webkit-transform: translate3d(0, -10px, 0);
+            transform: translate3d(0, -10px, 0);
+              opacity: 0;
   }
 }
 
@@ -183,7 +197,7 @@ $main-color: black;
               transform: translate(0, -50%);
     }
   }
-  .btn-hero {
+  .btn-side {
     position: absolute;
     cursor: pointer;
     color: white;
@@ -195,9 +209,30 @@ $main-color: black;
     box-sizing: border-box;
     font-weight: 900;
     font-size: 12px;
-    top: 80%;
     right: 20px;
   }
+  .btn-hero {
+    // top: 70%;
+    top: 80%
+  }
+  .btn-about {
+    top: 80%
+  }
+}
+
+.about {
+  display: none;
+  position: absolute;
+  box-sizing: border-box;
+  width: 210px;
+  padding: 10px;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  background: white;
+  border-radius: 20px;
+  z-index: 1001;
 }
 
 .live-score {
@@ -224,7 +259,7 @@ $main-color: black;
     width: 20px;
     position: relative;
     top: 3px;
-    margin-left: 2px
+    margin-left: 12px
   }
 }
 
@@ -310,17 +345,26 @@ $main-color: black;
 }
 
 .heropick {
-  display: none;
+  // display: none;
   background: white;
   width: 210px;
   height: 200px;
   top: 50%;
   left: 50%;
   position: absolute;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, 250%);
+          transform: translate(-50%, 250%);
+  -webkit-transition: -webkit-transform 0.5s ease, opacity 0.5s;
+          transition: transform 0.5s ease, opacity 0.5s;
+  opacity: 0;
   border-radius: 20px;
   z-index: 1001;
+
+  &.in {
+    -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+    opacity: 1;
+  }
 
   .title {
     padding: 12px;
@@ -331,7 +375,7 @@ $main-color: black;
   img {
     width: 18px;
     float: right;
-    margin-left: 10px;
+    margin-left: 8px;
   }
   .heros {
     padding: 10px 20px;
@@ -355,9 +399,6 @@ $main-color: black;
         display: block;
         width: 65px;
         font-size: 14px;
-        img {
-          margin-left: 8px;
-        }
       }
       .hero-c {
         visibility: hidden;
@@ -402,7 +443,7 @@ $main-color: black;
   .like {
     position: absolute;
     font-size: 20px;
-    bottom: 0;
+    bottom: 60px;
     text-align: center;
     width: 100%;
   }
