@@ -46,15 +46,13 @@ $main-color: black;
                 transition: transform 0.5s ease;
   -webkit-transform-origin: bottom right;
           transform-origin: bottom right;
-         -webkit-transform: translateZ(0);
-                 transform: translateZ(0);
   &.rotate {
-    -webkit-transform: translateZ(0) rotate(90deg);
-            transform: translateZ(0) rotate(90deg);
+    -webkit-transform: rotate(90deg);
+            transform: rotate(90deg);
   }
   &.died {
-    -webkit-transform: translateZ(0) rotate(180deg);
-            transform: translateZ(0) rotate(180deg);
+    -webkit-transform: rotate(180deg);
+            transform: rotate(180deg);
   }
 }
 
@@ -212,8 +210,7 @@ $main-color: black;
     right: 20px;
   }
   .btn-hero {
-    // top: 70%;
-    top: 80%
+    top: 75%
   }
   .btn-about {
     top: 80%
