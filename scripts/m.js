@@ -49,7 +49,7 @@ $(function() {
     var STICK_BOTTOM = BOX_HEIGHT;
     var GAP = 4;
     var PERFECT_WIDTH = 6;
-    var BOX_LEFT_MIN = BOX_BASE_WIDTH + 20;
+    var BOX_LEFT_MIN = BOX_BASE_WIDTH + 30;
     var BOX_LEFT_MAX = GAME_WIDTH - BOX_BASE_WIDTH;
     var BOX_WIDTH_MIN = Math.round(15 * WIDTH_RATIO); //
     var BOX_WIDTH_MAX = Math.round(69 * WIDTH_RATIO); //
