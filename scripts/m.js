@@ -48,12 +48,13 @@ $(function() {
     var STICK_LEFT = BOX_BASE_WIDTH - STICK_WIDTH;
     var STICK_BOTTOM = BOX_HEIGHT;
     var GAP = 4;
+    var STICK_INC = 3;
     var PERFECT_WIDTH = 6;
+    var UNLOCK_COUNT = 5;
     var BOX_LEFT_MIN = BOX_BASE_WIDTH + 30;
     var BOX_LEFT_MAX = GAME_WIDTH - BOX_BASE_WIDTH;
     var BOX_WIDTH_MIN = Math.round(15 * WIDTH_RATIO); //
     var BOX_WIDTH_MAX = Math.round(69 * WIDTH_RATIO); //
-    var STICK_INC = 3;
     var ANIMATION_END_EVENTS = 'webkitTransitionEnd transitionend animationend webkitAnimationEnd';
     var TITLE_DEFAULT = '';
     var IS_TOUCHING = false;
@@ -130,8 +131,7 @@ $(function() {
 
     this.heroInit = function () {
       this.hero = localStorage.getItem('hero') || 1;
-      this.hero = 5;
-      this.$heros = $('.hero > .hero1, .hero > .hero2, .hero > .hero3, .hero > .hero4');
+      this.$heros = $('.hero > .hero1, .hero > .hero2, .hero > .hero3, .hero > .hero4, .hero > .hero5');
       for (var i = 0; i < HEROS.length; i++) {
         var heroIndex = i + 1,
             unlocked = localStorage.getItem('hero' + heroIndex) === 'true',
@@ -260,6 +260,7 @@ $(function() {
 
     this.reset = function() {
       this.score = 0;
+      this.count = 0;
       this.best = localStorage.getItem('best') || 0;
       this.$title.text(TITLE_DEFAULT);
       this.$heroContainer = this.$hero.parent();
@@ -419,6 +420,7 @@ $(function() {
         this.inc = 1;
         if (this._activeStickHeight >= this._perfectMin && this._activeStickHeight <= this._perfectMax) {
           this.inc = 2;
+          this.count ++;
           this.$perfect.addClass('in');
           var $plus = $('<div />').addClass('plus-one').css({
             'left': this.BOX2.left + ((this.BOX2.width - 14) / 2) + 'px',
@@ -428,6 +430,12 @@ $(function() {
           setTimeout(function () {
             $plus.addClass('out');
           }, 100);
+          if (this.count >= UNLOCK_COUNT) {
+            localStorage.setItem('hero5', true);
+            $('.wrapper[data-src="5"]').removeClass('locked');
+          }
+        } else {
+          this.count = 0;
         }
 
         this.$hero.css({

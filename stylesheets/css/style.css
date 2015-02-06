@@ -179,13 +179,15 @@
 .game-over .actions { position: absolute; top: 45%; color: white; left: 0; right: 0; text-align: center; }
 .game-over .actions .btn { cursor: pointer; background: lightcoral; padding: 10px; border-radius: 10px; margin: 5px auto; width: 100px; }
 
-.heropick { display: none; background: white; width: 210px; height: 200px; top: 50%; left: 50%; position: absolute; -webkit-transform: translate(-50%, 250%); transform: translate(-50%, 250%); -webkit-transition: -webkit-transform 0.5s ease, opacity 0.5s; transition: transform 0.5s ease, opacity 0.5s; opacity: 0; border-radius: 20px; z-index: 1001; }
+.heropick { display: none; background: white; width: 210px; height: 255px; top: 50%; left: 50%; position: absolute; -webkit-transform: translate(-50%, 250%); transform: translate(-50%, 250%); -webkit-transition: -webkit-transform 0.5s ease, opacity 0.5s; transition: transform 0.5s ease, opacity 0.5s; opacity: 0; border-radius: 20px; z-index: 1001; }
 .heropick.in { -webkit-transform: translate(-50%, -50%); transform: translate(-50%, -50%); opacity: 1; }
 .heropick .title { padding: 12px; }
 .heropick .total { float: right; }
 .heropick img { width: 18px; float: right; margin-left: 8px; }
 .heropick .heros { padding: 10px 20px; }
 .heropick .wrapper { cursor: pointer; padding: 22px 10px; display: inline-block; position: relative; width: 80px; height: 60px; box-sizing: border-box; border-radius: 10px; }
+.heropick .wrapper.row { width: 100%; }
+.heropick .wrapper.row.locked .price { width: 170px; font-size: 12px; }
 .heropick .wrapper.locked { background-color: #ffff66; }
 .heropick .wrapper.locked .price { position: absolute; display: block; width: 65px; font-size: 14px; }
 .heropick .wrapper.locked .hero-c { visibility: hidden; }

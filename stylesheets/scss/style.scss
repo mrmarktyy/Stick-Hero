@@ -346,7 +346,7 @@ $main-color: black;
   display: none;
   background: white;
   width: 210px;
-  height: 200px;
+  height: 255px;
   top: 50%;
   left: 50%;
   position: absolute;
@@ -388,6 +388,15 @@ $main-color: black;
     height: 60px;
     box-sizing: border-box;
     border-radius: 10px;
+
+    &.row {
+      width: 100%;
+
+      &.locked .price {
+        width: 170px;
+        font-size: 12px;
+      }
+    }
 
     &.locked {
       background-color: #ffff66;
