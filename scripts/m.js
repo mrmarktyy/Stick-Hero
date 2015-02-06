@@ -378,8 +378,8 @@ $(function() {
             PRESS_STARTED = true;
           }
           self._activeStickHeight += STICK_INC;
-          self.$activeStick[0].style.height = self._activeStickHeight + 'px';
-          // self.$activeStick.css({height: self._activeStickHeight + 'px'});
+          // self.$activeStick[0].style.height = self._activeStickHeight + 'px';
+          self.$activeStick.css({height: self._activeStickHeight + 'px'});
         }
         if (!IS_TOUCHING && PRESS_STARTED) {
           self.next();
