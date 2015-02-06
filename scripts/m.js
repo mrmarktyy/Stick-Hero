@@ -208,12 +208,10 @@ $(function() {
         });
       });
       $(document).on('click touchstart', '.btn-hero', function(event) {
-        // self.$heropick.addClass('in');
-        self.$heropick.show();
+        self.$heropick.addClass('in');
         $(document).on(event.type, '.overlay', function() {
           $(document).off(event.type, '.overlay');
-          // self.$heropick.removeClass('in');
-          self.$heropick.hide();
+          self.$heropick.removeClass('in');
         });
       });
       $(document).on('click touchstart', '.btn-about', function(event) {
@@ -240,7 +238,7 @@ $(function() {
         } else {
           $(document).off(event.type, '.overlay');
           self.switchHero(src);
-          self.$heropick.hide();
+          self.$heropick.removeClass('in');
         }
       });
       $(document).on('mousedown touchstart', function(event) {
@@ -313,6 +311,7 @@ $(function() {
       this.$gameover.hide();
       this.$liveScore.hide();
       this.$watermelon.hide();
+      this.$heropick.show();
       this.$welcome.show();
     };
 
@@ -320,6 +319,7 @@ $(function() {
       this.$welcome.hide();
       this.$gameover.hide();
       this.$copyright.hide();
+      this.$heropick.hide();
       this.$liveScore.show();
       this.$watermelon.show();
       this.$instruction.addClass('in');

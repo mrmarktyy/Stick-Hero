@@ -350,19 +350,19 @@ $main-color: black;
   top: 50%;
   left: 50%;
   position: absolute;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
-  -webkit-transition: -webkit-transform 0.5s ease;
-          transition: transform 0.5s ease;
-  // opacity: 1;
+  -webkit-transform: translate(-50%, 250%);
+          transform: translate(-50%, 250%);
+  -webkit-transition: -webkit-transform 0.5s ease, opacity 0.5s;
+          transition: transform 0.5s ease, opacity 0.5s;
+  opacity: 0;
   border-radius: 20px;
   z-index: 1001;
 
-  // &.in {
-  //   -webkit-transform: translate(-50%, -50%);
-  //           transform: translate(-50%, -50%);
-  //   opacity: 1;
-  // }
+  &.in {
+    -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+    opacity: 1;
+  }
 
   .title {
     padding: 12px;
