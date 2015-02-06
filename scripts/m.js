@@ -208,10 +208,12 @@ $(function() {
         });
       });
       $(document).on('click touchstart', '.btn-hero', function(event) {
-        self.$heropick.addClass('in');
+        // self.$heropick.addClass('in');
+        self.$heropick.show();
         $(document).on(event.type, '.overlay', function() {
           $(document).off(event.type, '.overlay');
-          self.$heropick.removeClass('in');
+          // self.$heropick.removeClass('in');
+          self.$heropick.hide();
         });
       });
       $(document).on('click touchstart', '.btn-about', function(event) {
@@ -238,7 +240,7 @@ $(function() {
         } else {
           $(document).off(event.type, '.overlay');
           self.switchHero(src);
-          self.$heropick.removeClass('in');
+          self.$heropick.hide();
         }
       });
       $(document).on('mousedown touchstart', function(event) {
