@@ -66,7 +66,8 @@ $(function() {
     var HERO_BOTTOM;
     var HERO_INIT_LEFT;
     // [width, height, feet_bottom, body_width, body_height, body_top]
-    var HEROS = [[18, 24, 5], [18, 24, 5], [20, 18, 14], [18, 18, 7, 22, 11, 13]];
+    var HEROS = [[18, 24, 5], [18, 24, 5], [20, 18, 14],
+      [18, 18, 7, 22, 11, 13], [18, 24, 10, 20, 28, 10]];
     var STATES = {
       WELCOME: 0,
       PRE_BEGIN: 1,
@@ -150,7 +151,15 @@ $(function() {
           'width': Math.floor(HEROS[i][3] * WIDTH_RATIO) + 'px',
           'height': Math.floor(HEROS[i][4] * WIDTH_RATIO) + 'px',
           'top': Math.floor(HEROS[i][5] * WIDTH_RATIO) + 'px'
-        });
+        }); // hero4
+        $hero.find('.hair-up').css({
+          'width': Math.floor(HEROS[i][3] * WIDTH_RATIO) + 'px',
+          'height': Math.floor(HEROS[i][5] * WIDTH_RATIO) + 'px'
+        }); // hero5
+        $hero.find('.hair-down').css({
+          'width': Math.floor(HEROS[i][4] * WIDTH_RATIO) + 'px',
+          'height': Math.floor(HEROS[i][5] * WIDTH_RATIO) + 'px'
+        }); // hero5
       }
     };
 
