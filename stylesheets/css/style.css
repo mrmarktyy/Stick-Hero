@@ -40,12 +40,12 @@
   50% { transform: translate3d(0, -20px, 0); }
   100% { transform: translate3d(0, 0, 0); } }
 /* shaking */
-@-webkit-keyframes shaking { 0% { top: 0; }
-  50% { top: 3px; }
-  100% { top: 0; } }
-@keyframes shaking { 0% { top: 0; }
-  50% { top: 3px; }
-  100% { top: 0; } }
+@-webkit-keyframes shaking { 0% { -webkit-transform: translate3d(0, 0, 0); }
+  50% { -webkit-transform: translate3d(0, 3px, 0); }
+  100% { -webkit-transform: translate3d(0, 0, 0); } }
+@keyframes shaking { 0% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(0, 3px, 0); }
+  100% { transform: translate3d(0, 0, 0); } }
 /* animate.css */
 @-webkit-keyframes bounce { 0%, 100% { -webkit-transform: translate3d(0, 0, 0); }
   10%, 30%, 50%, 70%, 90% { -webkit-transform: translate3d(0, -5px, 0); }
@@ -63,12 +63,12 @@
   40%, 80% { transform: rotate3d(0, 0, 1, 60deg); }
   100% { transform: translate3d(0, 700px, 0); } }
 /* arrow */
-@-webkit-keyframes arrow { 0% { top: 0; }
-  50% { top: 15px; }
-  100% { top: 0; } }
-@keyframes arrow { 0% { top: 0; }
-  50% { top: 15px; }
-  100% { top: 0; } }
+@-webkit-keyframes arrow { 0% { -webkit-transform: translate3d(0, 0, 0); }
+  50% { -webkit-transform: translate3d(0, 15px, 0); }
+  100% { -webkit-transform: translate3d(0, 0, 0); } }
+@keyframes arrow { 0% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(0, 15px, 0); }
+  100% { transform: translate3d(0, 0, 0); } }
 .hero1 { display: none; border-radius: 5px; background: black; position: absolute; left: 0; -webkit-transition: -webkit-transform 0.5s ease; transition: transform 0.5s ease; }
 .hero1 .hat { width: 20px; height: 4px; background: red; position: absolute; left: -1px; top: 5px; }
 .hero1 .ribbon-up, .hero1 .ribbon-down { border-top-color: red; }
