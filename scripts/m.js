@@ -269,8 +269,8 @@ $(function() {
       this.$title.text(TITLE_DEFAULT);
       this.$heroContainer = this.$hero.parent();
       this.$game
-        .removeClass('bounce bg1 bg2 bg3 bg4 bg5')
-        .addClass('bg' + this._getRandom(1, 5));
+        .removeClass('bounce bg1 bg2 bg3 bg4 bg5 bg6')
+        .addClass('bg' + this._getRandom(1, 6));
       this.$gamename.removeClass('hinge');
       this.$liveScore.hide();
       this.$gameover.hide();

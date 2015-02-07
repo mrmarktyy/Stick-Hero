@@ -31,6 +31,9 @@ $main-color: black;
   &.bg5 {
     background-image: url('../../images/bg5.jpg');
   }
+  &.bg6 {
+    background-image: url('../../images/bg6.jpg');
+  }
   &.bounce {
     -webkit-animation: bounce 0.5s linear;
             animation: bounce 0.5s linear;
@@ -210,12 +213,13 @@ $main-color: black;
     font-weight: 900;
     font-size: 12px;
     right: 20px;
+    // border: 2px solid rgb(61, 71, 82);
   }
   .btn-hero {
-    top: 75%
+    top: 75%;
   }
   .btn-about {
-    top: 80%
+    top: 80%;
   }
 }
 

@@ -127,6 +127,7 @@
 #game.bg3 { background-image: url("../../images/bg3.jpg"); }
 #game.bg4 { background-image: url("../../images/bg4.jpg"); }
 #game.bg5 { background-image: url("../../images/bg5.jpg"); }
+#game.bg6 { background-image: url("../../images/bg6.jpg"); }
 #game.bounce { -webkit-animation: bounce 0.5s linear; animation: bounce 0.5s linear; }
 
 .stick { width: 3px; background: black; position: absolute; -webkit-transition: -webkit-transform 0.5s ease; transition: transform 0.5s ease; -webkit-transform-origin: bottom right; transform-origin: bottom right; }
