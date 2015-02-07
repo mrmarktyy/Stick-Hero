@@ -60,6 +60,9 @@ $(function() {
     var IS_TOUCHING = false;
     var PRESS_STARTED = false;
     var IS_WECHAT = !!navigator.userAgent.match(/MicroMessenger/);
+    // https://github.com/Modernizr/Modernizr/blob/master/feature-detects/touchevents.js#L40
+    var IS_TOUCH = !!(('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch);
+    var CLICK_EVENT = IS_TOUCH ? 'touchstart' : 'click';
     var HERO_WIDTH; //
     var HERO_HEIGHT; //
     var HERO_HAT;
@@ -92,12 +95,10 @@ $(function() {
     this.checkVersion = function () {
       var version = localStorage.getItem('version') || '0.0.0';
       localStorage.setItem('version', VERSION);
-      this.upgrade(version, VERSION);
+      this.upgrade(VERSION, version);
     };
 
-    this.upgrade = function () {
-
-    };
+    this.upgrade = function () { };
 
     this.initVars = function() {
       this.$title = $('title');
@@ -131,7 +132,7 @@ $(function() {
 
     this.heroInit = function () {
       this.hero = localStorage.getItem('hero') || 1;
-      this.$heros = $('.hero > .hero1, .hero > .hero2, .hero > .hero3, .hero > .hero4, .hero > .hero5');
+      this.$heros = $('.hero-p');
       for (var i = 0; i < HEROS.length; i++) {
         var heroIndex = i + 1,
             unlocked = localStorage.getItem('hero' + heroIndex) === 'true',
@@ -185,70 +186,72 @@ $(function() {
       HERO_INIT_LEFT = BOX_BASE_WIDTH - HERO_WIDTH - GAP - STICK_WIDTH;
 
       this.$heros.hide();
-      this.$hero = $('.hero > .hero' + this.hero)
+      this.$hero = $('.hero-p.hero' + this.hero)
         .css({
           'bottom': HERO_BOTTOM + 'px',
           'transform': 'translate3d(' + (GAME_WIDTH - HERO_WIDTH) / 2 + 'px, 0, 0)',
           '-webkit-transform': 'translate3d(' + (GAME_WIDTH - HERO_WIDTH) / 2 + 'px, 0, 0)'
         }).show();
-      this.$hat = this.$hero.find('.hat');
       this.$feet = this.$hero.find('.foot');
     };
 
     this.bindEvents = function() {
       var self = this;
-      $(document).on('click touchstart', '.btn-play', function() {
+      $('.btn-play').on(CLICK_EVENT, function() {
         self.nextAfterAnimation(self.$gamename, STATES.PRE_BEGIN);
         self.$gamename.addClass('hinge');
       });
-      $(document).on('click touchstart', '.btn-playagain', function() {
+      $('.btn-playagain').on(CLICK_EVENT, function() {
         self.reset();
         self.next(STATES.PRE_BEGIN);
       });
-      $(document).on('click touchstart', '.btn-home', function() {
+      $('.btn-home').on(CLICK_EVENT, function() {
         self.reset();
         self.next(STATES.WELCOME);
       });
-      $(document).on('click touchstart', '.btn-share', function(event) {
+      // $('.btn-about').on(CLICK_EVENT, function(event) {
+      //   self.$about.show();
+      //   event.stopPropagation();
+      //   $(document).on(CLICK_EVENT, '.overlay', function() {
+      //     $(document).off(CLICK_EVENT, '.overlay');
+      //     self.$about.hide();
+      //   });
+      // });
+      $('.btn-share').on(CLICK_EVENT, function(event) {
         self.$share.show();
-        $(document).on(event.type, '.overlay', function() {
-          $(document).off(event.type, '.overlay');
+        event.stopPropagation();
+        $(document).on(CLICK_EVENT, '.overlay', function() {
+          $(document).off(CLICK_EVENT, '.overlay');
           self.$share.hide();
         });
       });
-      $(document).on('click touchstart', '.btn-hero', function(event) {
-        self.$heropick.addClass('in');
-        $(document).on(event.type, '.overlay', function() {
-          $(document).off(event.type, '.overlay');
+      $('.btn-hero').on(CLICK_EVENT, function(event) {
+        self.$heropick.toggleClass('in');
+        event.stopPropagation();
+        $(document).on(CLICK_EVENT, '.overlay', function() {
+          $(document).off(CLICK_EVENT, '.overlay');
           self.$heropick.removeClass('in');
         });
       });
-      $(document).on('click touchstart', '.btn-about', function(event) {
-        self.$about.show();
-        $(document).on(event.type, '.overlay', function() {
-          $(document).off(event.type, '.overlay');
-          self.$about.hide();
-        });
-      });
-      $(document).on('click touchstart', '.heropick .wrapper', function(event) {
-        var $target = $(event.currentTarget);
-        var price = parseInt($target.data('price'), 10);
-        var src = $target.data('src');
+      $(document).on(CLICK_EVENT, '.heropick .wrapper', function(event) {
+        var $target = $(event.currentTarget),
+            price = parseInt($target.data('price'), 10),
+            hero = $target.data('src');
         if ($target.hasClass('locked')) {
           if (self.total >= price) {
             self.total -= price;
-            localStorage.setItem('hero' + src, true);
+            localStorage.setItem('hero' + hero, true);
             self.updateScore();
             $target.removeClass('locked');
           } else {
             event.preventDefault();
-            event.stopPropagation();
           }
         } else {
-          $(document).off(event.type, '.overlay');
-          self.switchHero(src);
+          self.switchHero(hero);
+          $(document).off(CLICK_EVENT, '.overlay');
           self.$heropick.removeClass('in');
         }
+        event.stopPropagation();
       });
       $(document).on('mousedown touchstart', function(event) {
         IS_TOUCHING = true;
@@ -376,11 +379,11 @@ $(function() {
 
       var self = this;
       PRESS_STARTED = false;
+      IS_TOUCHING = false;
       (function loop() {
         if ((PRESS_STARTED && IS_TOUCHING) || (!PRESS_STARTED)) {
           window.requestAnimationFrame(loop);
         }
-
         if (IS_TOUCHING) {
           if (!PRESS_STARTED) {
             self.$heroContainer.addClass('shake');
@@ -419,6 +422,7 @@ $(function() {
         this._perfectMin = this._validStickMin + (this.BOX2.width - PERFECT_WIDTH) / 2;
         this._perfectMax = this._perfectMin + PERFECT_WIDTH;
         this.inc = 1;
+        // if pecfect
         if (this._activeStickHeight >= this._perfectMin && this._activeStickHeight <= this._perfectMax) {
           this.inc = 2;
           this.count ++;
@@ -477,7 +481,7 @@ $(function() {
       this.$feet.removeClass('walk').css('opacity', 0.99);
       setTimeout(function () {
         self.$feet.css('opacity', 1);
-      }, 0);
+      }, 100);
       this.$perfect.removeClass('in');
       this.$hero.css({
         'transform': 'translate3d(' + (BOX_BASE_WIDTH - HERO_WIDTH - GAP - STICK_WIDTH) + 'px, 0, 0)',

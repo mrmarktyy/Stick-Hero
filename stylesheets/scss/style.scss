@@ -99,6 +99,7 @@ $main-color: black;
   position: relative;
   width: 100%;
   height: 100%;
+  pointer-events: none; // This is for not blocking mouse/touch events
 
   &.shake {
     -webkit-animation: shaking 0.3s infinite linear;
@@ -357,6 +358,7 @@ $main-color: black;
   opacity: 0;
   border-radius: 20px;
   z-index: 1001;
+  pointer-events: auto; // Overriding pointer-events from .hero
 
   &.in {
     -webkit-transform: translate(-50%, -50%);
