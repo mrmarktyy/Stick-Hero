@@ -71,7 +71,7 @@ $(function() {
     var HERO_INIT_LEFT;
     // [width, height, feet_bottom]
     var HEROS = [[18, 24, 5], [18, 24, 5], [20, 18, 14],
-      [18, 18, 7, 22, 11, 13], [18, 24, 10, 20, 28, 10, 20]];
+      [18, 18, 7, 22, 11, 13], [18, 24, 10, 20, 28, 10, 20], [18, 24, 10, 28, 15, 32, 5]];
     var STATES = {
       WELCOME: 0,
       PRE_BEGIN: 1,
@@ -167,6 +167,16 @@ $(function() {
           });
           $hero.find('.ribbon').css({
             'border-right-width': Math.floor(HEROS[i][6] * WIDTH_RATIO) + 'px'
+          });
+        }
+        if (heroIndex === 6) {
+          $hero.find('.top').css({
+            'width': Math.floor(HEROS[i][3] * WIDTH_RATIO) + 'px',
+            'height': Math.floor(HEROS[i][4] * WIDTH_RATIO) + 'px'
+          });
+          $hero.find('.top-front').css({
+            'width': Math.floor(HEROS[i][5] * WIDTH_RATIO) + 'px',
+            'height': Math.floor(HEROS[i][6] * WIDTH_RATIO) + 'px'
           });
         }
       }

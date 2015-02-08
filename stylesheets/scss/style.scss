@@ -8,6 +8,7 @@ $main-color: black;
 @import 'hero3';
 @import 'hero4';
 @import 'hero5';
+@import 'hero6';
 
 #game {
   position: relative;
@@ -358,7 +359,7 @@ $main-color: black;
   display: none;
   background: white;
   width: 210px;
-  height: 255px;
+  height: 315px;
   top: 50%;
   left: 50%;
   position: absolute;
@@ -402,12 +403,28 @@ $main-color: black;
     box-sizing: border-box;
     border-radius: 10px;
 
-    &.row {
+    &.combo {
       width: 100%;
-
       &.locked .price {
         width: 170px;
         font-size: 12px;
+      }
+    }
+
+    &.myth {
+      width: 100%;
+      &.locked .price {
+        width: 100%;
+        text-align: center;
+        font-size: 12px;
+        margin-left: 0;
+        -webkit-transform: translate3d(-10px, -5px, 0);
+                transform: translate3d(-10px, -5px, 0);
+      }
+      img {
+        float: none;
+        top: 5px;
+        position: relative;
       }
     }
 
