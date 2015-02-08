@@ -211,17 +211,18 @@ $main-color: black;
     cursor: pointer;
     color: white;
     background: rgba(0, 0, 0, 0.3);
-    padding: 5px 10px 10px 14px;
+    padding: 3px 10px 10px 12px;
     border-radius: 50%;
     width: 40px;
     height: 40px;
     box-sizing: border-box;
     font-weight: 900;
     font-size: 12px;
-    right: 20px;
+    right: 40px;
+    border: 2px solid rgb(61, 71, 82);
   }
   .btn-hero {
-    top: 75%;
+    top: 70%;
   }
   .btn-about {
     top: 80%;
