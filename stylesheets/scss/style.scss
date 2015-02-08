@@ -110,6 +110,12 @@ $main-color: black;
   }
 
   .foot {
+    -webkit-transform-origin: top center;
+            transform-origin: top center;
+    // -webkit-backface-visibility: hidden;
+            // backface-visibility: hidden;
+    // -webkit-animation-fill-mode: forwards;
+            // animation-fill-mode: forwards;
     &.left.walk {
       -webkit-animation: walk 0.4s infinite linear;
               animation: walk 0.4s infinite linear;
@@ -256,12 +262,13 @@ $main-color: black;
   display: none;
   position: absolute;
   right: 5px;
+  font-weight: bold;
 
   img {
     width: 20px;
     position: relative;
     top: 3px;
-    margin-left: 12px
+    margin-left: 7px;
   }
 }
 

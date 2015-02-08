@@ -35,7 +35,7 @@ $(function() {
   function Game(options) {
 
     this.options = options || {};
-    var VERSION = '1.0.2';
+    var VERSION = '1.0.3';
     var GAME_DEFAULT_WIDTH = 320;
     var GAME_DEFAULT_HEIGHT = 480;
     var GAME_WIDTH = this.options.width || GAME_DEFAULT_WIDTH;
@@ -478,10 +478,10 @@ $(function() {
       this.nextAfterAnimation(this.$hero, STATES.UPDATE);
 
       var self = this;
-      this.$feet.removeClass('walk').css('opacity', 0.99);
+      this.$feet.removeClass('walk').css('opacity', 0.9);
       setTimeout(function () {
         self.$feet.css('opacity', 1);
-      }, 100);
+      }, 0);
       this.$perfect.removeClass('in');
       this.$hero.css({
         'transform': 'translate3d(' + (BOX_BASE_WIDTH - HERO_WIDTH - GAP - STICK_WIDTH) + 'px, 0, 0)',
