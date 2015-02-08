@@ -83,7 +83,7 @@ $(function() {
       UPDATE: 7,
       DEAD: 8
     };
-    var LAST_STATE = Object.keys(STATES).length - 1;
+    var LAST_STATE = 8;
 
     this.init = function() {
       this.checkVersion();
