@@ -160,8 +160,8 @@
 .hero .ribbon-down { position: absolute; width: 0; height: 0; border-left: 6px solid transparent; border-right: 4px solid transparent; border-top-width: 3px; border-top-style: solid; left: -8px; top: 7px; -webkit-transform-origin: 10px 5px; transform-origin: 10px 5px; -webkit-animation: ribbondown 0.4s infinite ease; animation: ribbondown 0.4s infinite ease; }
 
 .welcome { display: none; }
-.welcome .game-name { position: absolute; top: 10%; width: 150px; left: 0; right: 0; margin: 0 auto; font-size: 64px; line-height: 1; -webkit-backface-visibility: hidden; backface-visibility: hidden; -webkit-transform-origin: top left; transform-origin: top left; -webkit-animation-fill-mode: forwards; animation-fill-mode: forwards; }
-.welcome .game-name.hinge { -webkit-animation: hinge 2s ease-in-out; animation: hinge 2s ease-in-out; }
+.welcome .game-title { position: absolute; top: 10%; width: 150px; left: 0; right: 0; margin: 0 auto; font-size: 64px; line-height: 1; -webkit-backface-visibility: hidden; backface-visibility: hidden; -webkit-transform-origin: top left; transform-origin: top left; -webkit-animation-fill-mode: forwards; animation-fill-mode: forwards; }
+.welcome .game-title.hinge { -webkit-animation: hinge 2s ease-in-out; animation: hinge 2s ease-in-out; }
 .welcome .btn-play { position: absolute; color: white; cursor: pointer; background: lightcoral; border-radius: 50%; width: 100px; height: 100px; text-align: center; left: 0; right: 0; margin: 0 auto; font-size: 20px; top: 40%; -webkit-animation: fly 2.5s infinite linear; animation: fly 2.5s infinite linear; }
 .welcome .btn-play > div { position: relative; top: 50%; -webkit-transform: translate(0, -50%); transform: translate(0, -50%); }
 .welcome .btn-side { position: absolute; cursor: pointer; color: white; background: rgba(0, 0, 0, 0.3); padding: 3px 10px 10px 12px; border-radius: 50%; width: 40px; height: 40px; box-sizing: border-box; font-weight: 900; font-size: 12px; right: 40px; border: 2px solid #3d4752; }

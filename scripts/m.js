@@ -108,12 +108,12 @@ $(function() {
         width: GAME_WIDTH + 'px',
         height: GAME_HEIGHT + 'px'
       });
-      this.$gamename = $('.game-name');
+      this.$gametitle = $('.game-title');
       this.$gameover = $('.game-over');
       this.$welcome = $('.welcome');
       this.$heropick = $('.heropick');
       this.$share = $('.share');
-      this.$liveScore = $('.live-score');
+      this.$livescore = $('.live-score');
       this.$watermelon = $('.watermelon');
       this.$instruction = $('.instruction');
       this.$about = $('.about');
@@ -187,7 +187,7 @@ $(function() {
       localStorage.setItem('hero', this.hero);
       $('#wx_pic img').attr('src', 'images/hero' + this.hero + '.png');
 
-      var HERO = HEROS[this.hero -1];
+      var HERO = HEROS[this.hero - 1];
       HERO_WIDTH = Math.round(HERO[0] * WIDTH_RATIO);
       HERO_HEIGHT = Math.round(HERO[1] * WIDTH_RATIO);
       HERO_HAT = HERO_WIDTH + 2;
@@ -208,8 +208,8 @@ $(function() {
     this.bindEvents = function() {
       var self = this;
       $('.btn-play').on(CLICK_EVENT, function() {
-        self.nextAfterAnimation(self.$gamename, STATES.PRE_BEGIN);
-        self.$gamename.addClass('hinge');
+        self.nextAfterAnimation(self.$gametitle, STATES.PRE_BEGIN);
+        self.$gametitle.addClass('hinge');
       });
       $('.btn-playagain').on(CLICK_EVENT, function() {
         self.reset();
@@ -281,8 +281,8 @@ $(function() {
       this.$game
         .removeClass('bounce bg1 bg2 bg3 bg4 bg5 bg6')
         .addClass('bg' + this._getRandom(1, 6));
-      this.$gamename.removeClass('hinge');
-      this.$liveScore.hide();
+      this.$gametitle.removeClass('hinge');
+      this.$livescore.hide();
       this.$gameover.hide();
       this.$welcome.hide();
       this.updateScore();
@@ -332,7 +332,7 @@ $(function() {
 
     this.welcome = function() {
       this.$gameover.hide();
-      this.$liveScore.hide();
+      this.$livescore.hide();
       this.$watermelon.hide();
       this.$heropick.show();
       this.$welcome.show();
@@ -343,7 +343,7 @@ $(function() {
       this.$gameover.hide();
       this.$copyright.hide();
       this.$heropick.hide();
-      this.$liveScore.show();
+      this.$livescore.show();
       this.$watermelon.show();
       this.$instruction.addClass('in');
 
@@ -550,6 +550,10 @@ $(function() {
       });
       this.$feet.removeClass('walk');
       this.$activeStick.addClass('died');
+
+      if (IS_WECHAT) {
+        this.$title.text(TITLE_DEFAULT + ':我一不小心就前进了' + this.score + '步，你敢挑战我吗？小伙伴们快来一起玩耍吧！');
+      }
     };
 
     this.update = function() {
@@ -570,15 +574,13 @@ $(function() {
     };
 
     this.dead = function() {
-      this.$liveScore.hide();
+      this.$livescore.hide();
       this.$gameover.show();
       this.$game.addClass('bounce');
       this.$hero.css({
-        'transition-duration': ''
+        'transition-duration': '',
+        '-webkit-transition-duration': ''
       });
-      if (IS_WECHAT) {
-        this.$title.text(TITLE_DEFAULT + ':我一不小心就前进了' + this.score + '步，你敢挑战我吗？小伙伴们快来一起玩耍吧！');
-      }
     };
 
     this.updateScore = function() {
@@ -589,7 +591,7 @@ $(function() {
 
       localStorage.setItem('total', this.total);
       this.$total.text(this.total);
-      this.$liveScore.text(this.score);
+      this.$livescore.text(this.score);
       this.$score.text(this.score);
       this.$best.text(this.best);
     };
