@@ -108,6 +108,7 @@ $(function() {
         width: GAME_WIDTH + 'px',
         height: GAME_HEIGHT + 'px'
       });
+      this.$ads = $('.ads');
       this.$gametitle = $('.game-title');
       this.$gameover = $('.game-over');
       this.$welcome = $('.welcome');
@@ -125,6 +126,7 @@ $(function() {
       this._currentState = STATES.WELCOME;
       this.total = parseInt(localStorage.getItem('total') || 0, 10);
       this.$total.text(this.total);
+      this.gameRound = 0;
 
       this.heroInit();
       this.switchHero(this.hero);
@@ -275,6 +277,8 @@ $(function() {
     this.reset = function() {
       this.score = 0;
       this.count = 0;
+      this.gameRound ++;
+      this.adf = false;
       this.best = localStorage.getItem('best') || 0;
       this.$title.text(TITLE_DEFAULT);
       this.$heroContainer = this.$hero.parent();
@@ -285,6 +289,7 @@ $(function() {
       this.$livescore.hide();
       this.$gameover.hide();
       this.$welcome.hide();
+      this.$ads.removeClass('adf');
       this.updateScore();
 
       $('.box, .stick').remove();
@@ -302,6 +307,10 @@ $(function() {
         '-webkit-transform': 'translate3d(' + (GAME_WIDTH - HERO_WIDTH) / 2 + 'px, 0, 0)'
       }).show();
       this.$game.append(this.$box1);
+
+      if (this._getRandom(1, 10) === 5) {
+        this.adf = true;
+      }
     };
 
     this.start = function() {
@@ -371,6 +380,10 @@ $(function() {
           '-webkit-transform': 'translate3d(' + -(GAME_WIDTH - self.BOX2.left) + 'px, 0, 0)'
         });
       }, 100);
+
+      if (this.adf && this.gameRound > 1) {
+        this.$ads.addClass('adf');
+      }
     };
 
     this.begin = function() {
@@ -552,7 +565,7 @@ $(function() {
       this.$activeStick.addClass('died');
 
       if (IS_WECHAT) {
-        this.$title.text(TITLE_DEFAULT + ':我一不小心就前进了' + this.score + '步，你敢挑战我吗？小伙伴们快来一起玩耍吧！');
+        this.$title.text(TITLE_DEFAULT + ':太厉害了，我一不小心就前进了' + this.score + '步。连续5次+1解锁隐藏英雄哦！！');
       }
     };
 

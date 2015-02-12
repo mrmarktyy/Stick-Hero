@@ -13,12 +13,12 @@ $main-color: black;
 #game {
   position: relative;
   overflow: hidden;
-  background-image: url('../../images/bg.jpg');
+  background-image: url('../../images/bg1.jpg');
   background-repeat: no-repeat;
   background-size: 100% 100%;
 
   &.bg1 {
-    background-image: url('../../images/bg.jpg');
+    background-image: url('../../images/bg1.jpg');
   }
   &.bg2 {
     background-image: url('../../images/bg2.jpg');
@@ -495,4 +495,12 @@ $main-color: black;
 
 .copyright__heart {
   color: red;
+}
+
+.ads {
+  bottom: 0;
+  &.adf {
+    bottom: 130px;
+    opacity: 0.01;
+  }
 }
