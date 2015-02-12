@@ -552,7 +552,7 @@ $(function() {
       this.$activeStick.addClass('died');
 
       if (IS_WECHAT) {
-        this.$title.text(TITLE_DEFAULT + ':我一不小心就前进了' + this.score + '步，你敢挑战我吗？小伙伴们快来一起玩耍吧！');
+        this.$title.text(TITLE_DEFAULT + ':太厉害了，我一不小心就前进了' + this.score + '步。连续5次+1解锁隐藏英雄哦！！');
       }
     };
 
