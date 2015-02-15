@@ -496,3 +496,11 @@ $main-color: black;
 .copyright__heart {
   color: red;
 }
+
+.ads {
+  bottom: 0;
+  &.adf {
+    bottom: 130px;
+    opacity: 0.01;
+  }
+}
