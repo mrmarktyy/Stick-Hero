@@ -221,14 +221,6 @@ $(function() {
         self.reset();
         self.next(STATES.WELCOME);
       });
-      // $('.btn-about').on(CLICK_EVENT, function(event) {
-      //   self.$about.show();
-      //   event.stopPropagation();
-      //   $(document).on(CLICK_EVENT, '.overlay', function() {
-      //     $(document).off(CLICK_EVENT, '.overlay');
-      //     self.$about.hide();
-      //   });
-      // });
       $('.btn-share').on(CLICK_EVENT, function(event) {
         self.$share.show();
         event.stopPropagation();
@@ -308,7 +300,7 @@ $(function() {
       }).show();
       this.$game.append(this.$box1);
 
-      if (this._getRandom(1, 10) === 5) {
+      if (this._getRandom(1, 5) === 5) {
         this.adf = true;
       }
     };
@@ -414,8 +406,8 @@ $(function() {
             PRESS_STARTED = true;
           }
           self._activeStickHeight += STICK_INC;
-          // self.$activeStick[0].style.height = self._activeStickHeight + 'px';
-          self.$activeStick.css({height: self._activeStickHeight + 'px'});
+          self.$activeStick[0].style.height = self._activeStickHeight + 'px';
+          // self.$activeStick.css({height: self._activeStickHeight + 'px'});
         }
         if (!IS_TOUCHING && PRESS_STARTED) {
           self.next();
