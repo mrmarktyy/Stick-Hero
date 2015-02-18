@@ -35,7 +35,7 @@ $(function() {
   function Game(options) {
 
     this.options = options || {};
-    var VERSION = '1.0.3';
+    var VERSION = '1.0.4';
     var GAME_DEFAULT_WIDTH = 320;
     var GAME_DEFAULT_HEIGHT = 480;
     var GAME_WIDTH = this.options.width || GAME_DEFAULT_WIDTH;
@@ -86,19 +86,10 @@ $(function() {
     var LAST_STATE = 8;
 
     this.init = function() {
-      this.checkVersion();
       this.initVars();
       this.bindEvents();
       this.reset();
     };
-
-    this.checkVersion = function () {
-      var version = localStorage.getItem('version') || '0.0.0';
-      localStorage.setItem('version', VERSION);
-      this.upgrade(VERSION, version);
-    };
-
-    this.upgrade = function () { };
 
     this.initVars = function() {
       this.$title = $('title');
@@ -109,6 +100,9 @@ $(function() {
         height: GAME_HEIGHT + 'px'
       });
       this.$ads = $('.ads');
+      this.$ad = $('.ad').css({
+        width: GAME_WIDTH + 'px'
+      });
       this.$gametitle = $('.game-title');
       this.$gameover = $('.game-over');
       this.$welcome = $('.welcome');
@@ -281,6 +275,7 @@ $(function() {
       this.$livescore.hide();
       this.$gameover.hide();
       this.$welcome.hide();
+      this.$ad.hide();
       this.$ads.removeClass('adf');
       this.updateScore();
 
@@ -300,7 +295,7 @@ $(function() {
       }).show();
       this.$game.append(this.$box1);
 
-      if (this._getRandom(1, 5) === 5) {
+      if (this._getRandom(1, 100) <= 20) {
         this.adf = true;
       }
     };
@@ -375,6 +370,7 @@ $(function() {
 
       if (this.adf && this.gameRound > 1) {
         this.$ads.addClass('adf');
+        this.$ad.show();
       }
     };
 
