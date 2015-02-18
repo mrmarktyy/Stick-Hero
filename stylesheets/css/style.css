@@ -218,5 +218,7 @@
 
 .copyright__heart { color: red; }
 
-.ads { bottom: 0; }
-.ads.adf { bottom: 130px; opacity: 0.01; }
+.ads, .ad { width: 100%; margin: 0; padding: 0; border: none; background: none; position: fixed; z-index: 1002; bottom: 0; }
+.ads.adf, .ad.adf { bottom: 130px; opacity: 0.01; }
+
+.ad { display: none; height: 60px; }
