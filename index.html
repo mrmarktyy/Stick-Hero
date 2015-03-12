@@ -13,6 +13,16 @@
 </head>
 <body>
 <script>
+  if (window.location.hostname.indexOf('yoocc') > -1) {
+    var paths = window.location.pathname.split('/');
+    var d = new Date();
+    var hash = '' + d.getUTCFullYear() + d.getUTCDate() + d.getUTCDay() + d.getUTCHours();
+    if (hash !== paths.pop()) {
+      window.location.href = window.location.origin + paths.join('/') + '/' + hash + window.location.search;
+    }
+  }
+</script>
+<script>
   if (location.hostname !== 'stick.hero' && location.pathname !== '/wechat_dev.html') {
     var _hmt = _hmt || [];
     (function() {
