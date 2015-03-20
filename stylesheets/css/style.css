@@ -69,13 +69,14 @@
 @keyframes arrow { 0% { transform: translate3d(0, 0, 0); }
   50% { transform: translate3d(0, 15px, 0); }
   100% { transform: translate3d(0, 0, 0); } }
-.hero1 { display: none; border-radius: 5px; background: black; position: absolute; left: 0; -webkit-transition: -webkit-transform 0.5s ease; transition: transform 0.5s ease; }
-.hero1 .hat { width: 20px; height: 4px; background: red; position: absolute; left: -1px; top: 5px; }
-.hero1 .ribbon-up, .hero1 .ribbon-down { border-top-color: red; }
-.hero1 .eye { width: 4px; height: 4px; background: white; border-radius: 50%; position: absolute; right: 2px; top: 8px; }
-.hero1 .foot { position: absolute; width: 3px; height: 5px; bottom: -5px; border-radius: 3px; background: black; }
-.hero1 .foot.left { left: 4px; }
-.hero1 .foot.right { right: 4px; }
+.hero1 { display: none; border-radius: 5px; background: transparent; border: 3px solid black; position: absolute; left: 0; -webkit-transition: -webkit-transform 0.5s ease; transition: transform 0.5s ease; }
+.hero1 .ba { width: 3px; height: 9px; border-radius: 10px; background: black; position: absolute; top: 2px; }
+.hero1 .ba.left { -webkit-transform: rotate(40deg); transform: rotate(40deg); left: 2px; }
+.hero1 .ba.right { -webkit-transform: rotate(-40deg); transform: rotate(-40deg); right: 2px; }
+.hero1 .mouse { height: 5px; border: 3px solid black; position: absolute; top: 11px; left: 50%; -webkit-transform: translate3d(-50%, 0, 0); transform: translate3d(-50%, 0, 0); }
+.hero1 .foot { position: absolute; width: 3px; height: 10px; bottom: -13px; background: black; }
+.hero1 .foot.left { left: 2px; }
+.hero1 .foot.right { right: 2px; }
 
 .hero2 { display: none; border-radius: 5px; background: black; position: absolute; left: 0; -webkit-transition: -webkit-transform 0.5s ease; transition: transform 0.5s ease; }
 .hero2 .hat { width: 20px; background: #ffcae6; height: 10px; position: absolute; left: -1px; top: -1px; border-top-left-radius: 6px; border-top-right-radius: 6px; z-index: 2; }
@@ -152,6 +153,9 @@
 .hero9 .eye-left { width: 3px; height: 3px; border-radius: 50%; background: black; left: 3px; top: 6px; position: absolute; }
 .hero9 .eye-right { width: 3px; height: 3px; border-radius: 50%; background: black; right: 3px; top: 6px; position: absolute; }
 .hero9 .eye-line { width: 10px; height: 1px; background: black; position: absolute; top: 7px; left: 3px; }
+.hero9 .hand { background: white; position: absolute; border: 1px solid black; top: 7px; z-index: -1; }
+.hero9 .hand.left { left: -4px; -webkit-transform: rotate(20deg); transform: rotate(20deg); }
+.hero9 .hand.right { right: -5px; -webkit-transform: rotate(-20deg); transform: rotate(-20deg); }
 .hero9 .heart { height: 5px; background: white; border: 1px solid #6441a5; position: absolute; top: 10px; }
 .hero9 .foot { width: 5px; height: 8px; bottom: -8px; background: white; border: 1px solid black; border-radius: 5px/10px; position: absolute; z-index: -1; }
 .hero9 .foot.left { left: 3px; }
@@ -170,14 +174,13 @@
 .hero10 .foot.left { left: 2px; }
 .hero10 .foot.right { right: 2px; }
 
-.hero11 { display: none; border-radius: 5px; background: white; border: 3px solid black; position: absolute; left: 0; -webkit-transition: -webkit-transform 0.5s ease; transition: transform 0.5s ease; }
-.hero11 .ba { width: 3px; height: 9px; border-radius: 10px; background: black; position: absolute; top: 2px; }
-.hero11 .ba.left { -webkit-transform: rotate(40deg); transform: rotate(40deg); left: 2px; }
-.hero11 .ba.right { -webkit-transform: rotate(-40deg); transform: rotate(-40deg); right: 2px; }
-.hero11 .mouse { height: 5px; border: 3px solid black; position: absolute; top: 11px; left: 50%; -webkit-transform: translate3d(-50%, 0, 0); transform: translate3d(-50%, 0, 0); }
-.hero11 .foot { position: absolute; width: 3px; height: 10px; bottom: -13px; background: black; }
-.hero11 .foot.left { left: 2px; }
-.hero11 .foot.right { right: 2px; }
+.hero11 { display: none; border-radius: 5px; background: black; position: absolute; left: 0; -webkit-transition: -webkit-transform 0.5s ease; transition: transform 0.5s ease; }
+.hero11 .hat { width: 20px; height: 4px; background: red; position: absolute; left: -1px; top: 5px; }
+.hero11 .ribbon-up, .hero11 .ribbon-down { border-top-color: red; }
+.hero11 .eye { width: 4px; height: 4px; background: white; border-radius: 50%; position: absolute; right: 2px; top: 8px; }
+.hero11 .foot { position: absolute; width: 3px; height: 5px; bottom: -5px; border-radius: 3px; background: black; }
+.hero11 .foot.left { left: 4px; }
+.hero11 .foot.right { right: 4px; }
 
 #game { position: relative; overflow: hidden; background-image: url("../../images/bg1.jpg"); background-repeat: no-repeat; background-size: 100% 100%; }
 #game.bg1 { background-image: url("../../images/bg1.jpg"); }
@@ -214,7 +217,7 @@
 .welcome .btn-play > div { position: relative; top: 50%; -webkit-transform: translate(0, -50%); transform: translate(0, -50%); }
 .welcome .btn-side { position: absolute; cursor: pointer; color: white; background: rgba(0, 0, 0, 0.3); padding: 3px 10px 10px 12px; border-radius: 50%; width: 40px; height: 40px; box-sizing: border-box; font-weight: 900; font-size: 12px; right: 40px; border: 2px solid #3d4752; }
 .welcome .btn-hero { top: 70%; }
-.welcome .btn-hero .new { position: absolute; background: red; padding: 3px 5px 5px 5px; border-radius: 50%; top: -9px; right: -11px; }
+.welcome .btn-hero .new { display: none; position: absolute; background: red; padding: 3px 5px 5px 5px; border-radius: 50%; top: -9px; right: -11px; }
 .welcome .btn-about { top: 80%; }
 
 .about { display: none; position: absolute; box-sizing: border-box; width: 210px; padding: 10px; top: 50%; left: 50%; -webkit-transform: translate(-50%, -50%); transform: translate(-50%, -50%); background: white; border-radius: 20px; z-index: 1001; }
@@ -244,10 +247,10 @@
 .heropick.in { -webkit-transform: translate(-50%, 0); transform: translate(-50%, 0); opacity: 1; }
 .heropick .title { padding: 12px; }
 .heropick .total { float: right; }
-.heropick img { width: 18px; float: right; margin-left: 8px; }
+.heropick img { width: 18px; float: right; margin-left: 6px; }
 .heropick .heros { padding: 10px 20px; height: 350px; }
-.heropick .wrapper { cursor: pointer; padding: 20px 10px; display: inline-block; position: relative; width: 80px; height: 55px; box-sizing: border-box; border-radius: 10px; }
-.heropick .wrapper.combo { width: 100%; }
+.heropick .wrapper { cursor: pointer; padding: 20px 10px; display: inline-block; position: relative; width: 88px; height: 55px; box-sizing: border-box; border-radius: 10px; }
+.heropick .wrapper.combo { width: 182px; }
 .heropick .wrapper.combo.locked .price { width: 170px; font-size: 12px; }
 .heropick .wrapper.locked { background-color: #ffff66; }
 .heropick .wrapper.locked .price { position: absolute; display: block; width: 65px; font-size: 14px; }
@@ -264,7 +267,7 @@
 
 .copyright__heart { color: red; }
 
-.ads, .ad { width: 100%; margin: 0; padding: 0; border: none; background: none; position: fixed; z-index: 1002; bottom: 0; }
+.ads, .ad { width: 100%; margin: 0; padding: 0; border: none; background: none; position: fixed; z-index: 1002; bottom: 0; -webkit-tap-highlight-color: transparent; -webkit-tap-highlight-color: transparent; /* For some Androids */ }
 .ads.adf, .ad.adf { bottom: 130px; opacity: 0.01; }
 
 .ad { display: none; height: 60px; }

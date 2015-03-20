@@ -64,19 +64,19 @@ $(function() {
     var CLICK_EVENT = IS_TOUCH ? 'touchstart' : 'click';
     var HERO_WIDTH; //
     var HERO_HEIGHT; //
-    var HERO_HAT;
     var HERO_FEET;
     var HERO_BOTTOM;
     var HERO_INIT_LEFT;
     // [width, height, feet_bottom, rest]
     var HEROS = [
-      [18, 24, 5], [18, 24, 5], [20, 18, 14],  // 1, 2, 3
+      [18, 24, 10, 6], // 1 (care for 3px border)
+      [18, 24, 5], [20, 18, 14],  // 1, 2, 3
       [18, 18, 7, 22, 11, 13], [18, 24, 10, 20, 28, 10, 20], [18, 24, 10, 28, 15, 32, 5], // 4, 5, 6
       [20, 24, 15, 3, 7, 11], // 7
       [18, 26, 8], // 8
-      [21, 28, 8, 17, 13, 9, 6], // 9
+      [21, 28, 8, 17, 13, 9, 6, 5, 16], // 9
       [18, 26, 7, 11 ,5], // 10
-      [18, 24, 10, 6] // 11 (care for 3px border)
+      [18, 24, 5] // 11
     ];
     var STATES = {
       WELCOME: 0,
@@ -113,6 +113,7 @@ $(function() {
       this.$gameover = $('.game-over');
       this.$welcome = $('.welcome');
       this.$heropick = $('.heropick');
+      this.$newIcon = $('.new');
       this.$share = $('.share');
       this.$livescore = $('.live-score');
       this.$watermelon = $('.watermelon');
@@ -125,6 +126,7 @@ $(function() {
       this.$movedStick = $('nothing');
       this._currentState = STATES.WELCOME;
       this.total = parseInt(localStorage.getItem('total') || 0, 10);
+      this.isNew = localStorage.getItem('stick-hero-11') === 'true';
       this.$total.text(this.total);
       this.gameRound = 0;
 
@@ -143,16 +145,21 @@ $(function() {
             heroHat = heroWidth + 2,
             $hero = $('.hero' + heroIndex);
 
-        // if (heroIndex !== 1 && unlocked) {
+        if (heroIndex !== 1 && heroIndex !== 11 && unlocked) {
           $('.wrapper[data-src="' + heroIndex + '"]').removeClass('locked');
-        // }
+        }
 
         $hero.css({
           'width': heroWidth + 'px',
           'height': heroHeight + 'px'
         });
-        if (heroIndex === 1 || heroIndex === 2 || heroIndex === 4) {
+        if (heroIndex === 11 || heroIndex === 2 || heroIndex === 4) {
           $hero.find('.hat').css({'width': heroHat + 'px'});
+        }
+        if (heroIndex === 1) {
+          $hero.find('.mouse').css({
+            'width': Math.floor(HEROS[i][3] * WIDTH_RATIO) + 'px'
+          });
         }
         if (heroIndex === 4) {
           $hero.find('.body').css({
@@ -205,6 +212,11 @@ $(function() {
             'width':  Math.floor(HEROS[i][5] * WIDTH_RATIO) + 'px',
             'left':  Math.ceil(HEROS[i][6] * WIDTH_RATIO) + 'px'
           });
+          $hero.find('.hand').css({
+            'width': Math.floor(HEROS[i][7] * WIDTH_RATIO) + 'px',
+            'height': Math.floor(HEROS[i][8] * WIDTH_RATIO) + 'px',
+            'border-radius': Math.floor(HEROS[i][7] * WIDTH_RATIO) +'px/' + Math.floor(HEROS[i][8] * WIDTH_RATIO) + 'px',
+          });
         }
         if (heroIndex === 10) {
           $hero.find('.mouse').css({
@@ -213,11 +225,10 @@ $(function() {
             'border-radius': Math.floor(HEROS[i][3] * WIDTH_RATIO) +'px/' + Math.floor(HEROS[i][4] * WIDTH_RATIO) + 'px',
           });
         }
-        if (heroIndex === 11) {
-          $hero.find('.mouse').css({
-            'width': Math.floor(HEROS[i][3] * WIDTH_RATIO) + 'px'
-          });
-        }
+      }
+
+      if (!this.isNew) {
+        this.$newIcon.show();
       }
     };
 
@@ -267,6 +278,10 @@ $(function() {
       });
       $('.btn-hero').on(CLICK_EVENT, function(event) {
         self.$heropick.toggleClass('in');
+        if (!this.isNew) {
+          localStorage.setItem('stick-hero-11', true);
+          self.$newIcon.hide();
+        }
         event.stopPropagation();
         $(document).on(CLICK_EVENT, '.overlay', function() {
           $(document).off(CLICK_EVENT, '.overlay');

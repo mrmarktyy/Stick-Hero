@@ -228,6 +228,7 @@ $main-color: black;
   .btn-hero {
     top: 70%;
     .new {
+      display: none;
       position: absolute;
       background: red;
       padding: 3px 5px 5px 5px;
@@ -398,7 +399,7 @@ $main-color: black;
   img {
     width: 18px;
     float: right;
-    margin-left: 8px;
+    margin-left: 6px;
   }
   .heros {
     padding: 10px 20px;
@@ -410,15 +411,13 @@ $main-color: black;
     padding: 20px 10px;
     display: inline-block;
     position: relative;
-    width: 80px;
+    width: 88px;
     height: 55px;
-    // height: 60px;
-    // padding: 22px 10px;
     box-sizing: border-box;
     border-radius: 10px;
 
     &.combo {
-      width: 100%;
+      width: 182px;
       &.locked .price {
         width: 170px;
         font-size: 12px;
@@ -506,6 +505,8 @@ $main-color: black;
   position: fixed;
   z-index: 1002;
   bottom: 0;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-tap-highlight-color: transparent; /* For some Androids */
   &.adf {
     bottom: 130px;
     opacity: 0.01;

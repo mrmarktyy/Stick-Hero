@@ -51,6 +51,26 @@
     top: 7px;
     left: 3px;
   }
+  .hand {
+    // width: 5px;
+    // height: 16px;
+    // border-radius: 5px/16px;
+    background: white;
+    position: absolute;
+    border: 1px solid black;
+    top: 7px;
+    z-index: -1;
+    &.left {
+      left: -4px;
+      -webkit-transform: rotate(20deg);
+              transform: rotate(20deg);
+    }
+    &.right {
+      right: -5px;
+      -webkit-transform: rotate(-20deg);
+              transform: rotate(-20deg);
+    }
+  }
   .heart {
     // width: 9px;
     // left: 6px;
