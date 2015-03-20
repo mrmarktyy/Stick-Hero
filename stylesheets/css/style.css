@@ -69,7 +69,7 @@
 @keyframes arrow { 0% { transform: translate3d(0, 0, 0); }
   50% { transform: translate3d(0, 15px, 0); }
   100% { transform: translate3d(0, 0, 0); } }
-.hero1 { display: none; border-radius: 5px; background: transparent; border: 3px solid black; position: absolute; left: 0; -webkit-transition: -webkit-transform 0.5s ease; transition: transform 0.5s ease; }
+.hero1 { display: none; border-radius: 5px; background: white; border: 3px solid black; position: absolute; left: 0; -webkit-transition: -webkit-transform 0.5s ease; transition: transform 0.5s ease; }
 .hero1 .ba { width: 3px; height: 9px; border-radius: 10px; background: black; position: absolute; top: 2px; }
 .hero1 .ba.left { -webkit-transform: rotate(40deg); transform: rotate(40deg); left: 2px; }
 .hero1 .ba.right { -webkit-transform: rotate(-40deg); transform: rotate(-40deg); right: 2px; }
