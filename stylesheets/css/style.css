@@ -246,8 +246,9 @@
 .heropick { display: none; background: white; width: 225px; height: auto; top: 5%; left: 50%; position: absolute; -webkit-transform: translate(-50%, 250%); transform: translate(-50%, 250%); -webkit-transition: -webkit-transform 0.5s ease, opacity 0.5s; transition: transform 0.5s ease, opacity 0.5s; opacity: 0; border-radius: 20px; z-index: 1001; pointer-events: auto; }
 .heropick.in { -webkit-transform: translate(-50%, 0); transform: translate(-50%, 0); opacity: 1; }
 .heropick .title { padding: 12px; }
+.heropick .title img { margin-left: 6px; }
 .heropick .total { float: right; }
-.heropick img { width: 18px; float: right; margin-left: 6px; }
+.heropick img { width: 18px; float: right; }
 .heropick .heros { padding: 10px 20px; height: 350px; }
 .heropick .wrapper { cursor: pointer; padding: 20px 10px; display: inline-block; position: relative; width: 88px; height: 55px; box-sizing: border-box; border-radius: 10px; }
 .heropick .wrapper.combo { width: 182px; }

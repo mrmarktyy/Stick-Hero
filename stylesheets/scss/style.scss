@@ -392,6 +392,9 @@ $main-color: black;
 
   .title {
     padding: 12px;
+    img {
+      margin-left: 6px;
+    }
   }
   .total {
     float: right;
@@ -399,7 +402,6 @@ $main-color: black;
   img {
     width: 18px;
     float: right;
-    margin-left: 6px;
   }
   .heros {
     padding: 10px 20px;
