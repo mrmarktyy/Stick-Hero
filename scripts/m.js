@@ -234,7 +234,7 @@ $(function() {
     this.switchHero = function (hero) {
       this.hero = parseInt(hero, 10) || this.hero;
       localStorage.setItem('hero', this.hero);
-      $('#wx_pic img').attr('src', 'images/hero' + this.hero + '.png');
+      $('#wx_pic img').attr('src', 'images/hero' + this.hero + '.png?1');
 
       var HERO = HEROS[this.hero - 1];
       HERO_WIDTH = Math.round(HERO[0] * WIDTH_RATIO);
