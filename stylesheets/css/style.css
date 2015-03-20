@@ -153,11 +153,11 @@
 .hero9 .eye-left { width: 3px; height: 3px; border-radius: 50%; background: black; left: 3px; top: 6px; position: absolute; }
 .hero9 .eye-right { width: 3px; height: 3px; border-radius: 50%; background: black; right: 3px; top: 6px; position: absolute; }
 .hero9 .eye-line { width: 10px; height: 1px; background: black; position: absolute; top: 7px; left: 3px; }
-.hero9 .hand { background: white; position: absolute; border: 1px solid black; top: 7px; z-index: -1; }
+.hero9 .hand { border-radius: 5px/10px; background: white; position: absolute; border: 1px solid black; top: 7px; z-index: -1; }
 .hero9 .hand.left { left: -4px; -webkit-transform: rotate(20deg); transform: rotate(20deg); }
-.hero9 .hand.right { right: -5px; -webkit-transform: rotate(-20deg); transform: rotate(-20deg); }
+.hero9 .hand.right { right: -6px; -webkit-transform: rotate(-20deg); transform: rotate(-20deg); }
 .hero9 .heart { height: 5px; background: white; border: 1px solid #6441a5; position: absolute; top: 10px; }
-.hero9 .foot { width: 5px; height: 8px; bottom: -8px; background: white; border: 1px solid black; border-radius: 5px/10px; position: absolute; z-index: -1; }
+.hero9 .foot { width: 5px; height: 8px; bottom: -8px; background: white; border: 1px solid black; border-radius: 5px/8px; position: absolute; z-index: -1; }
 .hero9 .foot.left { left: 3px; }
 .hero9 .foot.right { right: 1px; }
 

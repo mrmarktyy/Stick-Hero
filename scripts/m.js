@@ -214,8 +214,7 @@ $(function() {
           });
           $hero.find('.hand').css({
             'width': Math.floor(HEROS[i][7] * WIDTH_RATIO) + 'px',
-            'height': Math.floor(HEROS[i][8] * WIDTH_RATIO) + 'px',
-            'border-radius': Math.floor(HEROS[i][7] * WIDTH_RATIO) +'px/' + Math.floor(HEROS[i][8] * WIDTH_RATIO) + 'px',
+            'height': Math.floor(HEROS[i][8] * WIDTH_RATIO) + 'px'
           });
         }
         if (heroIndex === 10) {
