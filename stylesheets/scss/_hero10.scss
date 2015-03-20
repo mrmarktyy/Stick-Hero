@@ -1,0 +1,95 @@
+.hero10 {
+  display: none;
+  // width: 18px; [width]
+  // height: 26px; [height]
+  border-radius: 5px;
+  background: #fe7a15;
+  position: absolute;
+
+  left: 0;
+  -webkit-transition: -webkit-transform 0.5s ease;
+          transition: transform 0.5s ease;
+
+  .leaf {
+    width: 0;
+    height: 0;
+    border-left: 3px solid transparent;
+    border-right: 3px solid transparent;
+    border-top: 8px solid #00ff00;
+    position: absolute;
+    top: -6px;
+    &.left {
+      -webkit-transform: rotate(-50deg);
+              transform: rotate(-50deg);
+      left :1px;
+    }
+    &.right {
+      -webkit-transform: rotate(50deg);
+              transform: rotate(50deg);
+      right :1px;
+    }
+  }
+  .ball1 {
+    width: 8px;
+    height: 8px;
+    background: #ffe100;
+    border-radius: 50%;
+    position: absolute;
+    top: -8px;
+    left: 50%;
+    -webkit-transform: translate3d(-50%, 0, 0);
+            transform: translate3d(-50%, 0, 0);
+  }
+  .ball2 {
+    width: 5px;
+    height: 5px;
+    background: #ffe100;
+    border-radius: 50%;
+    position: absolute;
+    top: -13px;
+    left: 50%;
+    -webkit-transform: translate3d(-50%, 0, 0);
+            transform: translate3d(-50%, 0, 0);
+  }
+  .eye {
+    width: 8px;
+    height: 9px;
+    background: white;
+    border-radius: 50%;
+    position: absolute;
+    right: 2px;
+    top: 5px;
+  }
+  .eyeball {
+    position: absolute;
+    background: black;
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    right: 1px;
+    top: 3px;
+  }
+  .mouse {
+    // width: 11px;
+    // height: 5px;
+    // border-radius: 11px/5px;
+    background: #ffdd00;
+    position: absolute;
+    right: 0;
+    bottom: 4px;
+  }
+  .foot {
+    position: absolute;
+    width: 3px;
+    height: 7px;
+    bottom: -7px; // [feet_bottom]
+    border-radius: 3px;
+    background: #fe7a15;
+    &.left {
+      left: 2px;
+    }
+    &.right {
+      right: 2px;
+    }
+  }
+}

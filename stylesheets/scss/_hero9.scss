@@ -1,0 +1,79 @@
+.hero9 {
+  display: none;
+  // width: 21px; [width]
+  // height: 28px; [height]
+  position: absolute;
+
+  left: 0;
+  -webkit-transition: -webkit-transform 0.5s ease;
+          transition: transform 0.5s ease;
+
+  .body {
+    // width: 21px;
+    // height: 28px;
+    // border-radius: 21px/28px;
+    border: 1px solid black;
+    background: white;
+  }
+  .head {
+    position: absolute;
+    // width: 17px;
+    // height: 13px;
+    // border-radius: 17px/13px;
+    border: 1px solid black;
+    background: white;
+    top: -9px;
+    left: 3px;
+  }
+  .eye-left {
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: black;
+    left: 3px;
+    top: 6px;
+    position: absolute;
+  }
+  .eye-right {
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: black;
+    right: 3px;
+    top: 6px;
+    position: absolute;
+  }
+  .eye-line {
+    width: 10px;
+    height: 1px;
+    background: black;
+    position: absolute;
+    top: 7px;
+    left: 3px;
+  }
+  .heart {
+    // width: 9px;
+    // left: 6px;
+    height: 5px;
+    background: white;
+    border: 1px solid #6441a5;
+    position: absolute;
+    top: 10px;
+  }
+  .foot {
+    width: 5px;
+    height: 8px;
+    bottom: -8px; // [feet_bottom]
+    background: white;
+    border: 1px solid black;
+    border-radius: 5px/10px;
+    position: absolute;
+    z-index: -1;
+    &.left {
+      left: 3px;
+    }
+    &.right {
+      right: 1px;
+    }
+  }
+}

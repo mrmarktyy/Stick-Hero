@@ -35,7 +35,6 @@ $(function() {
   function Game(options) {
 
     this.options = options || {};
-    var VERSION = '1.0.4';
     var GAME_DEFAULT_WIDTH = 320;
     var GAME_DEFAULT_HEIGHT = 480;
     var GAME_WIDTH = this.options.width || GAME_DEFAULT_WIDTH;
@@ -69,9 +68,16 @@ $(function() {
     var HERO_FEET;
     var HERO_BOTTOM;
     var HERO_INIT_LEFT;
-    // [width, height, feet_bottom]
-    var HEROS = [[18, 24, 5], [18, 24, 5], [20, 18, 14],
-      [18, 18, 7, 22, 11, 13], [18, 24, 10, 20, 28, 10, 20], [18, 24, 10, 28, 15, 32, 5]];
+    // [width, height, feet_bottom, rest]
+    var HEROS = [
+      [18, 24, 5], [18, 24, 5], [20, 18, 14],  // 1, 2, 3
+      [18, 18, 7, 22, 11, 13], [18, 24, 10, 20, 28, 10, 20], [18, 24, 10, 28, 15, 32, 5], // 4, 5, 6
+      [20, 24, 15, 3, 7, 11], // 7
+      [18, 26, 8], // 8
+      [21, 28, 8, 17, 13, 9, 6], // 9
+      [18, 26, 7, 11 ,5], // 10
+      [18, 24, 10, 6] // 11 (care for 3px border)
+    ];
     var STATES = {
       WELCOME: 0,
       PRE_BEGIN: 1,
@@ -134,17 +140,20 @@ $(function() {
             unlocked = localStorage.getItem('hero' + heroIndex) === 'true',
             heroWidth = Math.round(HEROS[i][0] * WIDTH_RATIO),
             heroHeight = Math.round(HEROS[i][1] * WIDTH_RATIO),
-            heroHat = heroWidth + 2;
+            heroHat = heroWidth + 2,
+            $hero = $('.hero' + heroIndex);
 
-        if (heroIndex !== 1 && unlocked) {
+        // if (heroIndex !== 1 && unlocked) {
           $('.wrapper[data-src="' + heroIndex + '"]').removeClass('locked');
-        }
-        var $hero = $('.hero' + heroIndex);
+        // }
+
         $hero.css({
           'width': heroWidth + 'px',
           'height': heroHeight + 'px'
         });
-        $hero.find('.hat').css({'width': heroHat + 'px'});
+        if (heroIndex === 1 || heroIndex === 2 || heroIndex === 4) {
+          $hero.find('.hat').css({'width': heroHat + 'px'});
+        }
         if (heroIndex === 4) {
           $hero.find('.body').css({
             'width': Math.floor(HEROS[i][3] * WIDTH_RATIO) + 'px',
@@ -175,6 +184,40 @@ $(function() {
             'height': Math.floor(HEROS[i][6] * WIDTH_RATIO) + 'px'
           });
         }
+        if (heroIndex === 7) {
+          $hero.find('.hat1').css({'left': Math.floor(HEROS[i][3] * WIDTH_RATIO) + 'px'});
+          $hero.find('.hat2').css({'left': Math.floor(HEROS[i][4] * WIDTH_RATIO) + 'px'});
+          $hero.find('.hat3').css({'left': Math.floor(HEROS[i][5] * WIDTH_RATIO) + 'px'});
+        }
+        if (heroIndex === 8) { }
+        if (heroIndex === 9) {
+          $hero.find('.body').css({
+            'width': heroWidth + 'px',
+            'height': heroHeight + 'px',
+            'border-radius': heroWidth +'px/' + heroHeight + 'px'
+          });
+          $hero.find('.head').css({
+            'width': Math.floor(HEROS[i][3] * WIDTH_RATIO) + 'px',
+            'height': Math.floor(HEROS[i][4] * WIDTH_RATIO) + 'px',
+            'border-radius': Math.floor(HEROS[i][3] * WIDTH_RATIO) +'px/' + Math.floor(HEROS[i][4] * WIDTH_RATIO) + 'px',
+          });
+          $hero.find('.heart').css({
+            'width':  Math.floor(HEROS[i][5] * WIDTH_RATIO) + 'px',
+            'left':  Math.ceil(HEROS[i][6] * WIDTH_RATIO) + 'px'
+          });
+        }
+        if (heroIndex === 10) {
+          $hero.find('.mouse').css({
+            'width': Math.floor(HEROS[i][3] * WIDTH_RATIO) + 'px',
+            'height': Math.floor(HEROS[i][4] * WIDTH_RATIO) + 'px',
+            'border-radius': Math.floor(HEROS[i][3] * WIDTH_RATIO) +'px/' + Math.floor(HEROS[i][4] * WIDTH_RATIO) + 'px',
+          });
+        }
+        if (heroIndex === 11) {
+          $hero.find('.mouse').css({
+            'width': Math.floor(HEROS[i][3] * WIDTH_RATIO) + 'px'
+          });
+        }
       }
     };
 
@@ -186,7 +229,6 @@ $(function() {
       var HERO = HEROS[this.hero - 1];
       HERO_WIDTH = Math.round(HERO[0] * WIDTH_RATIO);
       HERO_HEIGHT = Math.round(HERO[1] * WIDTH_RATIO);
-      HERO_HAT = HERO_WIDTH + 2;
       HERO_FEET = HERO[2];
       HERO_BOTTOM = BOX_HEIGHT + HERO_FEET;
       HERO_INIT_LEFT = BOX_BASE_WIDTH - HERO_WIDTH - GAP - STICK_WIDTH;

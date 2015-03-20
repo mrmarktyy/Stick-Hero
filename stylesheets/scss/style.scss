@@ -9,6 +9,11 @@ $main-color: black;
 @import 'hero4';
 @import 'hero5';
 @import 'hero6';
+@import 'hero7';
+@import 'hero8';
+@import 'hero9';
+@import 'hero10';
+@import 'hero11';
 
 #game {
   position: relative;
@@ -222,6 +227,14 @@ $main-color: black;
   }
   .btn-hero {
     top: 70%;
+    .new {
+      position: absolute;
+      background: red;
+      padding: 3px 5px 5px 5px;
+      border-radius: 50%;
+      top: -9px;
+      right: -11px;
+    }
   }
   .btn-about {
     top: 80%;
@@ -356,9 +369,9 @@ $main-color: black;
 .heropick {
   display: none;
   background: white;
-  width: 210px;
+  width: 225px;
   height: auto;
-  top: 50%;
+  top: 10%;
   left: 50%;
   position: absolute;
   -webkit-transform: translate(-50%, 250%);
@@ -371,8 +384,8 @@ $main-color: black;
   pointer-events: auto; // Overriding pointer-events from .hero
 
   &.in {
-    -webkit-transform: translate(-50%, -50%);
-            transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, 0);
+            transform: translate(-50%, 0);
     opacity: 1;
   }
 
@@ -389,15 +402,18 @@ $main-color: black;
   }
   .heros {
     padding: 10px 20px;
+    height: 350px;
   }
 
   .wrapper {
     cursor: pointer;
-    padding: 22px 10px;
+    padding: 20px 10px;
     display: inline-block;
     position: relative;
     width: 80px;
-    height: 60px;
+    height: 55px;
+    // height: 60px;
+    // padding: 22px 10px;
     box-sizing: border-box;
     border-radius: 10px;
 
@@ -406,23 +422,6 @@ $main-color: black;
       &.locked .price {
         width: 170px;
         font-size: 12px;
-      }
-    }
-
-    &.myth {
-      width: 100%;
-      &.locked .price {
-        width: 100%;
-        text-align: center;
-        font-size: 12px;
-        margin-left: 0;
-        -webkit-transform: translate3d(-10px, -5px, 0);
-                transform: translate3d(-10px, -5px, 0);
-      }
-      img {
-        float: none;
-        top: 5px;
-        position: relative;
       }
     }
 

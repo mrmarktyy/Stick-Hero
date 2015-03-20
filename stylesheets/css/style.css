@@ -80,16 +80,13 @@
 .hero2 { display: none; border-radius: 5px; background: black; position: absolute; left: 0; -webkit-transition: -webkit-transform 0.5s ease; transition: transform 0.5s ease; }
 .hero2 .hat { width: 20px; background: #ffcae6; height: 10px; position: absolute; left: -1px; top: -1px; border-top-left-radius: 6px; border-top-right-radius: 6px; z-index: 2; }
 .hero2 .eye { width: 4px; height: 4px; background: white; border-radius: 50%; position: absolute; right: 2px; top: 8px; }
+.hero2 .ear-left { background: #ff97c8; width: 8px; height: 20px; z-index: 1; top: -12px; left: 6px; position: absolute; border-radius: 100%; -webkit-transform: rotate(-20deg); transform: rotate(-20deg); }
+.hero2 .ear-right { background: #ff97c8; width: 8px; height: 20px; z-index: 3; top: -13px; left: -6px; position: absolute; border-radius: 100%; -webkit-transform: rotate(-40deg); transform: rotate(-40deg); }
+.hero2 .nose { background: black; position: absolute; width: 5px; height: 5px; border-radius: 50%; right: -4px; top: 10px; }
 .hero2 .hand { background: black; position: absolute; border-radius: 10px; width: 3px; height: 12px; top: 10px; left: 0; -webkit-transform: rotate(30deg); transform: rotate(30deg); }
 .hero2 .foot { position: absolute; width: 3px; height: 5px; bottom: -5px; border-radius: 3px; background: black; }
 .hero2 .foot.left { left: 4px; }
 .hero2 .foot.right { right: 4px; }
-
-.ear-left { background: #ff97c8; width: 8px; height: 20px; z-index: 1; top: -12px; left: 6px; position: absolute; border-radius: 100%; -webkit-transform: rotate(-20deg); transform: rotate(-20deg); }
-
-.ear-right { background: #ff97c8; width: 8px; height: 20px; z-index: 3; top: -13px; left: -6px; position: absolute; border-radius: 100%; -webkit-transform: rotate(-40deg); transform: rotate(-40deg); }
-
-.nose { background: black; position: absolute; width: 5px; height: 5px; border-radius: 50%; right: -4px; top: 10px; }
 
 .hero3 { display: none; border-radius: 10px; background: black; position: absolute; left: 0; -webkit-transition: -webkit-transform 0.5s ease; transition: transform 0.5s ease; }
 .hero3 .hat-up { position: absolute; background: #843cc3; width: 18px; height: 5px; border-radius: 50%; top: -3px; left: 1px; }
@@ -131,6 +128,57 @@
 .hero6 .foot.left { left: 4px; }
 .hero6 .foot.right { right: 4px; }
 
+.hero7 { display: none; border-radius: 5px; background: #004b79; position: absolute; left: 0; -webkit-transition: -webkit-transform 0.5s ease; transition: transform 0.5s ease; }
+.hero7 .hat { width: 0; height: 0; border-left: 3px solid transparent; border-right: 3px solid transparent; border-bottom: 12px solid #fb0a2a; position: absolute; top: -11px; }
+.hero7 .eye { width: 7px; height: 6px; background: white; border-radius: 50%; position: absolute; right: 2px; top: 8px; }
+.hero7 .eyeball { position: absolute; background: black; width: 3px; height: 3px; border-radius: 50%; right: 1px; top: 1px; }
+.hero7 .nose { width: 0; height: 0; border-top: 4px solid transparent; border-bottom: 4px solid transparent; border-left: 6px solid #ffd900; position: absolute; right: -6px; top: 9px; }
+.hero7 .foot { position: absolute; width: 2px; height: 15px; bottom: -15px; border-radius: 3px; background: #004b79; }
+.hero7 .foot.left { left: 4px; }
+.hero7 .foot.right { right: 4px; }
+
+.hero8 { display: none; border-radius: 5px; background: black; position: absolute; left: 0; -webkit-transition: -webkit-transform 0.5s ease; transition: transform 0.5s ease; }
+.hero8 .hat { width: 0; height: 0; border-left: 14px solid transparent; border-right: 14px solid transparent; border-bottom: 14px solid #68217a; position: absolute; top: -11px; left: -4px; }
+.hero8 .eye { width: 5px; height: 5px; border-radius: 50%; background: white; position: absolute; right: 3px; top: 6px; }
+.hero8 .mouse { width: 7px; height: 3px; background: white; border-radius: 4px; -webkit-transform: rotate(10deg); transform: rotate(10deg); position: absolute; right: 0; top: 20px; }
+.hero8 .sword { width: 12px; height: 4px; background: #21759b; border-radius: 5px; -webkit-transform: rotate(20deg); transform: rotate(20deg); position: absolute; top: 12px; left: -10px; z-index: -1; }
+.hero8 .foot { position: absolute; width: 5px; height: 9px; bottom: -8px; border-radius: 3px; background: black; }
+.hero8 .foot.left { left: 2px; }
+.hero8 .foot.right { right: 2px; }
+
+.hero9 { display: none; position: absolute; left: 0; -webkit-transition: -webkit-transform 0.5s ease; transition: transform 0.5s ease; }
+.hero9 .body { border: 1px solid black; background: white; }
+.hero9 .head { position: absolute; border: 1px solid black; background: white; top: -9px; left: 3px; }
+.hero9 .eye-left { width: 3px; height: 3px; border-radius: 50%; background: black; left: 3px; top: 6px; position: absolute; }
+.hero9 .eye-right { width: 3px; height: 3px; border-radius: 50%; background: black; right: 3px; top: 6px; position: absolute; }
+.hero9 .eye-line { width: 10px; height: 1px; background: black; position: absolute; top: 7px; left: 3px; }
+.hero9 .heart { height: 5px; background: white; border: 1px solid #6441a5; position: absolute; top: 10px; }
+.hero9 .foot { width: 5px; height: 8px; bottom: -8px; background: white; border: 1px solid black; border-radius: 5px/10px; position: absolute; z-index: -1; }
+.hero9 .foot.left { left: 3px; }
+.hero9 .foot.right { right: 1px; }
+
+.hero10 { display: none; border-radius: 5px; background: #fe7a15; position: absolute; left: 0; -webkit-transition: -webkit-transform 0.5s ease; transition: transform 0.5s ease; }
+.hero10 .leaf { width: 0; height: 0; border-left: 3px solid transparent; border-right: 3px solid transparent; border-top: 8px solid #00ff00; position: absolute; top: -6px; }
+.hero10 .leaf.left { -webkit-transform: rotate(-50deg); transform: rotate(-50deg); left: 1px; }
+.hero10 .leaf.right { -webkit-transform: rotate(50deg); transform: rotate(50deg); right: 1px; }
+.hero10 .ball1 { width: 8px; height: 8px; background: #ffe100; border-radius: 50%; position: absolute; top: -8px; left: 50%; -webkit-transform: translate3d(-50%, 0, 0); transform: translate3d(-50%, 0, 0); }
+.hero10 .ball2 { width: 5px; height: 5px; background: #ffe100; border-radius: 50%; position: absolute; top: -13px; left: 50%; -webkit-transform: translate3d(-50%, 0, 0); transform: translate3d(-50%, 0, 0); }
+.hero10 .eye { width: 8px; height: 9px; background: white; border-radius: 50%; position: absolute; right: 2px; top: 5px; }
+.hero10 .eyeball { position: absolute; background: black; width: 3px; height: 3px; border-radius: 50%; right: 1px; top: 3px; }
+.hero10 .mouse { background: #ffdd00; position: absolute; right: 0; bottom: 4px; }
+.hero10 .foot { position: absolute; width: 3px; height: 7px; bottom: -7px; border-radius: 3px; background: #fe7a15; }
+.hero10 .foot.left { left: 2px; }
+.hero10 .foot.right { right: 2px; }
+
+.hero11 { display: none; border-radius: 5px; background: white; border: 3px solid black; position: absolute; left: 0; -webkit-transition: -webkit-transform 0.5s ease; transition: transform 0.5s ease; }
+.hero11 .ba { width: 3px; height: 9px; border-radius: 10px; background: black; position: absolute; top: 2px; }
+.hero11 .ba.left { -webkit-transform: rotate(40deg); transform: rotate(40deg); left: 2px; }
+.hero11 .ba.right { -webkit-transform: rotate(-40deg); transform: rotate(-40deg); right: 2px; }
+.hero11 .mouse { height: 5px; border: 3px solid black; position: absolute; top: 11px; left: 50%; -webkit-transform: translate3d(-50%, 0, 0); transform: translate3d(-50%, 0, 0); }
+.hero11 .foot { position: absolute; width: 3px; height: 10px; bottom: -13px; background: black; }
+.hero11 .foot.left { left: 2px; }
+.hero11 .foot.right { right: 2px; }
+
 #game { position: relative; overflow: hidden; background-image: url("../../images/bg1.jpg"); background-repeat: no-repeat; background-size: 100% 100%; }
 #game.bg1 { background-image: url("../../images/bg1.jpg"); }
 #game.bg2 { background-image: url("../../images/bg2.jpg"); }
@@ -166,6 +214,7 @@
 .welcome .btn-play > div { position: relative; top: 50%; -webkit-transform: translate(0, -50%); transform: translate(0, -50%); }
 .welcome .btn-side { position: absolute; cursor: pointer; color: white; background: rgba(0, 0, 0, 0.3); padding: 3px 10px 10px 12px; border-radius: 50%; width: 40px; height: 40px; box-sizing: border-box; font-weight: 900; font-size: 12px; right: 40px; border: 2px solid #3d4752; }
 .welcome .btn-hero { top: 70%; }
+.welcome .btn-hero .new { position: absolute; background: red; padding: 3px 5px 5px 5px; border-radius: 50%; top: -9px; right: -11px; }
 .welcome .btn-about { top: 80%; }
 
 .about { display: none; position: absolute; box-sizing: border-box; width: 210px; padding: 10px; top: 50%; left: 50%; -webkit-transform: translate(-50%, -50%); transform: translate(-50%, -50%); background: white; border-radius: 20px; z-index: 1001; }
@@ -191,18 +240,15 @@
 .game-over .actions { position: absolute; top: 45%; color: white; left: 0; right: 0; text-align: center; }
 .game-over .actions .btn { cursor: pointer; background: lightcoral; padding: 10px; border-radius: 10px; margin: 5px auto; width: 100px; }
 
-.heropick { display: none; background: white; width: 210px; height: auto; top: 50%; left: 50%; position: absolute; -webkit-transform: translate(-50%, 250%); transform: translate(-50%, 250%); -webkit-transition: -webkit-transform 0.5s ease, opacity 0.5s; transition: transform 0.5s ease, opacity 0.5s; opacity: 0; border-radius: 20px; z-index: 1001; pointer-events: auto; }
-.heropick.in { -webkit-transform: translate(-50%, -50%); transform: translate(-50%, -50%); opacity: 1; }
+.heropick { display: none; background: white; width: 225px; height: auto; top: 10%; left: 50%; position: absolute; -webkit-transform: translate(-50%, 250%); transform: translate(-50%, 250%); -webkit-transition: -webkit-transform 0.5s ease, opacity 0.5s; transition: transform 0.5s ease, opacity 0.5s; opacity: 0; border-radius: 20px; z-index: 1001; pointer-events: auto; }
+.heropick.in { -webkit-transform: translate(-50%, 0); transform: translate(-50%, 0); opacity: 1; }
 .heropick .title { padding: 12px; }
 .heropick .total { float: right; }
 .heropick img { width: 18px; float: right; margin-left: 8px; }
-.heropick .heros { padding: 10px 20px; }
-.heropick .wrapper { cursor: pointer; padding: 22px 10px; display: inline-block; position: relative; width: 80px; height: 60px; box-sizing: border-box; border-radius: 10px; }
+.heropick .heros { padding: 10px 20px; height: 350px; }
+.heropick .wrapper { cursor: pointer; padding: 20px 10px; display: inline-block; position: relative; width: 80px; height: 55px; box-sizing: border-box; border-radius: 10px; }
 .heropick .wrapper.combo { width: 100%; }
 .heropick .wrapper.combo.locked .price { width: 170px; font-size: 12px; }
-.heropick .wrapper.myth { width: 100%; }
-.heropick .wrapper.myth.locked .price { width: 100%; text-align: center; font-size: 12px; margin-left: 0; -webkit-transform: translate3d(-10px, -5px, 0); transform: translate3d(-10px, -5px, 0); }
-.heropick .wrapper.myth img { float: none; top: 5px; position: relative; }
 .heropick .wrapper.locked { background-color: #ffff66; }
 .heropick .wrapper.locked .price { position: absolute; display: block; width: 65px; font-size: 14px; }
 .heropick .wrapper.locked .hero-c { visibility: hidden; }
