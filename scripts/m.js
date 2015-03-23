@@ -126,7 +126,7 @@ $(function() {
       this.$movedStick = $('nothing');
       this._currentState = STATES.WELCOME;
       this.total = parseInt(localStorage.getItem('total') || 0, 10);
-      this.isNew = localStorage.getItem('stick-hero-11') === 'true';
+      this.isNew = localStorage.getItem('stick-hero-12') === 'true';
       this.$total.text(this.total);
       this.gameRound = 0;
 
@@ -279,7 +279,7 @@ $(function() {
       $('.btn-hero').on(CLICK_EVENT, function(event) {
         self.$heropick.toggleClass('in');
         if (!this.isNew) {
-          localStorage.setItem('stick-hero-11', true);
+          localStorage.setItem('stick-hero-12', true);
           self.$newIcon.hide();
         }
         event.stopPropagation();
