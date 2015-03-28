@@ -16,7 +16,7 @@
   if (window.location.hostname.indexOf('yoocc') > -1) {
     var paths = window.location.pathname.split('/');
     var d = new Date();
-    var hash = '' + d.getUTCFullYear() + (d.getUTCMonth()+1) + d.getUTCDate() + d.getHours();
+    var hash = '' + d.getFullYear() + (d.getMonth()+1) + d.getDate() + d.getHours();
     if (hash !== paths.pop()) {
       window.location.href = window.location.origin + paths.join('/') + '/' + hash + window.location.search;
     }
