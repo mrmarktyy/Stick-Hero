@@ -50,7 +50,8 @@ var store = function store(key, value) {
     if (lsSupport) {
       data = localStorage.getItem(key);
     } else {
-      data = readCookie(key) || localStorage.getItem(key);
+      var cookieData = readCookie(key);
+      data = cookieData !== null ? cookieData : localStorage.getItem(key);
     }
     try {
      data = JSON.parse(data);
