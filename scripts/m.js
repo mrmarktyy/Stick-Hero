@@ -29,6 +29,62 @@
   }
 }());
 
+var store = function store(key, value) {
+  'use strict';
+  var data;
+  var IS_ANDROID = navigator.userAgent.toLowerCase().indexOf('android') > -1;
+  var lsSupport = IS_ANDROID ? false : true;
+
+  if (typeof value !== 'undefined' && value !== null) {
+    if ( typeof value === 'object' ) {
+      value = JSON.stringify(value);
+    }
+    if (lsSupport) {
+      localStorage.setItem(key, value);
+    } else {
+      createCookie(key, value, 30);
+    }
+  }
+
+  if (typeof value === 'undefined') {
+    if (lsSupport) {
+      data = localStorage.getItem(key);
+    } else {
+      data = readCookie(key) || localStorage.getItem(key);
+    }
+    try {
+     data = JSON.parse(data);
+    }
+    catch(e) {
+     data = data;
+    }
+    return data;
+  }
+  if (value === null) {
+    if (lsSupport) {
+      localStorage.removeItem(key);
+    } else {
+      createCookie(key, '', -1);
+    }
+  }
+  function createCookie(key, value, exp) {
+    var date = new Date();
+    date.setTime(date.getTime() + (exp * 24 * 60 * 60 * 1000));
+    var expires = '; expires=' + date.toGMTString();
+    document.cookie = key + '=' + value + expires + '; path=/';
+  }
+  function readCookie(key) {
+    var nameEQ = key + '=';
+    var ca = document.cookie.split(';');
+    for (var i = 0, max = ca.length; i < max; i++) {
+      var c = ca[i];
+      while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+      if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+    }
+    return null;
+  }
+};
+
 $(function() {
   'use strict';
 
@@ -125,8 +181,8 @@ $(function() {
       this.$total = $('.total');
       this.$movedStick = $('nothing');
       this._currentState = STATES.WELCOME;
-      this.total = parseInt(localStorage.getItem('total') || 0, 10);
-      this.isNew = localStorage.getItem('stick-hero-12') === 'true';
+      this.total = parseInt(store('total') || 0, 10);
+      this.isNew = store('stick-hero-12') === true;
       this.$total.text(this.total);
       this.gameRound = 0;
 
@@ -135,11 +191,11 @@ $(function() {
     };
 
     this.heroInit = function () {
-      this.hero = localStorage.getItem('hero') || 1;
+      this.hero = store('hero') || 1;
       this.$heros = $('.hero-p');
       for (var i = 0; i < HEROS.length; i++) {
         var heroIndex = i + 1,
-            unlocked = localStorage.getItem('hero' + heroIndex) === 'true',
+            unlocked = store('hero' + heroIndex) === 'true',
             heroWidth = Math.round(HEROS[i][0] * WIDTH_RATIO),
             heroHeight = Math.round(HEROS[i][1] * WIDTH_RATIO),
             heroHat = heroWidth + 2,
@@ -233,7 +289,7 @@ $(function() {
 
     this.switchHero = function (hero) {
       this.hero = parseInt(hero, 10) || this.hero;
-      localStorage.setItem('hero', this.hero);
+      store('hero', this.hero);
       $('#wx_pic img').attr('src', 'images/hero' + this.hero + '.png?1');
       $('#wx_pic img').prop('src', 'images/hero' + this.hero + '.png?1');
 
@@ -279,7 +335,7 @@ $(function() {
       $('.btn-hero').on(CLICK_EVENT, function(event) {
         self.$heropick.toggleClass('in');
         if (!this.isNew) {
-          localStorage.setItem('stick-hero-12', true);
+          store('stick-hero-12', true);
           self.$newIcon.hide();
         }
         event.stopPropagation();
@@ -295,7 +351,7 @@ $(function() {
         if ($target.hasClass('locked')) {
           if (self.total >= price) {
             self.total -= price;
-            localStorage.setItem('hero' + hero, true);
+            store('hero' + hero, true);
             self.updateScore();
             $target.removeClass('locked');
           } else {
@@ -322,7 +378,7 @@ $(function() {
       this.count = 0;
       this.gameRound ++;
       this.adf = false;
-      this.best = localStorage.getItem('best') || 0;
+      this.best = store('best') || 0;
       this.$title.text(TITLE_DEFAULT);
       this.$heroContainer = this.$hero.parent();
       this.$game
@@ -504,7 +560,7 @@ $(function() {
             $plus.addClass('out');
           }, 100);
           if (this.count >= UNLOCK_COUNT) {
-            localStorage.setItem('hero5', true);
+            store('hero5', true);
             $('.wrapper[data-src="5"]').removeClass('locked');
           }
         } else {
@@ -644,10 +700,10 @@ $(function() {
     this.updateScore = function() {
       if (this.best < this.score) {
         this.best = this.score;
-        localStorage.setItem('best', this.best);
+        store('best', this.best);
       }
 
-      localStorage.setItem('total', this.total);
+      store('total', this.total);
       this.$total.text(this.total);
       this.$livescore.text(this.score);
       this.$score.text(this.score);
