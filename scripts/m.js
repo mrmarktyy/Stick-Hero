@@ -36,13 +36,13 @@ var store = function store(key, value) {
   var lsSupport = IS_ANDROID ? false : true;
 
   if (typeof value !== 'undefined' && value !== null) {
-    if ( typeof value === 'object' ) {
+    if (typeof value === 'object' ) {
       value = JSON.stringify(value);
     }
     if (lsSupport) {
       localStorage.setItem(key, value);
     } else {
-      createCookie(key, value, 30);
+      createCookie(key, value, 100);
     }
   }
 
@@ -182,7 +182,7 @@ $(function() {
       this.$movedStick = $('nothing');
       this._currentState = STATES.WELCOME;
       this.total = parseInt(store('total') || 0, 10);
-      this.isNew = store('stick-hero-12') === true;
+      this.isNew = store('stick-hero-12') + '' === true;
       this.$total.text(this.total);
       this.gameRound = 0;
 
@@ -195,7 +195,7 @@ $(function() {
       this.$heros = $('.hero-p');
       for (var i = 0; i < HEROS.length; i++) {
         var heroIndex = i + 1,
-            unlocked = store('hero' + heroIndex) === 'true',
+            unlocked = store('hero' + heroIndex) + '' === 'true',
             heroWidth = Math.round(HEROS[i][0] * WIDTH_RATIO),
             heroHeight = Math.round(HEROS[i][1] * WIDTH_RATIO),
             heroHat = heroWidth + 2,
