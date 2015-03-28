@@ -667,7 +667,7 @@ $(function() {
       this.$activeStick.addClass('died');
 
       if (IS_WECHAT) {
-        this.$title.text(TITLE_DEFAULT + ':这次我总共前进了' + this.score + '步。据说智商超过130的人才能前进40步哦。');
+        this.$title.text(TITLE_DEFAULT + ':这次我总共前进了' + this.score + '步。听说智商超过130的人才能前进40步哦。');
       }
     };
 
