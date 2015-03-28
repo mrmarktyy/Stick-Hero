@@ -610,7 +610,7 @@ $(function() {
       this.$activeStick.addClass('died');
 
       if (IS_WECHAT) {
-        this.$title.text(TITLE_DEFAULT + ':太厉害了，我一不小心就前进了' + this.score + '步。连续5次+1解锁隐藏英雄哦！！');
+        this.$title.text(TITLE_DEFAULT + ':这次我总共前进了' + this.score + '步。据说智商超过130的人才能前进40步哦。');
       }
     };
 
