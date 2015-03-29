@@ -183,7 +183,7 @@ $(function() {
       this.$movedStick = $('nothing');
       this._currentState = STATES.WELCOME;
       this.total = parseInt(store('total') || 0, 10);
-      this.isNew = store('stick-hero-12') + '' === true;
+      this.isNew = store('stick-hero-12') + '' === 'true';
       this.$total.text(this.total);
       this.gameRound = 0;
 
