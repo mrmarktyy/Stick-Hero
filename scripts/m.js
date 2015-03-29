@@ -171,7 +171,7 @@ $(function() {
       this.$gameover = $('.game-over');
       this.$welcome = $('.welcome');
       this.$heropick = $('.heropick');
-      this.$newIcon = $('.new');
+      this.$newIcon = $('.btn-hero .new');
       this.$share = $('.share');
       this.$livescore = $('.live-score');
       this.$watermelon = $('.watermelon');

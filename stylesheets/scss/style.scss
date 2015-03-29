@@ -430,18 +430,33 @@ $main-color: black;
     &.locked {
       background-color: #ffff66;
 
+      .new {
+        display: block;
+        position: absolute;
+        background: red;
+        padding: 3px 4px 5px 5px;
+        border-radius: 50%;
+        top: -4px;
+        right: -6px;
+        color: white;
+        font-size: 10px;
+        font-weight: 900;
+      }
+
       .price {
         position: absolute;
         display: block;
         width: 65px;
         font-size: 14px;
       }
+
       .hero-c {
         visibility: hidden;
       }
     }
 
-    .price {
+    .price,
+    .new {
       display: none;
     }
 

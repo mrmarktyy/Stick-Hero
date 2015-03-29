@@ -274,9 +274,10 @@
 .heropick .wrapper.combo { width: 182px; }
 .heropick .wrapper.combo.locked .price { width: 170px; font-size: 12px; }
 .heropick .wrapper.locked { background-color: #ffff66; }
+.heropick .wrapper.locked .new { display: block; position: absolute; background: red; padding: 3px 4px 5px 5px; border-radius: 50%; top: -4px; right: -6px; color: white; font-size: 10px; font-weight: 900; }
 .heropick .wrapper.locked .price { position: absolute; display: block; width: 65px; font-size: 14px; }
 .heropick .wrapper.locked .hero-c { visibility: hidden; }
-.heropick .wrapper .price { display: none; }
+.heropick .wrapper .price, .heropick .wrapper .new { display: none; }
 .heropick .wrapper .hero-c { display: block; position: absolute; left: 50%; top: 50%; -webkit-transform: translate3d(-50%, -50%, 0); transform: translate3d(-50%, -50%, 0); }
 .heropick .wrapper .hero12.hero-c { top: 38px; }
 
