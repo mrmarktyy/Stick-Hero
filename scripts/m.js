@@ -684,8 +684,8 @@ $(function() {
       this.nextAfterAnimation(this.$hero, STATES.DEAD);
 
       this.$hero.css({
-        'transform': 'translate3d(' + (BOX_BASE_WIDTH + this._activeStickHeight) + 'px, ' + (BOX_HEIGHT + HERO_HEIGHT + 20) + 'px , 0)',
-        '-webkit-transform': 'translate3d(' + (BOX_BASE_WIDTH + this._activeStickHeight) + 'px, ' + (BOX_HEIGHT + HERO_HEIGHT + 20) + 'px , 0)',
+        'transform': 'translate3d(' + (BOX_BASE_WIDTH + this._activeStickHeight) + 'px, ' + (BOX_HEIGHT + HERO_HEIGHT + 50) + 'px , 0)',
+        '-webkit-transform': 'translate3d(' + (BOX_BASE_WIDTH + this._activeStickHeight) + 'px, ' + (BOX_HEIGHT + HERO_HEIGHT + 50) + 'px , 0)',
         'transition-duration': '0.2s',
         '-webkit-transition-duration': '0.2s',
         'transition-timing-function': '',
