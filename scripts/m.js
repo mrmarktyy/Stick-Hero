@@ -133,7 +133,8 @@ $(function() {
       [18, 26, 8], // 8
       [21, 28, 8, 17, 13, 9, 6, 5, 16], // 9
       [18, 26, 7, 11 ,5], // 10
-      [18, 24, 5] // 11
+      [18, 24, 5], // 11
+      [26, 26, 2, 14, 18, 30, 22, 12, 12, 22] // 12
     ];
     var STATES = {
       WELCOME: 0,
@@ -183,7 +184,7 @@ $(function() {
       this.$movedStick = $('nothing');
       this._currentState = STATES.WELCOME;
       this.total = parseInt(store('total') || 0, 10);
-      this.isNew = store('stick-hero-12') + '' === 'true';
+      this.isNew = store('stick-hero-329') + '' === 'true';
       this.$total.text(this.total);
       this.gameRound = 0;
 
@@ -193,13 +194,15 @@ $(function() {
 
     this.heroInit = function () {
       this.hero = store('hero') || 1;
+      if (this.hero === 6) {
+        this.hero = 1;
+      }
       this.$heros = $('.hero-p');
       for (var i = 0; i < HEROS.length; i++) {
         var heroIndex = i + 1,
             unlocked = store('hero' + heroIndex) + '' === 'true',
             heroWidth = Math.round(HEROS[i][0] * WIDTH_RATIO),
             heroHeight = Math.round(HEROS[i][1] * WIDTH_RATIO),
-            heroHat = heroWidth + 2,
             $hero = $('.hero' + heroIndex);
 
         if (heroIndex !== 1 && heroIndex !== 11 && unlocked) {
@@ -211,7 +214,7 @@ $(function() {
           'height': heroHeight + 'px'
         });
         if (heroIndex === 11 || heroIndex === 2 || heroIndex === 4) {
-          $hero.find('.hat').css({'width': heroHat + 'px'});
+          $hero.find('.hat').css({'width': (heroWidth + 2) + 'px'});
         }
         if (heroIndex === 1) {
           $hero.find('.mouse').css({
@@ -253,7 +256,6 @@ $(function() {
           $hero.find('.hat2').css({'left': Math.floor(HEROS[i][4] * WIDTH_RATIO) + 'px'});
           $hero.find('.hat3').css({'left': Math.floor(HEROS[i][5] * WIDTH_RATIO) + 'px'});
         }
-        if (heroIndex === 8) { }
         if (heroIndex === 9) {
           $hero.find('.body').css({
             'width': heroWidth + 'px',
@@ -279,6 +281,32 @@ $(function() {
             'width': Math.floor(HEROS[i][3] * WIDTH_RATIO) + 'px',
             'height': Math.floor(HEROS[i][4] * WIDTH_RATIO) + 'px',
             'border-radius': Math.floor(HEROS[i][3] * WIDTH_RATIO) +'px/' + Math.floor(HEROS[i][4] * WIDTH_RATIO) + 'px',
+          });
+        }
+        if (heroIndex === 12) {
+          $hero.find('.body').css({
+            'width': heroWidth + 'px',
+            'height': heroHeight + 'px'
+          });
+          $hero.find('.inside').css({
+            'width': Math.floor(HEROS[i][3] * WIDTH_RATIO) + 'px',
+            'height': Math.floor(HEROS[i][4] * WIDTH_RATIO) + 'px'
+          });
+          $hero.find('.head').css({
+            'width': Math.floor(HEROS[i][5] * WIDTH_RATIO) + 'px',
+            'height': Math.floor(HEROS[i][5] * WIDTH_RATIO) + 'px',
+            'top': -Math.floor(HEROS[i][9] * WIDTH_RATIO) + 'px'
+          });
+          $hero.find('.face').css({
+            'width': Math.floor(HEROS[i][6] * WIDTH_RATIO) + 'px',
+            'height': Math.floor(HEROS[i][6] * WIDTH_RATIO) + 'px'
+          });
+          $hero.find('.mouse').css({
+            'width': Math.floor(HEROS[i][7] * WIDTH_RATIO) + 'px',
+            'border-radius': '0px 0px ' + Math.floor(HEROS[i][7] * WIDTH_RATIO) + 'px ' + Math.floor(HEROS[i][7] * WIDTH_RATIO) + 'px'
+          });
+          $hero.find('.m').css({
+            'width': Math.floor(HEROS[i][8] * WIDTH_RATIO) + 'px'
           });
         }
       }
@@ -336,7 +364,7 @@ $(function() {
       $('.btn-hero').on(CLICK_EVENT, function(event) {
         self.$heropick.toggleClass('in');
         if (!this.isNew) {
-          store('stick-hero-12', true);
+          store('stick-hero-329', true);
           self.$newIcon.hide();
         }
         event.stopPropagation();

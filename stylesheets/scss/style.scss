@@ -8,12 +8,13 @@ $main-color: black;
 @import 'hero3';
 @import 'hero4';
 @import 'hero5';
-@import 'hero6';
+// @import 'hero6';
 @import 'hero7';
 @import 'hero8';
 @import 'hero9';
 @import 'hero10';
 @import 'hero11';
+@import 'hero12';
 
 #game {
   position: relative;
@@ -451,6 +452,9 @@ $main-color: black;
       top: 50%;
       -webkit-transform: translate3d(-50%, -50%, 0);
               transform: translate3d(-50%, -50%, 0);
+    }
+    .hero12.hero-c {
+      top: 38px;
     }
   }
 }

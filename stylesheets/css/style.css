@@ -119,16 +119,6 @@
 .hero5 .foot.left { left: 4px; }
 .hero5 .foot.right { right: 4px; }
 
-.hero6 { display: none; border-radius: 5px; background: black; position: absolute; left: 0; -webkit-transition: -webkit-transform 0.5s ease; transition: transform 0.5s ease; }
-.hero6 .top { border-radius: 40%; background: #4CAF50; position: absolute; -webkit-transform: rotate(-30deg); transform: rotate(-30deg); top: -10px; left: -8px; }
-.hero6 .top-front { background: #4CAF50; position: absolute; border-radius: 80%; }
-.hero6 .eye { width: 3px; height: 3px; background: white; border-radius: 50%; position: absolute; right: 2px; top: 8px; }
-.hero6 .nose { background: black; position: absolute; width: 7px; height: 6px; border-radius: 50%; right: -5px; top: 9px; }
-.hero6 .hand { position: absolute; background: black; width: 2px; height: 12px; top: 10px; -webkit-transform: rotate(50deg); transform: rotate(50deg); }
-.hero6 .foot { position: absolute; width: 2px; height: 10px; bottom: -10px; border-radius: 3px; background: black; }
-.hero6 .foot.left { left: 4px; }
-.hero6 .foot.right { right: 4px; }
-
 .hero7 { display: none; border-radius: 5px; background: #004b79; position: absolute; left: 0; -webkit-transition: -webkit-transform 0.5s ease; transition: transform 0.5s ease; }
 .hero7 .hat { width: 0; height: 0; border-left: 3px solid transparent; border-right: 3px solid transparent; border-bottom: 12px solid #fb0a2a; position: absolute; top: -11px; }
 .hero7 .eye { width: 7px; height: 6px; background: white; border-radius: 50%; position: absolute; right: 2px; top: 8px; }
@@ -181,6 +171,36 @@
 .hero11 .foot { position: absolute; width: 3px; height: 5px; bottom: -5px; border-radius: 3px; background: black; }
 .hero11 .foot.left { left: 4px; }
 .hero11 .foot.right { right: 4px; }
+
+.hero12 { display: none; position: absolute; left: 0; -webkit-transition: -webkit-transform 0.5s ease; transition: transform 0.5s ease; }
+.hero12 .body { background: #136ad5; border-radius: 50%; position: absolute; border: 1px solid black; box-sizing: border-box; }
+.hero12 .inside { border-radius: 50%; position: absolute; border: 1px solid black; top: 50%; left: 50%; -webkit-transform: translate3d(-50%, -50%, 0); transform: translate3d(-50%, -50%, 0); background: white; }
+.hero12 .pocket { width: 6px; height: 4px; top: 8px; position: absolute; border: 1px solid black; border-bottom-left-radius: 50%; border-bottom-right-radius: 50%; left: 50%; -webkit-transform: translate3d(-50%, 0, 0); transform: translate3d(-50%, 0, 0); }
+.hero12 .head { background: #136ad5; border-radius: 50%; position: absolute; border: 1px solid black; left: 50%; -webkit-transform: translate3d(-50%, 0, 0); transform: translate3d(-50%, 0, 0); box-sizing: border-box; z-index: 10; }
+.hero12 .face { bottom: 0; background: white; border-radius: 50%; border: 1px solid black; position: absolute; left: 50%; -webkit-transform: translate3d(-50%, 0, 0); transform: translate3d(-50%, 0, 0); }
+.hero12 .eye { width: 4px; height: 8px; top: -4px; border: 1px solid black; background: white; position: absolute; border-radius: 50%; }
+.hero12 .eye.left { left: 4px; }
+.hero12 .eye.left .eyeball { right: 0; }
+.hero12 .eye.right { right: 4px; }
+.hero12 .eye.right .eyeball { left: 0; }
+.hero12 .eye .eyeball { width: 2px; height: 2px; top: 3px; position: absolute; background: black; }
+.hero12 .nose { width: 4px; height: 4px; top: 6px; border: 1px solid black; border-radius: 50%; position: absolute; background: red; left: 50%; -webkit-transform: translate3d(-50%, 0, 0); transform: translate3d(-50%, 0, 0); }
+.hero12 .nose-line { width: 1px; height: 8px; top: 12px; background: black; position: absolute; left: 50%; -webkit-transform: translate3d(-50%, 0, 0); transform: translate3d(-50%, 0, 0); z-index: 10; }
+.hero12 .mouse { height: 5px; background: white; border: 1px solid black; border-top: none; bottom: 2px; position: absolute; left: 50%; -webkit-transform: translate3d(-50%, 0, 0); transform: translate3d(-50%, 0, 0); }
+.hero12 .m { height: 1px; background: black; position: absolute; z-index: 10; }
+.hero12 .m.m1, .hero12 .m.m2, .hero12 .m.m3 { right: 15px; }
+.hero12 .m.m4, .hero12 .m.m5, .hero12 .m.m6 { left: 15px; }
+.hero12 .m.m1 { -webkit-transform: rotate(20deg); transform: rotate(20deg); top: 7px; }
+.hero12 .m.m2, .hero12 .m.m5 { top: 11px; }
+.hero12 .m.m3 { -webkit-transform: rotate(-20deg); transform: rotate(-20deg); top: 15px; }
+.hero12 .m.m4 { -webkit-transform: rotate(-20deg); transform: rotate(-20deg); top: 7px; }
+.hero12 .m.m6 { -webkit-transform: rotate(20deg); transform: rotate(20deg); top: 15px; }
+.hero12 .hand { width: 5px; height: 5px; top: 7px; position: absolute; background: #136ad5; border: 1px solid black; border-radius: 50%; z-index: -1; }
+.hero12 .hand.left { left: -5px; }
+.hero12 .hand.right { right: -5px; }
+.hero12 .foot { width: 5px; height: 5px; bottom: -4px; background: #136ad5; border: 1px solid black; border-radius: 80%; position: absolute; z-index: -1; }
+.hero12 .foot.left { left: 3px; }
+.hero12 .foot.right { right: 3px; }
 
 #game { position: relative; overflow: hidden; background-image: url("../../images/bg1.jpg"); background-repeat: no-repeat; background-size: 100% 100%; }
 #game.bg1 { background-image: url("../../images/bg1.jpg"); }
@@ -258,6 +278,7 @@
 .heropick .wrapper.locked .hero-c { visibility: hidden; }
 .heropick .wrapper .price { display: none; }
 .heropick .wrapper .hero-c { display: block; position: absolute; left: 50%; top: 50%; -webkit-transform: translate3d(-50%, -50%, 0); transform: translate3d(-50%, -50%, 0); }
+.heropick .wrapper .hero12.hero-c { top: 38px; }
 
 .share { display: none; background: rgba(0, 0, 0, 0.7); color: white; }
 .share .arrow { width: 60px; position: absolute; right: 0; -webkit-animation: arrow 1s infinite linear; animation: arrow 1s infinite linear; }
