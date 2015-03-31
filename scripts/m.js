@@ -412,7 +412,7 @@ $(function() {
         });
         self.isDrawing = true;
         self.updateDraw(-1);
-        self.$drawResult.hide();
+        self.$drawResult.slideUp();
         self.$drawPlate.addClass('start').css({
           '-webkit-transform': 'rotate(' + angle + 'deg)',
           'transform': 'rotate(' + angle + 'deg)',
@@ -777,14 +777,13 @@ $(function() {
     this.drawEnd = function (deg) {
       this.isDrawing = false;
       var gift;
+      // FXIME:
       if (deg < 180) {
         gift = deg + '西瓜';
       } else {
         gift = '抽奖专属英雄';
       }
-      this.$drawResult
-        .show()
-        .find('span').text(gift);
+      this.$drawResult.slideUp().find('span').text(gift);
       this.$drawPlate.removeClass('start').css({
         '-webkit-transform': 'rotate(' + deg + 'deg)',
         'transform': 'rotate(' + deg + 'deg)'
