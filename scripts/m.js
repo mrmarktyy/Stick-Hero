@@ -1,3 +1,4 @@
+/*globals DocumentTouch*/
 (function() {
   'use strict';
 // http://paulirish.com/2011/requestanimationframe-for-smart-animating/
@@ -107,6 +108,7 @@ $(function() {
     var STICK_INC = 3;
     var PERFECT_WIDTH = 6;
     var UNLOCK_COUNT = 5;
+    var FREE_DRAW = 3;
     var BOX_LEFT_MIN = BOX_BASE_WIDTH + 30;
     var BOX_LEFT_MAX = GAME_WIDTH - BOX_BASE_WIDTH;
     var BOX_WIDTH_MIN = Math.round(15 * WIDTH_RATIO); //
@@ -119,8 +121,8 @@ $(function() {
     // https://github.com/Modernizr/Modernizr/blob/master/feature-detects/touchevents.js#L40
     var IS_TOUCH = !!(('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch);
     var CLICK_EVENT = IS_TOUCH ? 'touchstart' : 'click';
-    var HERO_WIDTH; //
-    var HERO_HEIGHT; //
+    var HERO_WIDTH;
+    var HERO_HEIGHT;
     var HERO_FEET;
     var HERO_BOTTOM;
     var HERO_INIT_LEFT;
@@ -147,7 +149,7 @@ $(function() {
       UPDATE: 7,
       DEAD: 8
     };
-    var LAST_STATE = 8;
+    var LAST_STATE = STATES.DEAD;
 
     this.init = function() {
       this.initVars();
@@ -172,6 +174,10 @@ $(function() {
       this.$welcome = $('.welcome');
       this.$heropick = $('.heropick');
       this.$draw = $('.draw');
+      this.$drawTotal = $('.draw-total');
+      this.$drawIcon = $('.btn-draw .icon');
+      this.$drawPlate = $('.draw-plate');
+      this.$drawResult = $('.draw-result');
       this.$newIcon = $('.btn-hero .new');
       this.$share = $('.share');
       this.$livescore = $('.live-score');
@@ -191,6 +197,7 @@ $(function() {
 
       this.heroInit();
       this.switchHero(this.hero);
+      this.drawInit();
     };
 
     this.heroInit = function () {
@@ -317,6 +324,16 @@ $(function() {
       }
     };
 
+    this.drawInit = function () {
+      this.drawTotal = store('drawTotal');
+      if (this.drawTotal === null) {
+        this.drawTotal = FREE_DRAW;
+      } else {
+        this.drawTotal = parseInt(this.drawTotal, 10);
+      }
+      this.updateDraw();
+    };
+
     this.switchHero = function (hero) {
       this.hero = parseInt(hero, 10) || this.hero;
       store('hero', this.hero);
@@ -384,19 +401,22 @@ $(function() {
       });
       $('.draw-btn').on(CLICK_EVENT, function () {
         event.stopPropagation();
-        $('.draw-plate').removeClass('start').css({
-          '-webkit-transform': 'rotate(' + 0 + 'deg)',
-          'transform': 'rotate(' + 0 + 'deg)'
+        if (self.isDrawing) {
+          return;
+        }
+        var deg = self._getRandom(0, 359);
+        var angle = 360 * 10 + deg;
+        self.$drawPlate.on(ANIMATION_END_EVENTS, function() {
+          self.$drawPlate.off(ANIMATION_END_EVENTS);
+          self.drawEnd(deg);
         });
-        var deg = self._getRandom(0, 360);
-        var angle = 360 * 6 + deg;
-        console.log(deg);
-        setTimeout(function () {
-          $('img').addClass('start').css({
-            '-webkit-transform': 'rotate(' + angle + 'deg)',
-            'transform': 'rotate(' + angle + 'deg)',
-          });
-        }, 100);
+        self.isDrawing = true;
+        self.updateDraw(-1);
+        self.$drawResult.hide();
+        self.$drawPlate.addClass('start').css({
+          '-webkit-transform': 'rotate(' + angle + 'deg)',
+          'transform': 'rotate(' + angle + 'deg)',
+        });
       });
       $(document).on(CLICK_EVENT, '.heropick .wrapper', function(event) {
         var $target = $(event.currentTarget),
@@ -430,6 +450,7 @@ $(function() {
     this.reset = function() {
       this.score = 0;
       this.count = 0;
+      this.isDrawing = false;
       this.gameRound ++;
       this.adf = false;
       this.best = store('best') || 0;
@@ -753,6 +774,23 @@ $(function() {
       });
     };
 
+    this.drawEnd = function (deg) {
+      this.isDrawing = false;
+      var gift;
+      if (deg < 180) {
+        gift = deg + '西瓜';
+      } else {
+        gift = '抽奖专属英雄';
+      }
+      this.$drawResult
+        .show()
+        .find('span').text(gift);
+      this.$drawPlate.removeClass('start').css({
+        '-webkit-transform': 'rotate(' + deg + 'deg)',
+        'transform': 'rotate(' + deg + 'deg)'
+      });
+    };
+
     this.updateScore = function() {
       if (this.best < this.score) {
         this.best = this.score;
@@ -764,6 +802,19 @@ $(function() {
       this.$livescore.text(this.score);
       this.$score.text(this.score);
       this.$best.text(this.best);
+    };
+
+    this.updateDraw = function (n) {
+      if (n !== void 0) {
+        this.drawTotal += n;
+      }
+      store('drawTotal', this.drawTotal);
+      this.$drawTotal.text(this.drawTotal);
+      if (this.drawTotal > 0) {
+        this.$drawIcon.show();
+      } else {
+        this.$drawIcon.hide();
+      }
     };
 
     this._createBox = function() {

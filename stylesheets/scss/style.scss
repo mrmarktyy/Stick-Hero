@@ -224,18 +224,28 @@ $main-color: black;
     font-size: 12px;
     right: 40px;
     border: 2px solid rgb(61, 71, 82);
+    .icon {
+      display: none;
+      color: white;
+      background: red;
+      border-radius: 50%;
+      top: -6px;
+      right: -9px;
+      width: 20px;
+      height: 20px;
+      position: absolute;
+
+      span {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        -webkit-transform: translate3d(-50%, -50%, 0);
+                transform: translate3d(-50%, -50%, 0);
+      }
+    }
   }
   .btn-hero {
     top: 70%;
-    .new {
-      display: none;
-      position: absolute;
-      background: red;
-      padding: 3px 5px 5px 5px;
-      border-radius: 50%;
-      top: -9px;
-      right: -11px;
-    }
   }
   .btn-draw {
     top: 80%;
@@ -519,13 +529,19 @@ $main-color: black;
     z-index: 10;
   }
   .draw-plate {
-    // &.start {
+    &.start {
       -webkit-transition: -webkit-transform 10s cubic-bezier(0.245, 1, 0.665, 0.970);
               transition: transform 10s cubic-bezier(0.245, 1, 0.665, 0.970);
-    // }
+    }
+  }
+  .draw-result {
+    display: none;
+    margin-bottom: 0;
+    padding: 0 12px;
+    text-align: center;
   }
   .draw-footer {
-    font-size: 12px;
+    font-size: 10px;
     padding: 12px;
     font-style: italic;
     margin-bottom: 0;
