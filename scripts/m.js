@@ -171,6 +171,7 @@ $(function() {
       this.$gameover = $('.game-over');
       this.$welcome = $('.welcome');
       this.$heropick = $('.heropick');
+      this.$draw = $('.draw');
       this.$newIcon = $('.btn-hero .new');
       this.$share = $('.share');
       this.$livescore = $('.live-score');
@@ -373,6 +374,30 @@ $(function() {
           self.$heropick.removeClass('in');
         });
       });
+      $('.btn-draw').on(CLICK_EVENT, function(event) {
+        self.$draw.toggleClass('in');
+        event.stopPropagation();
+        $(document).on(CLICK_EVENT, '.overlay', function() {
+          $(document).off(CLICK_EVENT, '.overlay');
+          self.$draw.removeClass('in');
+        });
+      });
+      $('.draw-btn').on(CLICK_EVENT, function () {
+        event.stopPropagation();
+        $('.draw-plate').removeClass('start').css({
+          '-webkit-transform': 'rotate(' + 0 + 'deg)',
+          'transform': 'rotate(' + 0 + 'deg)'
+        });
+        var deg = self._getRandom(0, 360);
+        var angle = 360 * 6 + deg;
+        console.log(deg);
+        setTimeout(function () {
+          $('img').addClass('start').css({
+            '-webkit-transform': 'rotate(' + angle + 'deg)',
+            'transform': 'rotate(' + angle + 'deg)',
+          });
+        }, 100);
+      });
       $(document).on(CLICK_EVENT, '.heropick .wrapper', function(event) {
         var $target = $(event.currentTarget),
             price = parseInt($target.data('price'), 10),
@@ -473,6 +498,7 @@ $(function() {
       this.$livescore.hide();
       this.$watermelon.hide();
       this.$heropick.show();
+      this.$draw.show();
       this.$welcome.show();
     };
 
@@ -481,6 +507,7 @@ $(function() {
       this.$gameover.hide();
       this.$copyright.hide();
       this.$heropick.hide();
+      this.$draw.hide();
       this.$livescore.show();
       this.$watermelon.show();
       this.$instruction.addClass('in');

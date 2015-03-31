@@ -36,6 +36,7 @@
     <div class="game-title">STICK HERO</div>
     <div class="btn-play"><div>开始</div></div>
     <div class="btn-side btn-hero">英雄<div class="new">新</div></div>
+    <div class="btn-side btn-draw">抽奖</div>
   </div>
   <div class="heropick hero">
     <div class="title">英雄家族 <img src="images/watermelon.png"/><span class="total"></span></div>
@@ -202,6 +203,15 @@
       </div>
     </div>
   </div>
+  <div class="draw">
+    <div class="draw-title">幸运抽奖 <span class="draw-left">剩余抽奖数:<span class="draw-total">0</span>次</span></div>
+    <div class="drawer">
+      <div class="draw-arrow"></div>
+      <img class="draw-plate" width="200" src="images/draw.jpg" />
+      <span class="draw-btn">开始抽奖</span>
+    </div>
+    <p class="draw-footer">注:游戏得分每超过20分便可自动获得1次抽奖机会,抽奖次数可以累加。</p>
+  </div>
   <div class="game-over overlay">
     <div class="title">游戏失败!</div>
     <div class="board">
@@ -352,7 +362,7 @@
 </div>
 <script src="dist/js/m.min.js?3"></script>
 <img class="ad" src="images/ad.jpg" />
-<div class="ads">
+<!-- <div class="ads">
   <script type="text/javascript" id="gdt-5090801024018949">
     var TencentGDT = TencentGDT || [];
     TencentGDT.push({
@@ -367,6 +377,6 @@
     h && h.insertBefore(s,h.firstChild)
     })();
   </script>
-</div>
+</div> -->
 </body>
 </html>

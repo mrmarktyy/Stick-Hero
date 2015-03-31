@@ -1,7 +1,6 @@
 $main-color: black;
 
 @import 'fonts';
-@import 'loader';
 @import 'keyframes';
 @import 'hero1';
 @import 'hero2';
@@ -82,8 +81,8 @@ $main-color: black;
     position: absolute;
     background: red;
     left: 50%;
-    -webkit-transform: translate(-50%);
-            transform: translate(-50%);
+    -webkit-transform: translate3d(-50%, 0, 0);
+            transform: translate3d(-50%, 0, 0);
     content: '';
   }
 }
@@ -207,8 +206,8 @@ $main-color: black;
     & > div {
       position: relative;
       top: 50%;
-      -webkit-transform: translate(0, -50%);
-              transform: translate(0, -50%);
+      -webkit-transform: translate3d(0, -50%, 0);
+              transform: translate3d(0, -50%, 0);
     }
   }
   .btn-side {
@@ -238,24 +237,9 @@ $main-color: black;
       right: -11px;
     }
   }
-  .btn-about {
+  .btn-draw {
     top: 80%;
   }
-}
-
-.about {
-  display: none;
-  position: absolute;
-  box-sizing: border-box;
-  width: 210px;
-  padding: 10px;
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
-  background: white;
-  border-radius: 20px;
-  z-index: 1001;
 }
 
 .live-score {
@@ -269,8 +253,8 @@ $main-color: black;
   border-radius: 10px;
   font-size: 30px;
   left: 50%;
-  -webkit-transform: translate(-50%);
-          transform: translate(-50%);
+  -webkit-transform: translate3d(-50%, 0, 0);
+          transform: translate3d(-50%, 0, 0);
 }
 
 .watermelon {
@@ -376,8 +360,8 @@ $main-color: black;
   top: 5%;
   left: 50%;
   position: absolute;
-  -webkit-transform: translate(-50%, 250%);
-          transform: translate(-50%, 250%);
+  -webkit-transform: translate3d(-50%, 250%, 0);
+          transform: translate3d(-50%, 250%, 0);
   -webkit-transition: -webkit-transform 0.5s ease, opacity 0.5s;
           transition: transform 0.5s ease, opacity 0.5s;
   opacity: 0;
@@ -386,8 +370,8 @@ $main-color: black;
   pointer-events: auto; // Overriding pointer-events from .hero
 
   &.in {
-    -webkit-transform: translate(-50%, 0);
-            transform: translate(-50%, 0);
+    -webkit-transform: translate3d(-50%, 0, 0);
+            transform: translate3d(-50%, 0, 0);
     opacity: 1;
   }
 
@@ -471,6 +455,80 @@ $main-color: black;
     .hero12.hero-c {
       top: 38px;
     }
+  }
+}
+
+.draw {
+  display: none;
+  width: 225px;
+  height: auto;
+  background: white;
+  border-radius: 20px;
+  position: absolute;
+  opacity: 0;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate3d(-50%, 250%, 0);
+          transform: translate3d(-50%, 250%, 0);
+  -webkit-transition: -webkit-transform 0.5s ease, opacity 0.5s;
+          transition: transform 0.5s ease, opacity 0.5s;
+  z-index: 1001;
+  &.in {
+    -webkit-transform: translate3d(-50%, -50%, 0);
+            transform: translate3d(-50%, -50%, 0);
+    opacity: 1;
+  }
+  .draw-title {
+    padding: 12px;
+  }
+  .draw-left {
+    font-size: 12px;
+    float: right;
+  }
+  .draw-total {
+    color: red;
+  }
+  .drawer {
+    padding: 10px;
+    position: relative;
+  }
+  .draw-arrow {
+    background: url("../../images/draw-arrow.png") no-repeat scroll 0 0 transparent;
+    background-size: 100% 100%;
+    height: 120px;
+    width: 15px;
+    top: 20px;
+    position: absolute;
+    left: 50%;
+    -webkit-transform: translate3d(-50%, 0, 0);
+            transform: translate3d(-50%, 0, 0);
+    z-index: 10;
+  }
+  .draw-btn {
+    cursor: pointer;
+    display: block;
+    color: white;
+    background: blue;
+    height: 40px;
+    width: 40px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate3d(-50%, -50%, 0);
+            transform: translate3d(-50%, -50%, 0);
+    z-index: 10;
+  }
+  .draw-plate {
+    // &.start {
+      -webkit-transition: -webkit-transform 10s cubic-bezier(0.245, 1, 0.665, 0.970);
+              transition: transform 10s cubic-bezier(0.245, 1, 0.665, 0.970);
+    // }
+  }
+  .draw-footer {
+    font-size: 12px;
+    padding: 12px;
+    font-style: italic;
+    margin-bottom: 0;
   }
 }
 
