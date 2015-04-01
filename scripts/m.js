@@ -109,6 +109,7 @@ $(function() {
     var PERFECT_WIDTH = 6;
     var UNLOCK_COUNT = 5;
     var FREE_DRAW = 3;
+    var DRAW_MOD = 20;
     var BOX_LEFT_MIN = BOX_BASE_WIDTH + 30;
     var BOX_LEFT_MAX = GAME_WIDTH - BOX_BASE_WIDTH;
     var BOX_WIDTH_MIN = Math.round(15 * WIDTH_RATIO); //
@@ -178,7 +179,7 @@ $(function() {
       this.$drawIcon = $('.btn-draw .icon');
       this.$drawPlate = $('.draw-plate');
       this.$drawResult = $('.draw-result');
-      this.$newIcon = $('.btn-hero .new');
+      this.$newHeroIcon = $('.btn-hero .new');
       this.$share = $('.share');
       this.$livescore = $('.live-score');
       this.$watermelon = $('.watermelon');
@@ -320,7 +321,7 @@ $(function() {
       }
 
       if (!this.isNew) {
-        this.$newIcon.show();
+        this.$newHeroIcon.show();
       }
     };
 
@@ -381,9 +382,10 @@ $(function() {
       });
       $('.btn-hero').on(CLICK_EVENT, function(event) {
         self.$heropick.toggleClass('in');
+        self.$draw.hide().removeClass('in');
         if (!this.isNew) {
           store('stick-hero-329', true);
-          self.$newIcon.hide();
+          self.$newHeroIcon.hide();
         }
         event.stopPropagation();
         $(document).on(CLICK_EVENT, '.overlay', function() {
@@ -393,6 +395,7 @@ $(function() {
       });
       $('.btn-draw').on(CLICK_EVENT, function(event) {
         self.$draw.toggleClass('in');
+        self.$heropick.hide().removeClass('in');
         event.stopPropagation();
         $(document).on(CLICK_EVENT, '.overlay', function() {
           $(document).off(CLICK_EVENT, '.overlay');
@@ -412,7 +415,7 @@ $(function() {
         });
         self.isDrawing = true;
         self.updateDraw(-1);
-        self.$drawResult.slideUp();
+        self.$drawResult.removeClass('in');
         self.$drawPlate.addClass('start').css({
           '-webkit-transform': 'rotate(' + angle + 'deg)',
           'transform': 'rotate(' + angle + 'deg)',
@@ -745,6 +748,10 @@ $(function() {
       if (IS_WECHAT) {
         this.$title.text(TITLE_DEFAULT + ':这次我总共前进了' + this.score + '步。听说智商超过130的人才能前进40步哦。');
       }
+      var drawCount = Math.floor(this.score / DRAW_MOD);
+      if (drawCount) {
+        this.updateDraw(drawCount);
+      }
     };
 
     this.update = function() {
@@ -783,7 +790,7 @@ $(function() {
       } else {
         gift = '抽奖专属英雄';
       }
-      this.$drawResult.slideUp().find('span').text(gift);
+      this.$drawResult.addClass('in').find('span').text(gift);
       this.$drawPlate.removeClass('start').css({
         '-webkit-transform': 'rotate(' + deg + 'deg)',
         'transform': 'rotate(' + deg + 'deg)'
