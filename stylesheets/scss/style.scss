@@ -365,7 +365,7 @@ $main-color: black;
 .heropick {
   display: none;
   background: white;
-  width: 225px;
+  width: 230px;
   height: auto;
   top: 5%;
   left: 50%;
@@ -399,25 +399,26 @@ $main-color: black;
     float: right;
   }
   .heros {
-    padding: 10px 20px;
-    height: 350px;
+    padding: 0 20px 10px;
+    height: 390px;
   }
 
   .wrapper {
     cursor: pointer;
-    padding: 20px 10px;
+    padding: 16px 10px 20px;
     display: inline-block;
     position: relative;
-    width: 88px;
-    height: 55px;
+    width: 90px;
+    height: 52px;
     box-sizing: border-box;
     border-radius: 10px;
 
     &.combo {
-      width: 182px;
+      width: 100%;
       &.locked .price {
         width: 170px;
         font-size: 12px;
+        line-height: 26px;
       }
     }
 
