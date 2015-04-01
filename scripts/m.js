@@ -108,7 +108,7 @@ $(function() {
     var STICK_INC = 3;
     var PERFECT_WIDTH = 6;
     var UNLOCK_COUNT = 5;
-    var FREE_DRAW = 3;
+    var FREE_DRAW = 99;
     var DRAW_MOD = 20;
     var BOX_LEFT_MIN = BOX_BASE_WIDTH + 30;
     var BOX_LEFT_MAX = GAME_WIDTH - BOX_BASE_WIDTH;
@@ -192,8 +192,8 @@ $(function() {
       this.$movedStick = $('nothing');
       this._currentState = STATES.WELCOME;
       this.total = parseInt(store('total') || 0, 10);
-      this.isNew = store('stick-hero-329') + '' === 'true';
       this.$total.text(this.total);
+      this.isNew = store('stick-hero-329') + '' === 'true';
       this.gameRound = 0;
 
       this.heroInit();
@@ -372,7 +372,7 @@ $(function() {
         self.reset();
         self.next(STATES.WELCOME);
       });
-      $('.btn-share').on(CLICK_EVENT, function(event) {
+      $('.btn-share, .draw-share').on(CLICK_EVENT, function(event) {
         self.$share.show();
         event.stopPropagation();
         $(document).on(CLICK_EVENT, '.overlay', function() {
@@ -382,7 +382,7 @@ $(function() {
       });
       $('.btn-hero').on(CLICK_EVENT, function(event) {
         self.$heropick.toggleClass('in');
-        self.$draw.hide().removeClass('in');
+        self.$draw.removeClass('in');
         if (!this.isNew) {
           store('stick-hero-329', true);
           self.$newHeroIcon.hide();
@@ -395,7 +395,7 @@ $(function() {
       });
       $('.btn-draw').on(CLICK_EVENT, function(event) {
         self.$draw.toggleClass('in');
-        self.$heropick.hide().removeClass('in');
+        self.$heropick.removeClass('in');
         event.stopPropagation();
         $(document).on(CLICK_EVENT, '.overlay', function() {
           $(document).off(CLICK_EVENT, '.overlay');
@@ -404,22 +404,7 @@ $(function() {
       });
       $('.draw-btn').on(CLICK_EVENT, function () {
         event.stopPropagation();
-        if (self.isDrawing) {
-          return;
-        }
-        var deg = self._getRandom(0, 359);
-        var angle = 360 * 10 + deg;
-        self.$drawPlate.on(ANIMATION_END_EVENTS, function() {
-          self.$drawPlate.off(ANIMATION_END_EVENTS);
-          self.drawEnd(deg);
-        });
-        self.isDrawing = true;
-        self.updateDraw(-1);
-        self.$drawResult.removeClass('in');
-        self.$drawPlate.addClass('start').css({
-          '-webkit-transform': 'rotate(' + angle + 'deg)',
-          'transform': 'rotate(' + angle + 'deg)',
-        });
+        self.drawStart();
       });
       $(document).on(CLICK_EVENT, '.heropick .wrapper', function(event) {
         var $target = $(event.currentTarget),
@@ -746,7 +731,7 @@ $(function() {
       this.$activeStick.addClass('died');
 
       if (IS_WECHAT) {
-        this.$title.text(TITLE_DEFAULT + ':这次我总共前进了' + this.score + '步。听说智商超过130的人才能前进40步哦。');
+        this.$title.text('棍子大侠:我总共前进了' + this.score + '步,听说智商超过130的人才能前进40步哦,你也来试试？');
       }
       var drawCount = Math.floor(this.score / DRAW_MOD);
       if (drawCount) {
@@ -755,9 +740,8 @@ $(function() {
     };
 
     this.update = function() {
-      this.score += this.inc;
-      this.total += 1;
-      this.updateScore();
+      this.updateScore(this.inc);
+      this.updateTotal(1);
 
       this.$box1.remove();
       this.$box1 = this.$box2;
@@ -781,6 +765,29 @@ $(function() {
       });
     };
 
+    this.drawStart = function () {
+      if (this.isDrawing) {
+        return;
+      }
+      if (this.drawTotal <= 0) {
+        // FIXME: Add message
+        return;
+      }
+      var deg = this._getRandom(0, 359);
+      var angle = 360 * 10 + deg;
+      this.$drawPlate.on(ANIMATION_END_EVENTS, function() {
+        this.$drawPlate.off(ANIMATION_END_EVENTS);
+        this.drawEnd(deg);
+      });
+      this.isDrawing = true;
+      this.updateDraw(-1);
+      this.$drawResult.removeClass('in');
+      this.$drawPlate.addClass('start').css({
+        '-webkit-transform': 'rotate(' + angle + 'deg)',
+        'transform': 'rotate(' + angle + 'deg)',
+      });
+    };
+
     this.drawEnd = function (deg) {
       this.isDrawing = false;
       var gift;
@@ -788,30 +795,38 @@ $(function() {
       if (deg < 180) {
         gift = deg + '西瓜';
       } else {
-        gift = '抽奖专属英雄';
+        gift = '专属英雄';
       }
-      this.$drawResult.addClass('in').find('span').text(gift);
+      this.$drawResult.addClass('in').find('.draw-prize').text(gift);
       this.$drawPlate.removeClass('start').css({
         '-webkit-transform': 'rotate(' + deg + 'deg)',
         'transform': 'rotate(' + deg + 'deg)'
       });
     };
 
-    this.updateScore = function() {
+    this.updateScore = function (n) {
+      if (n !== undefined) {
+        this.score += n;
+      }
       if (this.best < this.score) {
         this.best = this.score;
         store('best', this.best);
       }
-
-      store('total', this.total);
-      this.$total.text(this.total);
       this.$livescore.text(this.score);
       this.$score.text(this.score);
       this.$best.text(this.best);
     };
 
+    this.updateTotal = function (n) {
+      if (n !== undefined) {
+        this.total += n;
+      }
+      store('total', this.total);
+      this.$total.text(this.total);
+    };
+
     this.updateDraw = function (n) {
-      if (n !== void 0) {
+      if (n !== undefined) {
         this.drawTotal += n;
       }
       store('drawTotal', this.drawTotal);

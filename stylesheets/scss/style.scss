@@ -530,6 +530,16 @@ $main-color: black;
     -webkit-transform: translate3d(-50%, -50%, 0);
             transform: translate3d(-50%, -50%, 0);
     z-index: 10;
+    > span {
+      display: block;
+      width: 40px;
+      height: 40px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      -webkit-transform: translate3d(-50%, -50%, 0);
+              transform: translate3d(-50%, -50%, 0);
+    }
   }
   .draw-plate {
     &.start {
@@ -539,13 +549,21 @@ $main-color: black;
   }
   .draw-result {
     opacity: 0;
+    color: red;
     margin-bottom: 0;
     padding: 0 12px;
     text-align: center;
+    height: 40px;
     -webkit-transition: opacity 1s ease-in-out;
             transition: opacity 1s ease-in-out;
     &.in {
       opacity: 1;
+    }
+    .draw-prize {
+      font-weight: bold;
+    }
+    .draw-share {
+      color: blue;
     }
   }
   .draw-footer {
