@@ -286,8 +286,9 @@
 
 .share { display: none; background: rgba(0, 0, 0, 0.7); color: white; }
 .share .arrow { width: 60px; position: absolute; right: 0; -webkit-animation: arrow 1s infinite linear; animation: arrow 1s infinite linear; }
-.share .text { position: absolute; top: 15%; left: 0; right: 0; text-align: center; font-size: 20px; }
-.share .like { position: absolute; font-size: 20px; bottom: 60px; text-align: center; width: 100%; }
+.share .text { position: absolute; top: 15%; left: 0; right: 0; text-align: center; }
+.share .like { position: absolute; text-align: center; width: 100%; bottom: 60px; font-size: 20px; }
+.share .yellow { color: #f1c40f; }
 
 .copyright { position: absolute; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.5); color: white; font-size: 10px; }
 

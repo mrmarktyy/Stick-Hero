@@ -110,6 +110,7 @@ $(function() {
     var UNLOCK_COUNT = 5;
     var FREE_DRAW = 99;
     var DRAW_MOD = 20;
+    var DRAW_ROUNDS = 10;
     var BOX_LEFT_MIN = BOX_BASE_WIDTH + 30;
     var BOX_LEFT_MAX = GAME_WIDTH - BOX_BASE_WIDTH;
     var BOX_WIDTH_MIN = Math.round(15 * WIDTH_RATIO); //
@@ -131,7 +132,9 @@ $(function() {
     var HEROS = [
       [18, 24, 10, 6], // 1 (care for 3px border)
       [18, 24, 5], [20, 18, 14],  // 1, 2, 3
-      [18, 18, 7, 22, 11, 13], [18, 24, 10, 20, 28, 10, 20], [18, 24, 10, 28, 15, 32, 5], // 4, 5, 6
+      [18, 18, 7, 22, 11, 13], // 4
+      [18, 24, 10, 20, 28, 10, 20], // 5
+      [18, 24, 10, 28, 15, 32, 5], // 6
       [20, 24, 15, 3, 7, 11], // 7
       [18, 26, 8], // 8
       [21, 28, 8, 17, 13, 9, 6, 5, 16], // 9
@@ -204,7 +207,7 @@ $(function() {
     this.heroInit = function () {
       this.hero = store('hero') || 1;
       if (this.hero === 6) {
-        this.hero = 1;
+        this.hero = 1; // hero6 is deprecated
       }
       this.$heros = $('.hero-p');
       for (var i = 0; i < HEROS.length; i++) {
@@ -374,7 +377,9 @@ $(function() {
       });
       $('.btn-share, .draw-share').on(CLICK_EVENT, function(event) {
         self.$share.show();
+        self.$draw.removeClass('in');
         event.stopPropagation();
+        $(document).off(CLICK_EVENT, '.overlay');
         $(document).on(CLICK_EVENT, '.overlay', function() {
           $(document).off(CLICK_EVENT, '.overlay');
           self.$share.hide();
@@ -388,8 +393,10 @@ $(function() {
           self.$newHeroIcon.hide();
         }
         event.stopPropagation();
+        $(document).off(CLICK_EVENT, '.overlay');
         $(document).on(CLICK_EVENT, '.overlay', function() {
           $(document).off(CLICK_EVENT, '.overlay');
+          self.$draw.removeClass('in');
           self.$heropick.removeClass('in');
         });
       });
@@ -397,8 +404,10 @@ $(function() {
         self.$draw.toggleClass('in');
         self.$heropick.removeClass('in');
         event.stopPropagation();
+        $(document).off(CLICK_EVENT, '.overlay');
         $(document).on(CLICK_EVENT, '.overlay', function() {
           $(document).off(CLICK_EVENT, '.overlay');
+          self.$heropick.removeClass('in');
           self.$draw.removeClass('in');
         });
       });
@@ -766,6 +775,7 @@ $(function() {
     };
 
     this.drawStart = function () {
+      var self = this;
       if (this.isDrawing) {
         return;
       }
@@ -774,10 +784,10 @@ $(function() {
         return;
       }
       var deg = this._getRandom(0, 359);
-      var angle = 360 * 10 + deg;
+      var angle = 360 * DRAW_ROUNDS + deg;
       this.$drawPlate.on(ANIMATION_END_EVENTS, function() {
-        this.$drawPlate.off(ANIMATION_END_EVENTS);
-        this.drawEnd(deg);
+        self.$drawPlate.off(ANIMATION_END_EVENTS);
+        self.drawEnd(deg);
       });
       this.isDrawing = true;
       this.updateDraw(-1);
