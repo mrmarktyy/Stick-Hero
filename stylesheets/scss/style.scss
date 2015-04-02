@@ -503,44 +503,18 @@ $main-color: black;
     padding: 10px;
     position: relative;
   }
-  .draw-arrow {
-    background: url("../../images/draw-arrow.png") no-repeat scroll 0 0 transparent;
-    background-size: 100% 100%;
-    height: 120px;
-    width: 15px;
-    top: 20px;
-    position: absolute;
-    left: 50%;
-    -webkit-transform: translate3d(-50%, 0, 0);
-            transform: translate3d(-50%, 0, 0);
-    z-index: 10;
-  }
   .draw-btn {
+    background: url("../../images/button.png") no-repeat scroll 0 0 transparent;
+    background-size: 100% 100%;
     cursor: pointer;
     display: block;
     color: white;
-    border-radius: 50%;
-    height: 60px;
-    width: 60px;
+    height: 72px;
+    width: 50px;
     position: absolute;
-    left: 50%;
-    top: 50%;
-    background: #3e9cbf;
-    border:1px solid #3e9cbf;
-    box-shadow: inset 0px 1px 0px #3e9cbf, 0px 5px 0px 0px #205c73, 0px 10px 5px #999;
-    -webkit-transform: translate3d(-50%, -50%, 0);
-            transform: translate3d(-50%, -50%, 0);
+    left: 85px;
+    top: 65px;
     z-index: 10;
-    > span {
-      display: block;
-      width: 40px;
-      height: 40px;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      -webkit-transform: translate3d(-50%, -50%, 0);
-              transform: translate3d(-50%, -50%, 0);
-    }
   }
   .draw-plate {
     &.start {
@@ -551,17 +525,16 @@ $main-color: black;
   .draw-result {
     opacity: 0;
     color: red;
-    margin-bottom: 0;
     padding: 0 12px;
     text-align: center;
-    height: 40px;
+    height: 60px;
     -webkit-transition: opacity 1s ease-in-out;
             transition: opacity 1s ease-in-out;
     &.in {
       opacity: 1;
     }
-    .draw-prize {
-      font-weight: bold;
+    > p {
+      margin: 0;
     }
     .draw-share {
       color: blue;

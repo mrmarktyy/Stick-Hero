@@ -108,7 +108,7 @@ $(function() {
     var STICK_INC = 3;
     var PERFECT_WIDTH = 6;
     var UNLOCK_COUNT = 5;
-    var FREE_DRAW = 99;
+    var FREE_DRAW = 99; // FIXME
     var DRAW_MOD = 20;
     var DRAW_ROUNDS = 10;
     var BOX_LEFT_MIN = BOX_BASE_WIDTH + 30;
@@ -154,6 +154,15 @@ $(function() {
       DEAD: 8
     };
     var LAST_STATE = STATES.DEAD;
+    var PRIZES = [
+      { level: 1, from: 270, per: 25, prize: 5, },
+      { level: 2, from: 0,   per: 25, prize: 10, },
+      { level: 3, from: 90,  per: 20, prize: 20, },
+      { level: 4, from: 162, per: 15, prize: 50, },
+      { level: 5, from: 216, per: 10, prize: 100, },
+      { level: 6, from: 252, per: 5 , prize: 'hero12'}
+    ];
+    var PRIZE_HERO = 12;
 
     this.init = function() {
       this.initVars();
@@ -376,6 +385,7 @@ $(function() {
         self.next(STATES.WELCOME);
       });
       $('.btn-share, .draw-share').on(CLICK_EVENT, function(event) {
+        console.log('draw-share');
         self.$share.show();
         self.$draw.removeClass('in');
         event.stopPropagation();
@@ -421,10 +431,8 @@ $(function() {
             hero = $target.data('src');
         if ($target.hasClass('locked')) {
           if (self.total >= price) {
-            self.total -= price;
-            store('hero' + hero, true);
-            self.updateScore();
-            $target.removeClass('locked');
+            self.updateTotal(-price);
+            self.unlockHero(hero);
           } else {
             event.preventDefault();
           }
@@ -442,6 +450,11 @@ $(function() {
       $(document).on('mouseup touchend', function() {
         IS_TOUCHING = false;
       });
+    };
+
+    this.unlockHero = function (hero) {
+      store('hero' + hero, true);
+      $('.wrapper[data-src="' + hero + '"]').removeClass('locked');
     };
 
     this.reset = function() {
@@ -634,8 +647,7 @@ $(function() {
             $plus.addClass('out');
           }, 100);
           if (this.count >= UNLOCK_COUNT) {
-            store('hero5', true);
-            $('.wrapper[data-src="5"]').removeClass('locked');
+            this.unlockHero(5);
           }
         } else {
           this.count = 0;
@@ -784,7 +796,7 @@ $(function() {
         return;
       }
       var deg = this._getRandom(0, 359);
-      var angle = 360 * DRAW_ROUNDS + deg;
+      var angle = 360 * 10 - deg;
       this.$drawPlate.on(ANIMATION_END_EVENTS, function() {
         self.$drawPlate.off(ANIMATION_END_EVENTS);
         self.drawEnd(deg);
@@ -800,18 +812,30 @@ $(function() {
 
     this.drawEnd = function (deg) {
       this.isDrawing = false;
-      var gift;
-      // FXIME:
-      if (deg < 180) {
-        gift = deg + '西瓜';
-      } else {
-        gift = '专属英雄';
-      }
-      this.$drawResult.addClass('in').find('.draw-prize').text(gift);
+      var prize = this.getPrize(deg);
+      console.log(deg, prize);
+      this.$drawResult.addClass('in').find('.draw-prize').text(prize);
       this.$drawPlate.removeClass('start').css({
-        '-webkit-transform': 'rotate(' + deg + 'deg)',
-        'transform': 'rotate(' + deg + 'deg)'
+        '-webkit-transform': 'rotate(' + -deg + 'deg)',
+        'transform': 'rotate(' + -deg + 'deg)'
       });
+    };
+
+    this.getPrize = function (deg) {
+      var prize;
+      for (var i = 0; i < PRIZES.length; i++) {
+        if (PRIZES[i].from <= deg && deg < (PRIZES[i].from + PRIZES[i].per * 360 / 100)) {
+          if (typeof PRIZES[i].prize === 'number') {
+            this.updateTotal(PRIZES[i].prize);
+            prize = PRIZES[i].prize + '个西瓜';
+            return prize;
+          } else {
+            this.unlockHero(PRIZE_HERO);
+            prize = '隐藏英雄!';
+            return prize;
+          }
+        }
+      }
     };
 
     this.updateScore = function (n) {
