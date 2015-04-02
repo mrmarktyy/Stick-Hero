@@ -829,7 +829,7 @@ $(function() {
             return prize;
           } else {
             this.unlockHero(PRIZE_HERO);
-            prize = '隐藏英雄!';
+            prize = '隐藏英雄！';
             return prize;
           }
         }
