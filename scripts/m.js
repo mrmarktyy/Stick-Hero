@@ -109,8 +109,8 @@ $(function() {
     var PERFECT_WIDTH = 6;
     var UNLOCK_COUNT = 5;
     var FREE_DRAW = 99; // FIXME
-    var DRAW_MOD = 20;
-    var DRAW_ROUNDS = 10;
+    var DRAW_SCORE = 20;
+    var DRAW_TURNS = 10;
     var BOX_LEFT_MIN = BOX_BASE_WIDTH + 30;
     var BOX_LEFT_MAX = GAME_WIDTH - BOX_BASE_WIDTH;
     var BOX_WIDTH_MIN = Math.round(15 * WIDTH_RATIO); //
@@ -385,7 +385,6 @@ $(function() {
         self.next(STATES.WELCOME);
       });
       $('.btn-share, .draw-share').on(CLICK_EVENT, function(event) {
-        console.log('draw-share');
         self.$share.show();
         self.$draw.removeClass('in');
         event.stopPropagation();
@@ -754,7 +753,7 @@ $(function() {
       if (IS_WECHAT) {
         this.$title.text('棍子大侠:我总共前进了' + this.score + '步,听说智商超过130的人才能前进40步哦,你也来试试？');
       }
-      var drawCount = Math.floor(this.score / DRAW_MOD);
+      var drawCount = Math.floor(this.score / DRAW_SCORE);
       if (drawCount) {
         this.updateDraw(drawCount);
       }
@@ -796,7 +795,7 @@ $(function() {
         return;
       }
       var deg = this._getRandom(0, 359);
-      var angle = 360 * 10 - deg;
+      var angle = 360 * DRAW_TURNS - deg;
       this.$drawPlate.on(ANIMATION_END_EVENTS, function() {
         self.$drawPlate.off(ANIMATION_END_EVENTS);
         self.drawEnd(deg);
@@ -813,7 +812,6 @@ $(function() {
     this.drawEnd = function (deg) {
       this.isDrawing = false;
       var prize = this.getPrize(deg);
-      console.log(deg, prize);
       this.$drawResult.addClass('in').find('.draw-prize').text(prize);
       this.$drawPlate.removeClass('start').css({
         '-webkit-transform': 'rotate(' + -deg + 'deg)',

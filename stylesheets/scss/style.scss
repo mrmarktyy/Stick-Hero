@@ -536,9 +536,6 @@ $main-color: black;
     > p {
       margin: 0;
     }
-    .draw-share {
-      color: blue;
-    }
   }
   .draw-footer {
     font-size: 10px;
@@ -574,9 +571,10 @@ $main-color: black;
     bottom: 60px;
     font-size: 20px;
   }
-  .yellow {
-    color: #f1c40f;
-  }
+}
+
+.yellow {
+  color: #f1c40f;
 }
 
 .copyright {

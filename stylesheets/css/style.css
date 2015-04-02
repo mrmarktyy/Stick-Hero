@@ -279,14 +279,14 @@
 .draw .draw-result { opacity: 0; color: red; padding: 0 12px; text-align: center; height: 60px; -webkit-transition: opacity 1s ease-in-out; transition: opacity 1s ease-in-out; }
 .draw .draw-result.in { opacity: 1; }
 .draw .draw-result > p { margin: 0; }
-.draw .draw-result .draw-share { color: blue; }
 .draw .draw-footer { font-size: 10px; padding: 12px; font-style: italic; margin-bottom: 0; }
 
 .share { display: none; background: rgba(0, 0, 0, 0.7); color: white; }
 .share .arrow { width: 60px; position: absolute; right: 0; -webkit-animation: arrow 1s infinite linear; animation: arrow 1s infinite linear; }
 .share .text { position: absolute; top: 15%; left: 0; right: 0; text-align: center; }
 .share .like { position: absolute; text-align: center; width: 100%; bottom: 60px; font-size: 20px; }
-.share .yellow { color: #f1c40f; }
+
+.yellow { color: #f1c40f; }
 
 .copyright { position: absolute; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.5); color: white; font-size: 10px; }
 
