@@ -566,6 +566,7 @@ $(function() {
       this.$livescore.show();
       this.$watermelon.show();
       this.$instruction.addClass('in');
+      this.$title.text(TITLE_DEFAULT);
 
       this.BOX2 = this._createBox();
       this.$box2 = $('<div />').addClass('box').css({
@@ -838,6 +839,9 @@ $(function() {
       this.isDrawing = false;
       var prize = this.getPrize(deg);
       this.$drawResult.addClass('in').find('.draw-prize').text(prize);
+      if (IS_WECHAT) {
+        this.$title.text('棍子大侠:太厉害了，我在幸运抽奖中抽到了' + prize + '！你行吗？来试试吧！');
+      }
       this.$drawPlate.removeClass('start').css({
         '-webkit-transform': 'rotate(' + -deg + 'deg)',
         'transform': 'rotate(' + -deg + 'deg)'
