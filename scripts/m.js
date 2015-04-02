@@ -164,7 +164,7 @@ $(function() {
       { level: 6, from: 252, per: 5 , prize: 'hero13'}
     ];
     var PRIZE_HERO = 13;
-store('hero13', true);
+
     this.init = function() {
       this.initVars();
       this.bindEvents();
