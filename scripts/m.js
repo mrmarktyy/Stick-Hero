@@ -517,7 +517,7 @@ $(function() {
       }).show();
       this.$game.append(this.$box1);
 
-      if (this._getRandom(1, 100) <= 25) {
+      if (this._getRandom(1, 100) <= 0) {
         this.adf = true;
       }
     };
