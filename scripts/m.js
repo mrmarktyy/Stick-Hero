@@ -108,7 +108,7 @@ $(function() {
     var STICK_INC = 3;
     var PERFECT_WIDTH = 6;
     var UNLOCK_COUNT = 5;
-    var FREE_DRAW = 99; // FIXME
+    var FREE_DRAW = 3;
     var DRAW_SCORE = 20;
     var DRAW_TURNS = 10;
     var BOX_LEFT_MIN = BOX_BASE_WIDTH + 30;
