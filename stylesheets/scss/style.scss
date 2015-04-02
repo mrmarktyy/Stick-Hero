@@ -14,6 +14,7 @@ $main-color: black;
 @import 'hero10';
 @import 'hero11';
 @import 'hero12';
+@import 'hero13';
 
 #game {
   position: relative;
@@ -418,7 +419,7 @@ $main-color: black;
       &.locked .price {
         width: 170px;
         font-size: 12px;
-        line-height: 26px;
+        line-height: 20px;
       }
     }
 
@@ -465,6 +466,9 @@ $main-color: black;
     }
     .hero12.hero-c {
       top: 38px;
+    }
+    .hero13.hero-c {
+      top: 46px;
     }
   }
 }

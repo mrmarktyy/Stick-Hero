@@ -140,7 +140,8 @@ $(function() {
       [21, 28, 8, 17, 13, 9, 6, 5, 16], // 9
       [18, 26, 7, 11 ,5], // 10
       [18, 24, 5], // 11
-      [26, 26, 2, 14, 18, 30, 22, 12, 12, 22] // 12
+      [26, 26, 2, 14, 18, 30, 22, 12, 12, 22], // 12
+      [24, 26, 13, 28, 24, 28, 15, 18, 15, 13, 24] // 13
     ];
     var STATES = {
       WELCOME: 0,
@@ -160,9 +161,9 @@ $(function() {
       { level: 3, from: 90,  per: 20, prize: 20, },
       { level: 4, from: 162, per: 15, prize: 50, },
       { level: 5, from: 216, per: 10, prize: 100, },
-      { level: 6, from: 252, per: 5 , prize: 'hero12'}
+      { level: 6, from: 252, per: 5 , prize: 'hero13'}
     ];
-    var PRIZE_HERO = 12;
+    var PRIZE_HERO = 13;
 
     this.init = function() {
       this.initVars();
@@ -328,6 +329,30 @@ $(function() {
           });
           $hero.find('.m').css({
             'width': Math.floor(HEROS[i][8] * WIDTH_RATIO) + 'px'
+          });
+        }
+        if (heroIndex === 13) {
+          $hero.find('.body').css({
+            'width': heroWidth + 'px',
+            'height': heroHeight + 'px'
+          });
+          $hero.find('.head').css({
+            'width': Math.floor(HEROS[i][3] * WIDTH_RATIO) + 'px',
+            'height': Math.floor(HEROS[i][4] * WIDTH_RATIO) + 'px'
+          });
+          $hero.find('.half').css({
+            'width': Math.floor(HEROS[i][5] * WIDTH_RATIO) + 'px',
+            'height': Math.floor(HEROS[i][6] * WIDTH_RATIO) + 'px'
+          });
+          $hero.find('.mouse').css({
+            'top': Math.floor(HEROS[i][7] * WIDTH_RATIO) + 'px'
+          });
+          $hero.find('.m').css({
+            'width': Math.floor(HEROS[i][8] * WIDTH_RATIO) + 'px',
+            'top': Math.floor(HEROS[i][9] * WIDTH_RATIO) + 'px'
+          });
+          $hero.find('.strip1, .strip2').css({
+            'width': Math.floor(HEROS[i][10] * WIDTH_RATIO) + 'px'
           });
         }
       }
