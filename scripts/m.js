@@ -164,7 +164,7 @@ $(function() {
       { level: 6, from: 252, per: 5 , prize: 'hero13'}
     ];
     var PRIZE_HERO = 13;
-
+store('hero13', true);
     this.init = function() {
       this.initVars();
       this.bindEvents();
@@ -206,7 +206,7 @@ $(function() {
       this._currentState = STATES.WELCOME;
       this.total = parseInt(store('total') || 0, 10);
       this.$total.text(this.total);
-      this.isNew = store('stick-hero-329') + '' === 'true';
+      this.isNew = store('stick-hero-404') + '' === 'true';
       this.gameRound = 0;
 
       this.heroInit();
@@ -375,8 +375,8 @@ $(function() {
     this.switchHero = function (hero) {
       this.hero = parseInt(hero, 10) || this.hero;
       store('hero', this.hero);
-      $('#wx_pic img').attr('src', 'images/hero' + this.hero + '.png?1');
-      $('#wx_pic img').prop('src', 'images/hero' + this.hero + '.png?1');
+      $('#wx_pic img').attr('src', 'images/hero' + this.hero + '.png?4');
+      $('#wx_pic img').prop('src', 'images/hero' + this.hero + '.png?4');
 
       var HERO = HEROS[this.hero - 1];
       HERO_WIDTH = Math.round(HERO[0] * WIDTH_RATIO);
@@ -423,7 +423,7 @@ $(function() {
         self.$heropick.toggleClass('in');
         self.$draw.removeClass('in');
         if (!this.isNew) {
-          store('stick-hero-329', true);
+          store('stick-hero-404', true);
           self.$newHeroIcon.hide();
         }
         event.stopPropagation();

@@ -290,7 +290,7 @@
 .heropick .wrapper.combo { width: 100%; }
 .heropick .wrapper.combo.locked .price { width: 170px; font-size: 12px; line-height: 20px; }
 .heropick .wrapper.locked { background-color: #ffff66; }
-.heropick .wrapper.locked .new { display: block; position: absolute; background: red; padding: 3px 4px 5px 5px; border-radius: 50%; top: -4px; right: -6px; color: white; font-size: 10px; font-weight: 900; }
+.heropick .wrapper.locked .new { display: block; position: absolute; background: red; padding: 3px 4px 5px 4px; border-radius: 50%; top: -4px; right: -6px; color: white; font-size: 10px; font-weight: 900; }
 .heropick .wrapper.locked .price { position: absolute; display: block; width: 65px; font-size: 14px; }
 .heropick .wrapper.locked .hero-c { visibility: hidden; }
 .heropick .wrapper .price, .heropick .wrapper .new { display: none; }
