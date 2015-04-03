@@ -475,6 +475,11 @@ $(function() {
       $(document).on('mouseup touchend', function() {
         IS_TOUCHING = false;
       });
+      $(document).on(CLICK_EVENT, 'a.icon_close', function(event) {
+        event.preventDefault();
+        event.stopPropagation();
+        window.GDT.closeWindow();
+      });
     };
 
     this.unlockHero = function (hero) {
@@ -806,10 +811,7 @@ $(function() {
       if (this._getRandom(1, 100) <= 70) {
         setTimeout(function() {
           window.GDT.showWindow();
-          $('a.icon_close').on(CLICK_EVENT, function() {
-            window.GDT.closeWindow();
-          });
-        }, 200);
+        }, this._getRandom(500, 1500));
       }
       this.$livescore.hide();
       this.$gameover.show();
