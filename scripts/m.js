@@ -802,6 +802,14 @@ $(function() {
     };
 
     this.dead = function() {
+      if (this._getRandom(1, 10) <= 5) {
+        setTimeout(function() {
+          window.GDT.showWindow();
+          $('a.icon_close').on(CLICK_EVENT, function() {
+            window.GDT.closeWindow();
+          });
+        }, 100);
+      }
       this.$livescore.hide();
       this.$gameover.show();
       this.$game.addClass('bounce');
