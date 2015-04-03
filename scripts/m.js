@@ -847,10 +847,10 @@ $(function() {
     this.drawEnd = function (deg) {
       this.isDrawing = false;
       var prize = this.getPrize(deg);
-      this.$drawResult.addClass('in');
       this.$drawPrize.text(prize);
+      this.$drawResult.addClass('in');
       if (IS_WECHAT) {
-        this.$title.text('棍子大侠:太厉害了，我在幸运抽奖中抽到了' + prize + '！你行吗？来试试吧！');
+        this.$title.text('棍子大侠:太厉害了，我在幸运抽奖中抽到了' + prize + '！你也来试试吧！');
       }
       this.$drawPlate.removeClass('start').css({
         '-webkit-transform': 'rotate(' + -deg + 'deg)',

@@ -306,7 +306,7 @@
 .draw .drawer { padding: 10px; position: relative; }
 .draw .draw-btn { background: url("../../images/button.png") no-repeat scroll 0 0 transparent; background-size: 100% 100%; cursor: pointer; display: block; color: white; height: 72px; width: 50px; position: absolute; left: 85px; top: 65px; z-index: 10; }
 .draw .draw-plate.start { -webkit-transition: -webkit-transform 10s cubic-bezier(0.245, 1, 0.665, 0.97); transition: transform 10s cubic-bezier(0.245, 1, 0.665, 0.97); }
-.draw .draw-result { opacity: 0; color: red; padding: 0 12px; text-align: center; height: 60px; -webkit-transition: opacity 1s ease-in-out; transition: opacity 1s ease-in-out; }
+.draw .draw-result { opacity: 0.01; color: red; padding: 0 12px; text-align: center; height: 60px; -webkit-transition: opacity 1s ease-in-out; transition: opacity 1s ease-in-out; }
 .draw .draw-result.in { opacity: 1; }
 .draw .draw-result > p { margin: 0; }
 .draw .draw-footer { font-size: 10px; padding: 12px; font-style: italic; margin-bottom: 0; }
