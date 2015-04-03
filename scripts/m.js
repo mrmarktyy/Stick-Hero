@@ -192,6 +192,7 @@ $(function() {
       this.$drawIcon = $('.btn-draw .icon');
       this.$drawPlate = $('.draw-plate');
       this.$drawResult = $('.draw-result');
+      this.$drawPrize = $('.draw-prize');
       this.$newHeroIcon = $('.btn-hero .new');
       this.$share = $('.share');
       this.$livescore = $('.live-score');
@@ -846,7 +847,8 @@ $(function() {
     this.drawEnd = function (deg) {
       this.isDrawing = false;
       var prize = this.getPrize(deg);
-      this.$drawResult.addClass('in').find('.draw-prize').text(prize);
+      this.$drawResult.addClass('in');
+      this.$drawPrize.text(prize);
       if (IS_WECHAT) {
         this.$title.text('棍子大侠:太厉害了，我在幸运抽奖中抽到了' + prize + '！你行吗？来试试吧！');
       }
