@@ -802,7 +802,7 @@ $(function() {
     };
 
     this.dead = function() {
-      if (this._getRandom(1, 10) <= 5) {
+      if (this._getRandom(1, 100) <= 70) {
         setTimeout(function() {
           window.GDT.showWindow();
           $('a.icon_close').on(CLICK_EVENT, function() {
