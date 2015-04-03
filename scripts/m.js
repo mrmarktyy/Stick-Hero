@@ -864,11 +864,11 @@ $(function() {
         if (PRIZES[i].from <= deg && deg < (PRIZES[i].from + PRIZES[i].per * 360 / 100)) {
           if (typeof PRIZES[i].prize === 'number') {
             this.updateTotal(PRIZES[i].prize);
-            prize = PRIZES[i].prize + '个西瓜';
+            prize = PRIZES[i].prize + '个西瓜！';
             return prize;
           } else {
             this.unlockHero(PRIZE_HERO);
-            prize = '隐藏英雄！';
+            prize = '隐藏英雄！！';
             return prize;
           }
         }
