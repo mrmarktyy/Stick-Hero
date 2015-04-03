@@ -128,6 +128,7 @@ $(function() {
     var HERO_FEET;
     var HERO_BOTTOM;
     var HERO_INIT_LEFT;
+    var YOOCC_URL = 'http://mp.weixin.qq.com/s?__biz=MjM5MDg1MTE2Ng==&mid=203839075&idx=1&sn=d5b359c2481bb9b8973a0cbe259cd3df';
     // [width, height, feet_bottom, rest]
     var HEROS = [
       [18, 24, 10, 6], // 1 (care for 3px border)
@@ -420,6 +421,10 @@ $(function() {
           self.$share.hide();
         });
       });
+      $('.btn-wechat').on(CLICK_EVENT, function (event) {
+        event.stopPropagation();
+        window.location.href = YOOCC_URL;
+      });
       $('.btn-hero').on(CLICK_EVENT, function(event) {
         self.$heropick.toggleClass('in');
         self.$draw.removeClass('in');
@@ -469,7 +474,9 @@ $(function() {
         event.stopPropagation();
       });
       $(document).on('mousedown touchstart', function(event) {
-        IS_TOUCHING = true;
+        if ($('#gdt_inter_popup_wrap').css('display') === 'none') {
+          IS_TOUCHING = true;
+        }
         event.preventDefault();
       });
       $(document).on('mouseup touchend', function() {
