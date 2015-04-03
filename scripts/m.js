@@ -808,7 +808,7 @@ $(function() {
           $('a.icon_close').on(CLICK_EVENT, function() {
             window.GDT.closeWindow();
           });
-        }, 100);
+        }, 200);
       }
       this.$livescore.hide();
       this.$gameover.show();
