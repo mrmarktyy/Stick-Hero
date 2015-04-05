@@ -219,7 +219,7 @@
 .hero13 .body .foot.left { left: 2px; }
 .hero13 .body .foot.right { right: 2px; }
 
-#game { position: relative; overflow: hidden; background-image: url("../../images/bg1.jpg"); background-repeat: no-repeat; background-size: 100% 100%; }
+#game { position: relative; overflow: hidden; background-image: url("../../images/bg1.jpg"); background-repeat: no-repeat; background-size: 100% 100%; margin: 0 auto; }
 #game.bg1 { background-image: url("../../images/bg1.jpg"); }
 #game.bg2 { background-image: url("../../images/bg2.jpg"); }
 #game.bg3 { background-image: url("../../images/bg3.jpg"); }
@@ -252,11 +252,12 @@
 .welcome .game-title.hinge { -webkit-animation: hinge 2s ease-in-out; animation: hinge 2s ease-in-out; }
 .welcome .btn-play { position: absolute; color: white; cursor: pointer; background: lightcoral; border-radius: 50%; width: 100px; height: 100px; text-align: center; left: 0; right: 0; margin: 0 auto; font-size: 20px; top: 40%; -webkit-animation: fly 2.5s infinite linear; animation: fly 2.5s infinite linear; }
 .welcome .btn-play > div { position: relative; top: 50%; -webkit-transform: translate3d(0, -50%, 0); transform: translate3d(0, -50%, 0); }
-.welcome .btn-side { position: absolute; cursor: pointer; color: white; background: rgba(0, 0, 0, 0.3); padding: 3px 10px 10px 12px; border-radius: 50%; width: 40px; height: 40px; box-sizing: border-box; font-weight: 900; font-size: 12px; right: 40px; border: 2px solid #3d4752; }
+.welcome .btn-side { position: absolute; cursor: pointer; color: white; background: rgba(0, 0, 0, 0.3); padding: 9px 3px 10px 6px; border-radius: 50%; width: 40px; height: 40px; box-sizing: border-box; font-weight: 900; font-size: 12px; right: 40px; border: 2px solid #3d4752; }
 .welcome .btn-side .icon { display: none; color: white; background: red; border-radius: 50%; top: -6px; right: -9px; width: 20px; height: 20px; position: absolute; }
+.welcome .btn-side .icon.new { font-size: 8px; }
 .welcome .btn-side .icon span { position: absolute; left: 50%; top: 50%; -webkit-transform: translate3d(-50%, -50%, 0); transform: translate3d(-50%, -50%, 0); }
-.welcome .btn-hero { top: 70%; }
-.welcome .btn-draw { top: 80%; }
+.welcome .btn-hero { top: 65%; }
+.welcome .btn-draw { top: 75%; }
 
 .live-score { display: none; font-family: Helvetica, Georgia; position: absolute; padding: 10px 20px 7px; top: 30px; background: rgba(0, 0, 0, 0.3); color: white; border-radius: 10px; font-size: 30px; left: 50%; -webkit-transform: translate3d(-50%, 0, 0); transform: translate3d(-50%, 0, 0); }
 
@@ -306,7 +307,7 @@
 .draw .drawer { padding: 10px; position: relative; }
 .draw .draw-btn { background: url("../../images/button.png") no-repeat scroll 0 0 transparent; background-size: 100% 100%; cursor: pointer; display: block; color: white; height: 72px; width: 50px; position: absolute; left: 85px; top: 65px; z-index: 10; }
 .draw .draw-plate.start { -webkit-transition: -webkit-transform 10s cubic-bezier(0.245, 1, 0.665, 0.97); transition: transform 10s cubic-bezier(0.245, 1, 0.665, 0.97); }
-.draw .draw-result { opacity: 0; color: red; padding: 0 12px; text-align: center; height: 60px; -webkit-transition: opacity 1s ease-in-out; transition: opacity 1s ease-in-out; }
+.draw .draw-result { opacity: 0; color: red; padding: 0 12px; text-align: center; height: 35px; -webkit-transition: opacity 1s ease-in-out; transition: opacity 1s ease-in-out; }
 .draw .draw-result.in { opacity: 1; }
 .draw .draw-result > p { margin: 0; }
 .draw .draw-footer { font-size: 10px; padding: 12px; font-style: italic; margin-bottom: 0; }
@@ -322,7 +323,4 @@
 
 .copyright__heart { color: red; }
 
-.ads, .ad { width: 100%; margin: 0; padding: 0; border: none; background: none; position: fixed; z-index: 1002; bottom: 0; }
-.ads.adf, .ad.adf { bottom: 140px; opacity: 0.01; -webkit-tap-highlight-color: transparent; -webkit-tap-highlight-color: transparent; /* For some Androids */ }
-
-.ad { display: none; height: 60px; }
+.ads { margin: 0; padding: 0; border: none; background: none; position: absolute; z-index: 1002; bottom: 0; }

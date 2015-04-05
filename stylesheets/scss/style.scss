@@ -22,6 +22,7 @@ $main-color: black;
   background-image: url('../../images/bg1.jpg');
   background-repeat: no-repeat;
   background-size: 100% 100%;
+  margin: 0 auto;
 
   &.bg1 {
     background-image: url('../../images/bg1.jpg');
@@ -216,7 +217,7 @@ $main-color: black;
     cursor: pointer;
     color: white;
     background: rgba(0, 0, 0, 0.3);
-    padding: 3px 10px 10px 12px;
+    padding: 9px 3px 10px 6px;
     border-radius: 50%;
     width: 40px;
     height: 40px;
@@ -236,6 +237,9 @@ $main-color: black;
       height: 20px;
       position: absolute;
 
+      &.new {
+        font-size: 8px;
+      }
       span {
         position: absolute;
         left: 50%;
@@ -246,10 +250,10 @@ $main-color: black;
     }
   }
   .btn-hero {
-    top: 70%;
+    top: 65%;
   }
   .btn-draw {
-    top: 80%;
+    top: 75%;
   }
 }
 
@@ -531,7 +535,7 @@ $main-color: black;
     color: red;
     padding: 0 12px;
     text-align: center;
-    height: 60px;
+    height: 35px;
     -webkit-transition: opacity 1s ease-in-out;
             transition: opacity 1s ease-in-out;
     &.in {
@@ -594,25 +598,12 @@ $main-color: black;
   color: red;
 }
 
-.ads,
-.ad {
-  width: 100%;
+.ads {
   margin: 0;
   padding: 0;
   border: none;
   background: none;
-  position: fixed;
+  position: absolute;
   z-index: 1002;
   bottom: 0;
-  &.adf {
-    bottom: 140px;
-    opacity: 0.01;
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-    -webkit-tap-highlight-color: transparent; /* For some Androids */
-  }
-}
-
-.ad {
-  display: none;
-  height: 60px;
 }

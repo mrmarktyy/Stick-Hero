@@ -30,6 +30,63 @@
   }
 }());
 
+var store = function store(key, value) {
+  'use strict';
+  var data;
+  var IS_ANDROID = navigator.userAgent.toLowerCase().indexOf('android') > -1;
+  var lsSupport = IS_ANDROID ? false : true;
+
+  if (typeof value !== 'undefined' && value !== null) {
+    if (typeof value === 'object' ) {
+      value = JSON.stringify(value);
+    }
+    if (lsSupport) {
+      localStorage.setItem(key, value);
+    } else {
+      createCookie(key, value, 100);
+    }
+  }
+
+  if (typeof value === 'undefined') {
+    if (lsSupport) {
+      data = localStorage.getItem(key);
+    } else {
+      var cookieData = readCookie(key);
+      data = cookieData !== null ? cookieData : localStorage.getItem(key);
+    }
+    try {
+     data = JSON.parse(data);
+    }
+    catch(e) {
+     data = data;
+    }
+    return data;
+  }
+  if (value === null) {
+    if (lsSupport) {
+      localStorage.removeItem(key);
+    } else {
+      createCookie(key, '', -1);
+    }
+  }
+  function createCookie(key, value, exp) {
+    var date = new Date();
+    date.setTime(date.getTime() + (exp * 24 * 60 * 60 * 1000));
+    var expires = '; expires=' + date.toGMTString();
+    document.cookie = key + '=' + value + expires + '; path=/';
+  }
+  function readCookie(key) {
+    var nameEQ = key + '=';
+    var ca = document.cookie.split(';');
+    for (var i = 0, max = ca.length; i < max; i++) {
+      var c = ca[i];
+      while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+      if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+    }
+    return null;
+  }
+};
+
 $(function() {
   'use strict';
 
@@ -59,10 +116,8 @@ $(function() {
     var BOX_WIDTH_MIN = Math.round(15 * WIDTH_RATIO); //
     var BOX_WIDTH_MAX = Math.round(69 * WIDTH_RATIO); //
     var ANIMATION_END_EVENTS = 'webkitTransitionEnd transitionend animationend webkitAnimationEnd';
-    var TITLE_DEFAULT = '';
     var IS_TOUCHING = false;
     var PRESS_STARTED = false;
-    var IS_WECHAT = !!navigator.userAgent.match(/MicroMessenger/);
     // https://github.com/Modernizr/Modernizr/blob/master/feature-detects/touchevents.js#L40
     var IS_TOUCH = !!(('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch);
     var CLICK_EVENT = IS_TOUCH ? 'touchstart' : 'click';
@@ -71,7 +126,6 @@ $(function() {
     var HERO_FEET;
     var HERO_BOTTOM;
     var HERO_INIT_LEFT;
-    var YOOCC_URL = 'http://mp.weixin.qq.com/s?__biz=MjM5MDg1MTE2Ng==&mid=203839075&idx=1&sn=d5b359c2481bb9b8973a0cbe259cd3df';
     // [width, height, feet_bottom, rest]
     var HEROS = [
       [18, 24, 10, 6], // 1 (care for 3px border)
@@ -116,15 +170,11 @@ $(function() {
     };
 
     this.initVars = function() {
-      this.$title = $('title');
-      TITLE_DEFAULT = this.$title.text();
-      this.$copyright = $('.copyright');
       this.$game = $('#game').css({
         width: GAME_WIDTH + 'px',
         height: GAME_HEIGHT + 'px'
       });
-      this.$ads = $('.ads');
-      this.$ad = $('.ad').css({
+      this.$ads = $('.ads').css({
         width: GAME_WIDTH + 'px'
       });
       this.$gametitle = $('.game-title');
@@ -152,7 +202,6 @@ $(function() {
       this.total = parseInt(store('total') || 0, 10);
       this.$total.text(this.total);
       this.isNew = store('stick-hero-404') + '' === 'true';
-      this.gameRound = 0;
 
       this.heroInit();
       this.switchHero(this.hero);
@@ -320,8 +369,6 @@ $(function() {
     this.switchHero = function (hero) {
       this.hero = parseInt(hero, 10) || this.hero;
       store('hero', this.hero);
-      $('#wx_pic img').attr('src', 'images/hero' + this.hero + '.png?4');
-      $('#wx_pic img').prop('src', 'images/hero' + this.hero + '.png?4');
 
       var HERO = HEROS[this.hero - 1];
       HERO_WIDTH = Math.round(HERO[0] * WIDTH_RATIO);
@@ -353,20 +400,6 @@ $(function() {
       $('.btn-home').on(CLICK_EVENT, function() {
         self.reset();
         self.next(STATES.WELCOME);
-      });
-      $('.btn-share, .draw-share').on(CLICK_EVENT, function(event) {
-        self.$share.show();
-        self.$draw.removeClass('in');
-        event.stopPropagation();
-        $(document).off(CLICK_EVENT, '.overlay');
-        $(document).on(CLICK_EVENT, '.overlay', function() {
-          $(document).off(CLICK_EVENT, '.overlay');
-          self.$share.hide();
-        });
-      });
-      $('.btn-wechat').on(CLICK_EVENT, function (event) {
-        event.stopPropagation();
-        window.location.href = YOOCC_URL;
       });
       $('.btn-hero').on(CLICK_EVENT, function(event) {
         self.$heropick.toggleClass('in');
@@ -425,11 +458,6 @@ $(function() {
       $(document).on('mouseup touchend', function() {
         IS_TOUCHING = false;
       });
-      $(document).on(CLICK_EVENT, 'a.icon_close', function(event) {
-        event.preventDefault();
-        event.stopPropagation();
-        window.GDT.closeWindow();
-      });
     };
 
     this.unlockHero = function (hero) {
@@ -441,10 +469,7 @@ $(function() {
       this.score = 0;
       this.count = 0;
       this.isDrawing = false;
-      this.gameRound ++;
-      this.adf = false;
       this.best = store('best') || 0;
-      this.$title.text(TITLE_DEFAULT);
       this.$heroContainer = this.$hero.parent();
       this.$game
         .removeClass('bounce bg1 bg2 bg3 bg4 bg5 bg6')
@@ -453,8 +478,6 @@ $(function() {
       this.$livescore.hide();
       this.$gameover.hide();
       this.$welcome.hide();
-      this.$ad.hide();
-      this.$ads.removeClass('adf');
       this.updateScore();
 
       $('.box, .stick').remove();
@@ -472,10 +495,6 @@ $(function() {
         '-webkit-transform': 'translate3d(' + (GAME_WIDTH - HERO_WIDTH) / 2 + 'px, 0, 0)'
       }).show();
       this.$game.append(this.$box1);
-
-      if (this._getRandom(1, 100) <= 0) {
-        this.adf = true;
-      }
     };
 
     this.start = function() {
@@ -516,13 +535,11 @@ $(function() {
     this.preBegin = function() {
       this.$welcome.hide();
       this.$gameover.hide();
-      this.$copyright.hide();
       this.$heropick.hide();
       this.$draw.hide();
       this.$livescore.show();
       this.$watermelon.show();
       this.$instruction.addClass('in');
-      this.$title.text(TITLE_DEFAULT);
 
       this.BOX2 = this._createBox();
       this.$box2 = $('<div />').addClass('box').css({
@@ -548,11 +565,6 @@ $(function() {
           '-webkit-transform': 'translate3d(' + -(GAME_WIDTH - self.BOX2.left) + 'px, 0, 0)'
         });
       }, 100);
-
-      if (this.adf && this.gameRound > 1) {
-        this.$ads.addClass('adf');
-        this.$ad.show();
-      }
     };
 
     this.begin = function() {
@@ -732,9 +744,6 @@ $(function() {
       this.$feet.removeClass('walk');
       this.$activeStick.addClass('died');
 
-      if (IS_WECHAT) {
-        this.$title.text('棍子英雄:我总共前进了' + this.score + '步,听说智商超过130的人才能前进40步哦,你也来试试？');
-      }
       var drawCount = Math.floor(this.score / DRAW_SCORE);
       if (drawCount) {
         this.updateDraw(drawCount);
@@ -801,9 +810,6 @@ $(function() {
       var prize = this.getPrize(deg);
       this.$drawPrize.text(prize);
       this.$drawResult.addClass('in');
-      if (IS_WECHAT) {
-        this.$title.text('棍子英雄:太厉害了，我在运气中得到了' + prize + '！你也来试试吧！');
-      }
       this.$drawPlate.removeClass('start').css({
         '-webkit-transform': 'rotate(' + -deg + 'deg)',
         'transform': 'rotate(' + -deg + 'deg)'

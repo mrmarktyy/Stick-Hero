@@ -4,120 +4,29 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, inital-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
-  <title>棍子英雄:天生骄傲！</title>
+  <title>Stick Hero</title>
   <link href="#" rel="icon">
-  <link rel="stylesheet" href="dist/css/style.min.css?4">
-  <div id="wx_pic" style="margin:0 auto;display:none;">
-    <img src="images/hero1.png?4" />
-  </div>
+  <link rel="stylesheet" href="dist/css/style.min.css?5">
 </head>
 <body>
 <script>
-  var IS_ANDROID = navigator.userAgent.toLowerCase().indexOf('android') > -1;
-  var store = function store(key, value) {
-    'use strict';
-    var data;
-    var lsSupport = IS_ANDROID ? false : true;
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-    if (typeof value !== 'undefined' && value !== null) {
-      if (typeof value === 'object' ) {
-        value = JSON.stringify(value);
-      }
-      if (lsSupport) {
-        localStorage.setItem(key, value);
-      } else {
-        createCookie(key, value, 100);
-      }
-    }
-
-    if (typeof value === 'undefined') {
-      if (lsSupport) {
-        data = localStorage.getItem(key);
-      } else {
-        var cookieData = readCookie(key);
-        data = cookieData !== null ? cookieData : localStorage.getItem(key);
-      }
-      try {
-       data = JSON.parse(data);
-      }
-      catch(e) {
-       data = data;
-      }
-      return data;
-    }
-    if (value === null) {
-      if (lsSupport) {
-        localStorage.removeItem(key);
-      } else {
-        createCookie(key, '', -1);
-      }
-    }
-    function createCookie(key, value, exp) {
-      var date = new Date();
-      date.setTime(date.getTime() + (exp * 24 * 60 * 60 * 1000));
-      var expires = '; expires=' + date.toGMTString();
-      document.cookie = key + '=' + value + expires + '; path=/';
-    }
-    function readCookie(key) {
-      var nameEQ = key + '=';
-      var ca = document.cookie.split(';');
-      for (var i = 0, max = ca.length; i < max; i++) {
-        var c = ca[i];
-        while (c.charAt(0) === ' ') c = c.substring(1, c.length);
-        if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
-      }
-      return null;
-    }
-  };
-</script>
-<script>
-  function getParameterByName(name) {
-    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-        results = regex.exec(location.search);
-    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
-  }
-  var ls = getParameterByName('ls');
-  if (ls) {
-    try {
-      var data = JSON.parse(window.atob(ls));
-      for (var key in data) {
-        store(key, data[key]);
-      }
-    } catch (e) {
-
-    }
-    window.location.href = window.location.origin + window.location.pathname;
-  }
-</script>
-<script>
-  // if (window.location.hostname.indexOf('xiacici') > -1) {
-  //   var paths = window.location.pathname.split('/');
-  //   var d = new Date();
-  //   var hash = '' + d.getFullYear() + (d.getMonth()+1) + d.getDate() + d.getHours();
-  //   if (hash !== paths.pop()) {
-  //     window.location.href = window.location.origin + paths.join('/') + '/' + hash + window.location.search;
-  //   }
-  // }
-</script>
-<script>
-  var _hmt = _hmt || [];
-  (function() {
-    var hm = document.createElement("script");
-    hm.src = "//hm.baidu.com/hm.js?80b8171ddf7d7c9b8c1ca0c4b60d3511";
-    var s = document.getElementsByTagName("script")[0];
-    s.parentNode.insertBefore(hm, s);
-  })();
+  ga('create', 'UA-49734880-3', 'auto');
+  ga('send', 'pageview');
 </script>
 <div id="game">
   <div class="welcome overlay">
     <div class="game-title">STICK HERO</div>
-    <div class="btn-play"><div>开始</div></div>
-    <div class="btn-side btn-hero">英雄<div class="icon"><span>新</span></div></div>
-    <div class="btn-side btn-draw">运气<div class="icon"><span class="draw-total"></span></div></div>
+    <div class="btn-play"><div>Begin</div></div>
+    <div class="btn-side btn-hero">Hero<div class="new icon"><span>New</span></div></div>
+    <div class="btn-side btn-draw">Luck<div class="icon"><span class="draw-total"></span></div></div>
   </div>
   <div class="heropick hero">
-    <div class="title">英雄家族 <img src="images/watermelon.png"/><span class="total"></span></div>
+    <div class="title">Hero Family <img src="images/watermelon.png"/><span class="total"></span></div>
     <div class="heros">
       <!-- row -->
       <div class="wrapper" data-src="1">
@@ -203,7 +112,7 @@
         </div>
       </div>
       <div class="wrapper locked" data-src="12" data-price="800">
-        <div class="new">新</div>
+        <div class="new">New</div>
         <div class="price">800 <img src="images/watermelon.png">
         </div>
         <div class="hero12 hero-c">
@@ -233,7 +142,7 @@
       </div>
       <!-- row -->
       <div class="wrapper locked" data-src="9" data-price="900">
-        <div class="new">新</div>
+        <div class="new">New</div>
         <div class="price">900 <img src="images/watermelon.png">
         </div>
         <div class="hero9 hero-c">
@@ -266,7 +175,7 @@
       </div>
       <!-- row -->
       <div class="wrapper combo locked" data-src="13" data-price="9999999" style="height:70px;">
-        <div class="price" style="line-height:40px;">通过“运气”可以解锁隐藏英雄</div>
+        <div class="price" style="line-height:40px;">Unlock this via "Luck"</div>
         <div class="hero13 hero-c">
           <div class="head">
             <div class="hat-top"><div class="dot"></div></div>
@@ -293,7 +202,7 @@
       </div>
       <!-- row -->
       <div class="wrapper combo locked" data-src="5" data-price="9999999">
-        <div class="price">连续5次+1 解锁专属英雄</div>
+        <div class="price">Unlock via 5 times +1 combo</div>
         <div class="hero5 hero-c">
           <div class="hair-up"></div>
           <div class="hair-down"></div>
@@ -307,43 +216,32 @@
     </div>
   </div>
   <div class="draw">
-    <div class="draw-title">运气 <span class="draw-left">剩余:<span class="draw-total">0</span>次</span></div>
+    <div class="draw-title">I fell lucky today <span class="draw-left">Remain:<span class="draw-total">0</span></span></div>
     <div class="drawer">
       <img class="draw-plate" width="200" src="images/draw.png" />
       <div class="draw-btn"></div>
     </div>
     <div class="draw-result">
-      <p>恭喜您！本次运气中</p>
+      <p>Congratulations！You win</p>
       <p class="draw-prize"></p>
-      <p>立刻去朋友圈<span class="draw-share yellow">炫耀</span>吧！</p>
     </div>
-    <p class="draw-footer">规则:游戏得分每超过20分，即可获得1次运气机会（运气次数可以累加）。</p>
+    <p class="draw-footer">Rule: You get 1 draw every 20 score you gain in the game.</p>
   </div>
   <div class="game-over overlay">
-    <div class="title">游戏失败!</div>
+    <div class="title">Game Over!</div>
     <div class="board">
-      <p>得分</p>
+      <p>Score</p>
       <p class="score"></p>
-      <p>最佳</p>
+      <p>Best</p>
       <p class="best"></p>
     </div>
     <div class="actions">
-      <div class="btn btn-playagain">再玩一次</div>
-      <div class="btn btn-share">分享成绩</div>
-      <div class="btn btn-home">返回首页</div>
-      <div class="btn btn-wechat">关注悠客网</div>
+      <div class="btn btn-playagain">Play Again</div>
+      <div class="btn btn-home">Back Home</div>
     </div>
   </div>
-  <div class="share overlay">
-    <img class="arrow" src="images/arrow.png" />
-    <div class="text">
-      <p style="margin:0;font-size:30px;">分享高分到<span class="yellow">朋友圈</span></p>
-      <p style="font-size:14px;">点击<span class="yellow">收藏</span>下次可以直接从<span class="yellow">我的收藏</span>开始游戏噢！</p>
-    </div>
-    <p class="like">更多游戏 欢迎关注公众账号 <span class="yellow">悠客网</span></p>
-  </div>
-  <div class="instruction">常按屏幕使棍子变长</div>
-  <div class="perfect">完美！！！</div>
+  <div class="instruction">Hold your finger on the screen to stretch out the stick</div>
+  <div class="perfect">Perfect!!!</div>
   <div class="watermelon"><span class="total"></span><img src="images/watermelon.png"/></div>
   <div class="live-score"></div>
   <div class="hero">
@@ -488,45 +386,20 @@
       </div>
     </div>
   </div>
-  <div class="copyright">made with <span class="copyright__heart">♥</span> by 魔雪工作室</div>
+  <div class="copyright">made with <span class="copyright__heart">♥</span> by Mark Zhou</div>
+  <div class="ads">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- Stick-Hero -->
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-1157636439125028"
+         data-ad-slot="1029634598"
+         data-ad-format="auto"></ins>
+    <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+  </div>
 </div>
-<script src="dist/js/m.min.js?4"></script>
-<img class="ad" src="images/ad.jpg" />
-<div class="ads">
-  <script class="gdt" type="text/javascript" id="gdt-4060108245931154">
-    var TencentGDT = TencentGDT || [];
-    var ADS_BANNER = false;
-    if (ADS_BANNER) {
-      $('.gdt').attr('id', 'gdt-4060108245931154');
-    } else {
-      $('.gdt').attr('id', 'gdt-5010607155511855');
-    }
-    if (ADS_BANNER) {
-      // Banner广告
-      TencentGDT.push({
-        posid: '4060108245931154',
-        type: 'banner',
-        filltype:'full',
-        appid: '1103389862'
-      });
-    } else {
-      // 插屏广告
-      TencentGDT.push({
-        posid: '5010607155511855',
-        appid: '1103389862',
-        type: 'interstitial',
-        showmask: true,
-        onClose: function(){ },
-        onFail: function(){ },
-        onInterstitialLoaded: function(){ }
-      });
-    }
-    (function() {
-    var doc=document, h=doc.getElementsByTagName('head')[0], s=doc.createElement('script');
-    s.async=true; s.src='http://qzs.qq.com/qzone/biz/res/i.js';
-    h && h.insertBefore(s,h.firstChild)
-    })();
-  </script>
-</div>
+<script src="dist/js/m.min.js?5"></script>
 </body>
 </html>
