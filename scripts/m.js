@@ -450,9 +450,7 @@ $(function() {
         event.stopPropagation();
       });
       $(document).on('mousedown touchstart', function(event) {
-        if ($('#gdt_inter_popup_wrap').css('display') === 'none') {
-          IS_TOUCHING = true;
-        }
+        IS_TOUCHING = true;
         event.preventDefault();
       });
       $(document).on('mouseup touchend', function() {
