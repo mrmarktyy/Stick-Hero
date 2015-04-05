@@ -323,4 +323,4 @@
 
 .copyright__heart { color: red; }
 
-.ads { margin: 0; padding: 0; border: none; background: none; position: absolute; z-index: 1002; bottom: 0; }
+.ads { margin: 0; padding: 0; border: none; background: none; position: absolute; z-index: 1002; bottom: 0; height: 60px; }
