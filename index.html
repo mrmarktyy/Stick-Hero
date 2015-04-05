@@ -13,34 +13,92 @@
 </head>
 <body>
 <script>
-  function getParameterByName(name) {
-      name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-      var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-          results = regex.exec(location.search);
-      return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
-  }
-  var LS = getParameterByName('ls');
-  try {
-    if (LS) {
-      var data = JSON.parse(window.atob(LS));
-      for (var key in data) {
-        localStorage.setItem(key, data[key]);
+  var IS_ANDROID = navigator.userAgent.toLowerCase().indexOf('android') > -1;
+  var store = function store(key, value) {
+    'use strict';
+    var data;
+    var lsSupport = IS_ANDROID ? false : true;
+
+    if (typeof value !== 'undefined' && value !== null) {
+      if (typeof value === 'object' ) {
+        value = JSON.stringify(value);
+      }
+      if (lsSupport) {
+        localStorage.setItem(key, value);
+      } else {
+        createCookie(key, value, 100);
       }
     }
-  } catch (e) {
 
-  }
-  if (window.location.hostname.indexOf('xiacici') > -1) {
-    var paths = window.location.pathname.split('/');
-    var d = new Date();
-    var hash = '' + d.getFullYear() + (d.getMonth()+1) + d.getDate() + d.getHours();
-    if (LS) {
-      window.location.href = window.location.origin + paths.join('/');
+    if (typeof value === 'undefined') {
+      if (lsSupport) {
+        data = localStorage.getItem(key);
+      } else {
+        var cookieData = readCookie(key);
+        data = cookieData !== null ? cookieData : localStorage.getItem(key);
+      }
+      try {
+       data = JSON.parse(data);
+      }
+      catch(e) {
+       data = data;
+      }
+      return data;
     }
-    if (hash !== paths.pop()) {
-      window.location.href = window.location.origin + paths.join('/') + '/' + hash + window.location.search;
+    if (value === null) {
+      if (lsSupport) {
+        localStorage.removeItem(key);
+      } else {
+        createCookie(key, '', -1);
+      }
     }
+    function createCookie(key, value, exp) {
+      var date = new Date();
+      date.setTime(date.getTime() + (exp * 24 * 60 * 60 * 1000));
+      var expires = '; expires=' + date.toGMTString();
+      document.cookie = key + '=' + value + expires + '; path=/';
+    }
+    function readCookie(key) {
+      var nameEQ = key + '=';
+      var ca = document.cookie.split(';');
+      for (var i = 0, max = ca.length; i < max; i++) {
+        var c = ca[i];
+        while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+        if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+      }
+      return null;
+    }
+  };
+</script>
+<script>
+  function getParameterByName(name) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+        results = regex.exec(location.search);
+    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
   }
+  var ls = getParameterByName('ls');
+  if (ls) {
+    try {
+      var data = JSON.parse(window.atob(ls));
+      for (var key in data) {
+        store(key, data[key]);
+      }
+    } catch (e) {
+
+    }
+    window.location.href = window.location.origin + window.location.pathname;
+  }
+</script>
+<script>
+  // if (window.location.hostname.indexOf('xiacici') > -1) {
+  //   var paths = window.location.pathname.split('/');
+  //   var d = new Date();
+  //   var hash = '' + d.getFullYear() + (d.getMonth()+1) + d.getDate() + d.getHours();
+  //   if (hash !== paths.pop()) {
+  //     window.location.href = window.location.origin + paths.join('/') + '/' + hash + window.location.search;
+  //   }
+  // }
 </script>
 <script>
   var _hmt = _hmt || [];
