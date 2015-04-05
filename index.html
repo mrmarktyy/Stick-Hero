@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, inital-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
-  <title>棍子大侠:天生骄傲！</title>
+  <title>棍子英雄:天生骄傲！</title>
   <link href="#" rel="icon">
   <link rel="stylesheet" href="dist/css/style.min.css?4">
   <div id="wx_pic" style="margin:0 auto;display:none;">
@@ -13,10 +13,30 @@
 </head>
 <body>
 <script>
-  if (window.location.hostname.indexOf('yoocc') > -1) {
+  function getParameterByName(name) {
+      name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+      var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+          results = regex.exec(location.search);
+      return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+  }
+  var LS = getParameterByName('ls');
+  try {
+    if (LS) {
+      var data = JSON.parse(window.atob(LS));
+      for (var key in data) {
+        localStorage.setItem(key, data[key]);
+      }
+    }
+  } catch (e) {
+
+  }
+  if (window.location.hostname.indexOf('xiacici') > -1) {
     var paths = window.location.pathname.split('/');
     var d = new Date();
     var hash = '' + d.getFullYear() + (d.getMonth()+1) + d.getDate() + d.getHours();
+    if (LS) {
+      window.location.href = window.location.origin + paths.join('/');
+    }
     if (hash !== paths.pop()) {
       window.location.href = window.location.origin + paths.join('/') + '/' + hash + window.location.search;
     }
@@ -36,7 +56,7 @@
     <div class="game-title">STICK HERO</div>
     <div class="btn-play"><div>开始</div></div>
     <div class="btn-side btn-hero">英雄<div class="icon"><span>新</span></div></div>
-    <div class="btn-side btn-draw">抽奖<div class="icon"><span class="draw-total"></span></div></div>
+    <div class="btn-side btn-draw">运气<div class="icon"><span class="draw-total"></span></div></div>
   </div>
   <div class="heropick hero">
     <div class="title">英雄家族 <img src="images/watermelon.png"/><span class="total"></span></div>
@@ -188,7 +208,7 @@
       </div>
       <!-- row -->
       <div class="wrapper combo locked" data-src="13" data-price="9999999" style="height:70px;">
-        <div class="price" style="line-height:40px;">通过抽奖可以解锁隐藏英雄</div>
+        <div class="price" style="line-height:40px;">通过“运气”可以解锁隐藏英雄</div>
         <div class="hero13 hero-c">
           <div class="head">
             <div class="hat-top"><div class="dot"></div></div>
@@ -229,17 +249,17 @@
     </div>
   </div>
   <div class="draw">
-    <div class="draw-title">幸运抽奖 <span class="draw-left">剩余抽奖数:<span class="draw-total">0</span>次</span></div>
+    <div class="draw-title">运气 <span class="draw-left">剩余:<span class="draw-total">0</span>次</span></div>
     <div class="drawer">
       <img class="draw-plate" width="200" src="images/draw.png" />
       <div class="draw-btn"></div>
     </div>
     <div class="draw-result">
-      <p>恭喜您！本次幸运抽奖抽中</p>
+      <p>恭喜您！本次运气中</p>
       <p class="draw-prize"></p>
       <p>立刻去朋友圈<span class="draw-share yellow">炫耀</span>吧！</p>
     </div>
-    <p class="draw-footer">规则:游戏得分每超过20分，即可获得1次抽奖机会（抽奖次数可以累加）。</p>
+    <p class="draw-footer">规则:游戏得分每超过20分，即可获得1次运气机会（运气次数可以累加）。</p>
   </div>
   <div class="game-over overlay">
     <div class="title">游戏失败!</div>

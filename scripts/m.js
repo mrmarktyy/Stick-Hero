@@ -790,7 +790,7 @@ $(function() {
       this.$activeStick.addClass('died');
 
       if (IS_WECHAT) {
-        this.$title.text('棍子大侠:我总共前进了' + this.score + '步,听说智商超过130的人才能前进40步哦,你也来试试？');
+        this.$title.text('棍子英雄:我总共前进了' + this.score + '步,听说智商超过130的人才能前进40步哦,你也来试试？');
       }
       var drawCount = Math.floor(this.score / DRAW_SCORE);
       if (drawCount) {
@@ -859,7 +859,7 @@ $(function() {
       this.$drawPrize.text(prize);
       this.$drawResult.addClass('in');
       if (IS_WECHAT) {
-        this.$title.text('棍子大侠:太厉害了，我在幸运抽奖中抽到了' + prize + '！你也来试试吧！');
+        this.$title.text('棍子英雄:太厉害了，我在运气中得到了' + prize + '！你也来试试吧！');
       }
       this.$drawPlate.removeClass('start').css({
         '-webkit-transform': 'rotate(' + -deg + 'deg)',
