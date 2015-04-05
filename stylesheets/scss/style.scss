@@ -372,7 +372,7 @@ $main-color: black;
   background: white;
   width: 230px;
   height: auto;
-  top: 5%;
+  top: 10px;
   left: 50%;
   position: absolute;
   -webkit-transform: translate3d(-50%, 250%, 0);
@@ -391,7 +391,7 @@ $main-color: black;
   }
 
   .title {
-    padding: 12px;
+    padding: 6px 12px;
     img {
       margin-left: 6px;
     }
@@ -414,7 +414,7 @@ $main-color: black;
     display: inline-block;
     position: relative;
     width: 90px;
-    height: 52px;
+    height: 50px;
     box-sizing: border-box;
     border-radius: 10px;
 
@@ -607,5 +607,5 @@ $main-color: black;
   position: absolute;
   z-index: 1002;
   bottom: 0;
-  height: 60px;
+  height: 50px;
 }

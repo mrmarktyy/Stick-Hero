@@ -280,14 +280,14 @@
 .game-over .actions { position: absolute; top: 45%; color: white; left: 0; right: 0; text-align: center; }
 .game-over .actions .btn { cursor: pointer; background: lightcoral; padding: 10px; border-radius: 10px; margin: 5px auto; width: 100px; }
 
-.heropick { display: none; background: white; width: 230px; height: auto; top: 5%; left: 50%; position: absolute; -webkit-transform: translate3d(-50%, 250%, 0); transform: translate3d(-50%, 250%, 0); -webkit-transition: -webkit-transform 0.5s ease, opacity 0.5s; transition: transform 0.5s ease, opacity 0.5s; opacity: 0; border-radius: 20px; z-index: 1001; pointer-events: auto; }
+.heropick { display: none; background: white; width: 230px; height: auto; top: 10px; left: 50%; position: absolute; -webkit-transform: translate3d(-50%, 250%, 0); transform: translate3d(-50%, 250%, 0); -webkit-transition: -webkit-transform 0.5s ease, opacity 0.5s; transition: transform 0.5s ease, opacity 0.5s; opacity: 0; border-radius: 20px; z-index: 1001; pointer-events: auto; }
 .heropick.in { -webkit-transform: translate3d(-50%, 0, 0); transform: translate3d(-50%, 0, 0); opacity: 1; }
-.heropick .title { padding: 12px; }
+.heropick .title { padding: 6px 12px; }
 .heropick .title img { margin-left: 6px; }
 .heropick .total { float: right; }
 .heropick img { width: 18px; float: right; }
 .heropick .heros { padding: 0 20px 10px; height: 410px; }
-.heropick .wrapper { cursor: pointer; padding: 16px 10px 20px; display: inline-block; position: relative; width: 90px; height: 52px; box-sizing: border-box; border-radius: 10px; }
+.heropick .wrapper { cursor: pointer; padding: 16px 10px 20px; display: inline-block; position: relative; width: 90px; height: 50px; box-sizing: border-box; border-radius: 10px; }
 .heropick .wrapper.combo { width: 100%; }
 .heropick .wrapper.combo.locked .price { width: 170px; font-size: 12px; line-height: 20px; }
 .heropick .wrapper.locked { background-color: #ffff66; }
@@ -323,4 +323,4 @@
 
 .copyright__heart { color: red; }
 
-.ads { margin: 0; padding: 0; border: none; background: none; position: absolute; z-index: 1002; bottom: 0; height: 60px; }
+.ads { margin: 0; padding: 0; border: none; background: none; position: absolute; z-index: 1002; bottom: 0; height: 50px; }
