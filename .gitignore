@@ -1,5 +1,7 @@
 node_modules/
 .sass-cache/
+scripts/
+stylesheets/
 
 #logs
 *.log
