@@ -9,6 +9,22 @@ body {
   user-select: none;
 }
 
+.qr-code {
+  position: fixed;
+  padding: 15px;
+  border: 1px solid #ddd;
+  right: 100px;
+  img {
+    position: relative;
+    left: 50%;
+    -webkit-transform: translate3d(-50%, 0, 0);
+            transform: translate3d(-50%, 0, 0);
+  }
+  p {
+    margin: 5px 0;
+  }
+}
+
 // HACK: Lock landscape mode
 @media only screen
 and (min-device-width : 320px)

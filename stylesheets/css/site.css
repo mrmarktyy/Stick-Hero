@@ -1,3 +1,7 @@
 body { margin: 0; font-family: 'Poiret One', Helvetica, Georgia; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; }
 
+.qr-code { position: fixed; padding: 15px; border: 1px solid #ddd; right: 100px; }
+.qr-code img { position: relative; left: 50%; -webkit-transform: translate3d(-50%, 0, 0); transform: translate3d(-50%, 0, 0); }
+.qr-code p { margin: 5px 0; }
+
 @media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (orientation: landscape) { body { -webkit-transform-origin: 0% 0%; transform-origin: 0% 0%; -webkit-transform: rotate(90deg); transform: rotate(90deg); position: absolute; left: 100%; } }

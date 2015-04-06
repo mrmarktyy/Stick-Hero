@@ -177,6 +177,10 @@ $(function() {
       this.$ads = $('.ads').css({
         width: GAME_WIDTH + 'px'
       });
+      this.$qrCode = $('.qr-code');
+      if (IS_TOUCH) {
+        this.$qrCode.hide();
+      }
       this.$gametitle = $('.game-title');
       this.$gameover = $('.game-over');
       this.$welcome = $('.welcome');
